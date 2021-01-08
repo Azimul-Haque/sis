@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('admin')->only('getUsers');
     }
 
     /**
@@ -42,7 +42,7 @@ class DashboardController extends Controller
         return view('components');
     }
 
-    
+
 
     public function getComponents()
     {

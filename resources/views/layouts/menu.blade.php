@@ -5,12 +5,14 @@
         <p>Dashboard</p>
     </a>
 </li>
+@if(Auth::user()->role == 'admin')
 <li class="nav-item">
     <a href="{{ route('dashboard.users') }}" class="nav-link {{ Request::is('dashboard/users') ? 'active' : '' }}">
         <i class="nav-icon fas fa-users"></i>
         <p>Users</p>
     </a>
 </li>
+@endif
 <li class="nav-item">
     <a href="{{ route('dashboard.balance') }}" class="nav-link {{ Request::is('dashboard/balance') ? 'active' : '' }}">
         <i class="nav-icon fas fa-hand-holding-usd"></i>
