@@ -18,6 +18,8 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 Route::get('/dashboard/users', 'DashboardController@getUsers')->name('dashboard.users');
+Route::post('/dashboard/users/store', 'DashboardController@storeUser')->name('dashboard.users.store');
+
 Route::get('/dashboard/balance', 'DashboardController@getBalance')->name('dashboard.balance');
 Route::get('/dashboard/sites', 'DashboardController@getSites')->name('dashboard.sites');
 

@@ -45,6 +45,16 @@ class DashboardController extends Controller
         return view('users.index')->withUsers($users);
     }
 
+    public function storeUser(Request $request)
+    {
+        $this->validate($request,array(
+            'name'        => 'required|string|max:191',
+            'mobile'      => 'required|string|max:191|unique:users',
+            'role'        => 'required',
+            'password'    => 'required|string|min:8|max:191',
+        ));
+    }
+
     public function getBalance()
     {
         return view('components');

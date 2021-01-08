@@ -76,58 +76,62 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form method="post" action="{{ route('register') }}">
-                @csrf
+          <form method="post" action="{{ route('dashboard.users.store') }}">
+	          <div class="modal-body">
+	            
+	                @csrf
 
-                <div class="input-group mb-3">
-                    <input type="text"
-                           name="name"
-                           class="form-control
-                           value="{{ old('name') }}"
-                           placeholder="Full name">
-                    <div class="input-group-append">
-                        <div class="input-group-text"><span class="fas fa-user"></span></div>
-                    </div>
-                </div>
+	                <div class="input-group mb-3">
+	                    <input type="text"
+	                           name="name"
+	                           class="form-control
+	                           value="{{ old('name') }}"
+	                           placeholder="Full name" required>
+	                    <div class="input-group-append">
+	                        <div class="input-group-text"><span class="fas fa-user"></span></div>
+	                    </div>
+	                </div>
 
-                <div class="input-group mb-3">
-                    <input type="text"
-                           name="mobile"
-                           value="{{ old('mobile') }}"
-                           class="form-control
-                           placeholder="Mobile">
-                    <div class="input-group-append">
-                        <div class="input-group-text"><span class="fas fa-envelope"></span></div>
-                    </div>
-                </div>
+	                <div class="input-group mb-3">
+	                    <input type="text"
+	                           name="mobile"
+	                           value="{{ old('mobile') }}"
+	                           autocomplete="off"
+	                           class="form-control"
+	                           placeholder="Mobile" required>
+	                    <div class="input-group-append">
+	                        <div class="input-group-text"><span class="fas fa-phone"></span></div>
+	                    </div>
+	                </div>
 
-                <div class="input-group mb-3">
-                	<select name="role" class="form-control">
-                		<option selected="" disabled="">Select Role</option>
-                		<option value="admin">Admin</option>
-                		<option value="manager">Manager</option>
-                	</select>
-                    <div class="input-group-append">
-                        <div class="input-group-text"><span class="fas fa-envelope"></span></div>
-                    </div>
-                </div>
+	                <div class="input-group mb-3">
+	                	<select name="role" class="form-control" value="{{ old('role') }}" required>
+	                		<option selected="" disabled="" value="">Select Role</option>
+	                		<option value="admin">Admin</option>
+	                		<option value="manager">Manager</option>
+	                	</select>
+	                    <div class="input-group-append">
+	                        <div class="input-group-text"><span class="fas fa-user-secret"></span></div>
+	                    </div>
+	                </div>
 
-                <div class="input-group mb-3">
-                    <input type="password"
-                           name="password"
-                           class="form-control
-                           placeholder="Password">
-                    <div class="input-group-append">
-                        <div class="input-group-text"><span class="fas fa-lock"></span></div>
-                    </div>
-                </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" type="submit" class="btn btn-success" id="test">Save</button>
-          </div>
+	                <div class="input-group mb-3">
+	                    <input type="password"
+	                           name="password"
+	                           class="form-control"
+	                           autocomplete="off"
+	                           placeholder="Password" required>
+	                    <div class="input-group-append">
+	                        <div class="input-group-text"><span class="fas fa-lock"></span></div>
+	                    </div>
+	                </div>
+	            
+	          </div>
+	          <div class="modal-footer">
+	            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	            <button type="submit" class="btn btn-success">Save</button>
+	          </div>
+          </form>
         </div>
       </div>
     </div>
