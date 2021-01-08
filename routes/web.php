@@ -18,5 +18,11 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard.inedx');
+Route::get('/dashboard/users', 'DashboardController@getUsers')->name('dashboard.users');
+Route::get('/dashboard/balance', 'DashboardController@getBalance')->name('dashboard.balance');
+Route::get('/dashboard/sites', 'DashboardController@getSites')->name('dashboard.sites');
+
+// COMPONENTS
+Route::get('/dashboard/components', 'DashboardController@getComponents')->name('dashboard.components');
 
