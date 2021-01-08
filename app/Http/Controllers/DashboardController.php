@@ -55,7 +55,10 @@ class DashboardController extends Controller
         ));
 
         $user = new User;
-        $user->name = 
+        $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->role = $request->role;
+        $user->password = Hash::make($request->newpassword);
     }
 
     public function getBalance()
