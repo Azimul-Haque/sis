@@ -61,7 +61,7 @@ class DashboardController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        Session::flash('SUCCESS', 'User created successfully!');
+        Session::flash('success', 'User created successfully!');
         return redirect()->route('dashboard.users');
     }
 
@@ -71,7 +71,7 @@ class DashboardController extends Controller
             'name'        => 'required|string|max:191',
             'mobile'      => 'required|string|max:191|unique:users,mobile,'.$id,
             'role'        => 'required',
-            'password'    => 'sometimes|string|min:8|max:191',
+            'password'    => 'nullable|string|min:8|max:191',
         ));
 
         $user = User::find($id);
@@ -83,7 +83,7 @@ class DashboardController extends Controller
         }
         $user->save();
 
-        Session::flash('SUCCESS', 'User updated successfully!');
+        Session::flash('success', 'User updated successfully!');
         return redirect()->route('dashboard.users');
     }
 
