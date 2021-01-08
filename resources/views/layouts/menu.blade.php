@@ -1,6 +1,6 @@
 <!-- need to remove -->
 <li class="nav-item">
-    <a href="{{ route('dashboard.inedx') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
+    <a href="{{ route('dashboard.index') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
         <i class="nav-icon fas fa-home"></i>
         <p>Dashboard</p>
     </a>

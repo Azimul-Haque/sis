@@ -45,15 +45,15 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="email"
-                           name="email"
-                           value="{{ old('email') }}"
-                           class="form-control @error('email') is-invalid @enderror"
-                           placeholder="Email">
+                    <input type="text"
+                           name="mobile"
+                           value="{{ old('mobile') }}"
+                           class="form-control @error('mobile') is-invalid @enderror"
+                           placeholder="Mobile">
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-envelope"></span></div>
                     </div>
-                    @error('email')
+                    @error('mobile')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return redirect()->route('dashboard.inedx'); });
+Route::get('/', function () { return redirect()->route('dashboard.index'); });
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard.inedx');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 Route::get('/dashboard/users', 'DashboardController@getUsers')->name('dashboard.users');
 Route::get('/dashboard/balance', 'DashboardController@getBalance')->name('dashboard.balance');
 Route::get('/dashboard/sites', 'DashboardController@getSites')->name('dashboard.sites');
