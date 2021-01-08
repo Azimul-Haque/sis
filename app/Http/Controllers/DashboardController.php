@@ -53,6 +53,9 @@ class DashboardController extends Controller
             'role'        => 'required',
             'password'    => 'required|string|min:8|max:191',
         ));
+
+        $user = new User;
+        $user->name = 
     }
 
     public function getBalance()
