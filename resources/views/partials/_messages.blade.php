@@ -46,10 +46,9 @@
 
 @if(session('warning'))
     <script type="text/javascript">
-    if($(window).width() > 768) {
-      toastr.warning('{{ session('warning') }}', 'WARNING').css('width', '400px');
-    } else {
-      toastr.warning('{{ session('warning') }}', 'WARNING').css('width', ($(window).width()-25)+'px');
-    }
+    Toast.fire({
+      icon: 'warning',
+      title: '{{ session('warning') }}'
+    })
   </script>
 @endif

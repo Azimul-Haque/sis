@@ -8,11 +8,11 @@ use App\User;
 
 // use Carbon\Carbon;
 // use DB;
-// use Hash;
-// use Auth;
+use Hash;
+use Auth;
 // use Image;
 // use File;
-// use Session;
+use Session;
 // use Artisan;
 // use Redirect;
 
@@ -42,6 +42,7 @@ class DashboardController extends Controller
     public function getUsers()
     {
         $users = User::all();
+        Session::flash('success', 'সফলভাবে অ্যাডমিন বানানো হয়েছে!');
         return view('users.index')->withUsers($users);
     }
 

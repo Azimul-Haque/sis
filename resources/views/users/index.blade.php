@@ -139,18 +139,5 @@
 @endsection
 
 @section('third_party_scripts')
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script type="text/javascript">
-		
 
-		Swal.fire({
-		  toast: true,
-		  position: 'bottom-end',
-		  icon: 'success',
-		  title: 'Your work has been saved',
-		  button: true,
-		  timer: 3000
-		});
-
-	</script>
 @endsection
