@@ -103,14 +103,11 @@
                 </div>
 
                 <div class="input-group mb-3">
-                	<select name="role" class="form-control @error('role') is-invalid @enderror">
-                		
+                	<select name="role" class="form-control">
+                		<option selected="" disabled="">Select Role</option>
+                		<option value="admin">Admin</option>
+                		<option value="manager">Manager</option>
                 	</select>
-                    <input type="text"
-                           name="mobile"
-                           value="{{ old('mobile') }}"
-                           class="form-control
-                           placeholder="Mobile">
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-envelope"></span></div>
                     </div>

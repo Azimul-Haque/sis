@@ -42,7 +42,6 @@ class DashboardController extends Controller
     public function getUsers()
     {
         $users = User::all();
-        Session::flash('success', 'সফলভাবে অ্যাডমিন বানানো হয়েছে!');
         return view('users.index')->withUsers($users);
     }
 
