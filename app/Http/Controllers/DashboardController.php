@@ -27,6 +27,23 @@ class DashboardController extends Controller
         return view('dashboard');
     }
 
+    public function getUsers()
+    {
+        return view('components');
+    }
+
+    public function getBalance()
+    {
+        return view('components');
+    }
+
+    public function getSites()
+    {
+        return view('components');
+    }
+
+    
+
     public function getComponents()
     {
         return view('components');

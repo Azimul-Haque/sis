@@ -6,19 +6,19 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('dashboard.inedx') }}" class="nav-link {{ Request::is('dashboard/users') ? 'active' : '' }}">
+    <a href="{{ route('dashboard.users') }}" class="nav-link {{ Request::is('dashboard/users') ? 'active' : '' }}">
         <i class="nav-icon fas fa-users"></i>
         <p>Users</p>
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('dashboard.inedx') }}" class="nav-link {{ Request::is('dashboard/balance') ? 'active' : '' }}">
+    <a href="{{ route('dashboard.balance') }}" class="nav-link {{ Request::is('dashboard/balance') ? 'active' : '' }}">
         <i class="nav-icon fas fa-hand-holding-usd"></i>
         <p>Balance</p>
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('dashboard.inedx') }}" class="nav-link {{ Request::is('dashboard/sites') ? 'active' : '' }}">
+    <a href="{{ route('dashboard.sites') }}" class="nav-link {{ Request::is('dashboard/sites') ? 'active' : '' }}">
         <i class="nav-icon fas fa-briefcase"></i>
         <p>Sites</p>
     </a>
@@ -30,7 +30,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('logout') }}" class="nav-link">
+    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
         <i class="nav-icon fas fa-sign-out-alt"></i>
         <p>Logout</p>
     </a>
