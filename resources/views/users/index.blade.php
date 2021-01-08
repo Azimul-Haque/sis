@@ -26,13 +26,13 @@
 	                  <thead>
 	                    <tr>
 	                      <th style="width: 10px">#</th>
-	                      <th>Task</th>
-	                      <th>Progress</th>
-	                      <th style="width: 40px">Label</th>
+	                      <th>Name</th>
+	                      <th>Role</th>
+	                      <th style="width: 40px">Action</th>
 	                    </tr>
 	                  </thead>
 	                  <tbody>
-	                    <tr>
+	                    {{-- <tr>
 	                      <td>1.</td>
 	                      <td>Update software</td>
 	                      <td>
@@ -41,37 +41,28 @@
 	                        </div>
 	                      </td>
 	                      <td><span class="badge bg-danger">55%</span></td>
-	                    </tr>
-	                    <tr>
-	                      <td>2.</td>
-	                      <td>Clean database</td>
-	                      <td>
-	                        <div class="progress progress-xs">
-	                          <div class="progress-bar bg-warning" style="width: 70%"></div>
-	                        </div>
-	                      </td>
-	                      <td><span class="badge bg-warning">70%</span></td>
-	                    </tr>
-	                    <tr>
-	                      <td>3.</td>
-	                      <td>Cron job running</td>
-	                      <td>
-	                        <div class="progress progress-xs progress-striped active">
-	                          <div class="progress-bar bg-primary" style="width: 30%"></div>
-	                        </div>
-	                      </td>
-	                      <td><span class="badge bg-primary">30%</span></td>
-	                    </tr>
-	                    <tr>
-	                      <td>4.</td>
-	                      <td>Fix and squish bugs</td>
-	                      <td>
-	                        <div class="progress progress-xs progress-striped active">
-	                          <div class="progress-bar bg-success" style="width: 90%"></div>
-	                        </div>
-	                      </td>
-	                      <td><span class="badge bg-success">90%</span></td>
-	                    </tr>
+	                    </tr> --}}
+	                    @php
+	                    	$i = 1;
+	                    @endphp
+	                    @foreach($users as $user)
+	                    	<tr>
+	                    		<td>{{ $i }}</td>
+	                    		<td>{{ $user->name }}<br/><small class="text-black-50">{{ $user->mobile }}</small></td>
+	                    		<td><span class="badge @if($user->role == 'admin') bg-success @else bg-info @endif">{{ ucfirst($user->role) }}</span></td>
+	                    		<td>
+	                    			<button type="button" class="btn btn-primary btn-sm">
+	                    				<i class=""></i>
+	                    			</button>
+	                    			<button type="button" class="btn btn-danger btn-sm">
+	                    				<i class=""></i>
+	                    			</button>
+	                    		</td>
+	                    	</tr>
+	                    	@php
+	                    		$i++;
+	                    	@endphp
+	                    @endforeach
 	                  </tbody>
 	                </table>
 	              </div>
