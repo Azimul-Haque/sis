@@ -149,7 +149,7 @@
 		  icon: 'success',
 		  title: 'Your work has been saved',
 		  button: true,
-		  timer: 2500
+		  timer: 3000
 		});
 
 	</script>
