@@ -41,7 +41,7 @@ class DashboardController extends Controller
 
     public function getUsers()
     {
-        $users = User::all();
+        $users = User::where('name', '!=', null)->paginate(5);
         return view('users.index')->withUsers($users);
     }
 
