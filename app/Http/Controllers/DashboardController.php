@@ -49,7 +49,7 @@ class DashboardController extends Controller
     {
         $this->validate($request,array(
             'name'        => 'required|string|max:191',
-            'mobile'      => 'required|string|max:191|unique:users',
+            'mobile'      => 'required|string|max:191|unique:users,mobile',
             'role'        => 'required',
             'password'    => 'required|string|min:8|max:191',
         ));
@@ -58,7 +58,33 @@ class DashboardController extends Controller
         $user->name = $request->name;
         $user->mobile = $request->mobile;
         $user->role = $request->role;
-        $user->password = Hash::make($request->newpassword);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        Session::flash('SUCCESS', 'User created successfully!');
+        return redirect()->route('dashboard.users');
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $this->validate($request,array(
+            'name'        => 'required|string|max:191',
+            'mobile'      => 'required|string|max:191|unique:users,mobile,'.$id,
+            'role'        => 'required',
+            'password'    => 'sometimes|string|min:8|max:191',
+        ));
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->role = $request->role;
+        if(!empty($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        Session::flash('SUCCESS', 'User updated successfully!');
+        return redirect()->route('dashboard.users');
     }
 
     public function getBalance()

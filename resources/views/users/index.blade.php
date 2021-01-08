@@ -48,9 +48,82 @@
                 			<span class="badge @if($user->role == 'admin') bg-success @else bg-info @endif">{{ ucfirst($user->role) }}</span>
                 		</td>
                 		<td align="right" width="40%">
-                			<button type="button" class="btn btn-primary btn-sm">
+                			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUserModal{{ $user->id }}">
                 				<i class="fas fa-user-edit"></i>
                 			</button>
+            			    {{-- Edit User Modal Code --}}
+            			    {{-- Edit User Modal Code --}}
+            			    <!-- Modal -->
+            			    <div class="modal fade" id="editUserModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true" data-backdrop="static">
+            			      <div class="modal-dialog" role="document">
+            			        <div class="modal-content">
+            			          <div class="modal-header bg-primary">
+            			            <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+            			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            			              <span aria-hidden="true">&times;</span>
+            			            </button>
+            			          </div>
+            			          <form method="post" action="{{ route('dashboard.users.update', $user->id) }}">
+            				          <div class="modal-body">
+            				            
+            				                @csrf
+
+            				                <div class="input-group mb-3">
+            				                    <input type="text"
+            				                           name="name"
+            				                           class="form-control"
+            				                           value="{{ $user->name }}"
+            				                           placeholder="Full name" required>
+            				                    <div class="input-group-append">
+            				                        <div class="input-group-text"><span class="fas fa-user"></span></div>
+            				                    </div>
+            				                </div>
+
+            				                <div class="input-group mb-3">
+            				                    <input type="text"
+            				                           name="mobile"
+            				                           value="{{ $user->mobile }}"
+            				                           autocomplete="off"
+            				                           class="form-control"
+            				                           placeholder="Mobile" required>
+            				                    <div class="input-group-append">
+            				                        <div class="input-group-text"><span class="fas fa-phone"></span></div>
+            				                    </div>
+            				                </div>
+
+            				                <div class="input-group mb-3">
+            				                	<select name="role" class="form-control" value="{{ old('role') }}" required>
+            				                		<option disabled="" value="">Select Role</option>
+            				                		<option value="admin" @if($user->role == 'admin') selected="" @endif>Admin</option>
+            				                		<option value="manager" @if($user->role == 'manager') selected="" @endif>Manager</option>
+            				                	</select>
+            				                    <div class="input-group-append">
+            				                        <div class="input-group-text"><span class="fas fa-user-secret"></span></div>
+            				                    </div>
+            				                </div>
+
+            				                <div class="input-group mb-3">
+            				                    <input type="password"
+            				                           name="password"
+            				                           class="form-control"
+            				                           autocomplete="off"
+            				                           placeholder="Password (Optional)">
+            				                    <div class="input-group-append">
+            				                        <div class="input-group-text"><span class="fas fa-lock"></span></div>
+            				                    </div>
+            				                </div>
+            				            
+            				          </div>
+            				          <div class="modal-footer">
+            				            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            				            <button type="submit" class="btn btn-primary">Save</button>
+            				          </div>
+            			          </form>
+            			        </div>
+            			      </div>
+            			    </div>
+            			    {{-- Edit User Modal Code --}}
+            			    {{-- Edit User Modal Code --}}
                 			<button type="button" class="btn btn-danger btn-sm">
                 				<i class="fas fa-user-minus"></i>
                 			</button>
@@ -84,7 +157,7 @@
 	                <div class="input-group mb-3">
 	                    <input type="text"
 	                           name="name"
-	                           class="form-control
+	                           class="form-control"
 	                           value="{{ old('name') }}"
 	                           placeholder="Full name" required>
 	                    <div class="input-group-append">
