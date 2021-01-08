@@ -135,5 +135,6 @@
 @yield('third_party_scripts')
 
 @stack('page_scripts')
+@include('partials._messages')
 </body>
 </html>

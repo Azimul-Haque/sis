@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title') Dashboard | Users @endsection
 
-@section('page_css')
+@section('third_party_stylesheets')
 
 @endsection
 
@@ -129,7 +129,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" type="submit" class="btn btn-success">Save</button>
+            <button type="button" type="submit" class="btn btn-success" id="test">Save</button>
           </div>
         </div>
       </div>
@@ -138,6 +138,19 @@
     {{-- Add User Modal Code --}}
 @endsection
 
-@section('page_scripts')
+@section('third_party_scripts')
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script type="text/javascript">
+		
 
+		Swal.fire({
+		  toast: true,
+		  position: 'bottom-end',
+		  icon: 'success',
+		  title: 'Your work has been saved',
+		  button: true,
+		  timer: 2500
+		});
+
+	</script>
 @endsection

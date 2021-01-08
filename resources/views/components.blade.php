@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title') Dashboard | Components @endsection
 
-@section('page_css')
+@section('third_party_stylesheets')
 
 @endsection
 
@@ -12,6 +12,6 @@
     </div>
 @endsection
 
-@section('page_scripts')
+@section('third_party_scripts')
 
 @endsection
