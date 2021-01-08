@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title') Dashboard @endsection
 
+@section('page_css')
+
+@endsection
+
 @section('content')
 	@section('page-header') Dashboard @endsection
     <div class="container-fluid">
@@ -69,3 +73,6 @@
     </div>
 @endsection
 
+@section('page_scripts')
+
+@endsection
