@@ -4,6 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+
+// use Carbon\Carbon;
+// use DB;
+// use Hash;
+// use Auth;
+// use Image;
+// use File;
+// use Session;
+// use Artisan;
+// use Redirect;
+
 class DashboardController extends Controller
 {
     /**
@@ -29,7 +41,8 @@ class DashboardController extends Controller
 
     public function getUsers()
     {
-        return view('components');
+        $users = User::all();
+        return view('users.index')->withUsers($users);
     }
 
     public function getBalance()
