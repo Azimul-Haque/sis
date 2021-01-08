@@ -20,7 +20,7 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 Route::get('/dashboard/users', 'DashboardController@getUsers')->name('dashboard.users');
 Route::post('/dashboard/users/store', 'DashboardController@storeUser')->name('dashboard.users.store');
 Route::post('/dashboard/users/{id}/update', 'DashboardController@updateUser')->name('dashboard.users.update');
-Route::delete('/dashboard/users/{id}/delete', 'DashboardController@deleteUser')->name('dashboard.users.delete');
+Route::get('/dashboard/users/{id}/delete', 'DashboardController@deleteUser')->name('dashboard.users.delete');
 
 Route::get('/dashboard/balance', 'DashboardController@getBalance')->name('dashboard.balance');
 Route::get('/dashboard/sites', 'DashboardController@getSites')->name('dashboard.sites');

@@ -140,19 +140,16 @@
             			              <span aria-hidden="true">&times;</span>
             			            </button>
             			          </div>
-            			          <form method="delete" action="{{ route('dashboard.users.delete', $user->id) }}">
-            				          <div class="modal-body">
-            				            
-            				                @csrf
-
-            				                Are you sure to delete this user: {{ $user->name }} <small>{{ $user->mobile }}</small>
-            				            
-            				          </div>
-            				          <div class="modal-footer">
-            				            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            				            <button type="submit" class="btn btn-danger">Delete</button>
-            				          </div>
-            			          </form>
+            			          <div class="modal-body">
+        			                <p style="float: left;">
+        			                	Are you sure to delete this user:<br/>
+        			                	<center>{{ $user->name }}, (<small><i class="fas fa-phone"></i> {{ $user->mobile }}</small>)</center>
+        			                </p>
+            			          </div>
+            			          <div class="modal-footer">
+            			            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            			            <a href="{{ route('dashboard.users.delete', $user->id) }}" class="btn btn-danger">Delete</a>
+            			          </div>
             			        </div>
             			      </div>
             			    </div>
