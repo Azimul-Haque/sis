@@ -14,7 +14,7 @@
 
             <div class="card-tools">
             	<button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addUserModal">
-            		<i class="fas fa-user-plus"></i>
+            		<i class="fas fa-user-plus"></i> Add
             	</button>
               {{-- <ul class="pagination pagination-sm float-right">
                 <li class="page-item"><a class="page-link" href="#">«</a></li>

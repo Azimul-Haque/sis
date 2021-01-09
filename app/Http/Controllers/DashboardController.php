@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Balance;
 
 // use Carbon\Carbon;
 // use DB;
@@ -26,7 +27,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin')->only('getUsers');
+        $this->middleware('admin')->only('getUsers', 'getBalance');
     }
 
     /**
@@ -98,7 +99,8 @@ class DashboardController extends Controller
 
     public function getBalance()
     {
-        return view('components');
+        $balances = Balance::where('amount', '>', 0)->paginate(10);
+        return view('balances.index')->withBalances($balances);
     }
 
     public function getSites()
