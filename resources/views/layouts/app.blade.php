@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <title>@yield('title')</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="{{ asset('images/favicon.png') }}">
+    <meta name="theme-color" content="#FD7E14">
+    <meta name="msapplication-navbutton-color" content="#FD7E14">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#FD7E14">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
           integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
           crossorigin="anonymous"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/v3/plugins/pace-progress/themes/black/pace-theme-flat-top.css">
+    <link href="{{ asset('css/pace.min.css') }}" rel="stylesheet">
     @yield('third_party_stylesheets')
 
     @stack('page_css')
@@ -131,7 +136,13 @@
 </div>
 
 <script src="{{ mix('js/app.js') }}" defer></script>
-<script type="text/javascript" src="https://adminlte.io/themes/v3/plugins/pace-progress/pace.min.js"></script>
+<script src="{{ asset('js/pace.min.js') }}" defer></script>
+<script>
+ $(document).ajaxStart(function () {
+    Pace.restart()
+ })
+</script>
+
 @yield('third_party_scripts')
 
 @stack('page_scripts')
