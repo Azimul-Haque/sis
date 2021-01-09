@@ -24,6 +24,7 @@ Route::get('/dashboard/users/{id}/delete', 'DashboardController@deleteUser')->na
 
 Route::get('/dashboard/balance', 'DashboardController@getBalance')->name('dashboard.balance');
 Route::post('/dashboard/balance/store', 'DashboardController@storeBalance')->name('dashboard.balance.store');
+Route::get('/dashboard/balance/{id}/delete', 'DashboardController@deleteBalance')->name('dashboard.balance.delete');
 
 Route::get('/dashboard/sites', 'DashboardController@getSites')->name('dashboard.sites');
 

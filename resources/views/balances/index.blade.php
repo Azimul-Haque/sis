@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-	@section('page-header') Balance @endsection
+	@section('page-header') Total Balance: ৳ {{ $totalbalance }} @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">
@@ -45,39 +45,43 @@
                             <span class="badge bg-success"><big>৳ {{ $balance->amount }}</big></span><br/>
                             <small>
                                 <span class="text-black-50">Added by</span> {{ $balance->user->name }} <span class="text-black-50"><br/>
-                                </span> {{ date('F d, Y', strtotime($balance->created_at)) }}
+                                </span> {{ date('F d, Y h:i A', strtotime($balance->created_at)) }}
                             </small> 
                         </td>
                 		<td align="right" width="40%">
-                			<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteBalanceModal{{ $balance->id }}">
-                				<i class="fas fa-user-minus"></i>
-                			</button>
+                			@if(Auth::user()->role == 'admin')
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteBalanceModal{{ $balance->id }}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            @endif
                 		</td>
-                        {{-- Delete User Modal Code --}}
-                        {{-- Delete User Modal Code --}}
+                        {{-- Delete Balance Modal Code --}}
+                        {{-- Delete Balance Modal Code --}}
                         <!-- Modal -->
                         <div class="modal fade" id="deleteBalanceModal{{ $balance->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteBalanceModalLabel" aria-hidden="true" data-backdrop="static">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header bg-danger">
-                                <h5 class="modal-title" id="deleteBalanceModalLabel">Delete User</h5>
+                                <h5 class="modal-title" id="deleteBalanceModalLabel">Delete Amount</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
                               <div class="modal-body">
                                 Are you sure to delete this balance?<br/>
-                                <center>$ {{ $balance->amount }}, (<small><i class="fas fa-user"></i> {{ $balance->user->name }}</small>)</center>
+                                <center><big><b>$ {{ $balance->amount }}</b></big><br/>
+                                    <small><i class="fas fa-user"></i> {{ $balance->user->name }}, <i class="fas fa-calendar-alt"></i> {{ date('F d, Y', strtotime($balance->created_at)) }}</small>
+                                </center>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <a href="{{ route('dashboard.users.delete', $balance->id) }}" class="btn btn-danger">Delete</a>
+                                <a href="{{ route('dashboard.balance.delete', $balance->id) }}" class="btn btn-danger">Delete</a>
                               </div>
                             </div>
                           </div>
                         </div>
-                        {{-- Delete User Modal Code --}}
-                        {{-- Delete User Modal Code --}}
+                        {{-- Delete Balance Modal Code --}}
+                        {{-- Delete Balance Modal Code --}}
                 	</tr>
                 @endforeach
               </tbody>

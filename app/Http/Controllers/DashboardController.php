@@ -27,7 +27,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin')->only('getUsers', 'getBalance');
+        $this->middleware('admin')->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance');
     }
 
     /**
@@ -99,8 +99,14 @@ class DashboardController extends Controller
 
     public function getBalance()
     {
-        $balances = Balance::where('amount', '>', 0)->paginate(10);
-        return view('balances.index')->withBalances($balances);
+        $totalbalance = Balance::sum('amount');
+        $balances = Balance::where('amount', '>', 0)
+                           ->orderBy('id', 'desc')
+                           ->paginate(5);
+
+        return view('balances.index')
+                    ->withBalances($balances)
+                    ->withTotalbalance($totalbalance);
     }
 
     public function storeBalance(Request $request)
@@ -115,6 +121,15 @@ class DashboardController extends Controller
         $balance->save();
 
         Session::flash('success', 'Amount added successfully!');
+        return redirect()->route('dashboard.balance');
+    }
+
+    public function deleteBalance($id)
+    {
+        $balance = Balance::find($id);
+        $balance->delete();
+
+        Session::flash('success', 'Amount deleted successfully!');
         return redirect()->route('dashboard.balance');
     }
 

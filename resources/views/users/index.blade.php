@@ -143,7 +143,10 @@
                               </div>
                               <div class="modal-body">
                                 Are you sure to delete this user?<br/>
-                                <center>{{ $user->name }}, (<small><i class="fas fa-phone"></i> {{ $user->mobile }}</small>)</center>
+                                <center>
+                                    <big><b>{{ $user->name }}</b></big><br/>
+                                    <small><i class="fas fa-phone"></i> {{ $user->mobile }}</small>
+                                </center>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

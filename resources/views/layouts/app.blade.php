@@ -10,13 +10,13 @@
           crossorigin="anonymous"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="https://adminlte.io/themes/v3/plugins/pace-progress/themes/black/pace-theme-flat-top.css">
     @yield('third_party_stylesheets')
 
     @stack('page_css')
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed pace-primary">
 <div class="wrapper">
     <!-- Main Header -->
     <nav class="main-header navbar navbar-expand navbar-orange navbar-dark">
@@ -131,7 +131,7 @@
 </div>
 
 <script src="{{ mix('js/app.js') }}" defer></script>
-
+<script type="text/javascript" src="https://adminlte.io/themes/v3/plugins/pace-progress/pace.min.js"></script>
 @yield('third_party_scripts')
 
 @stack('page_scripts')
