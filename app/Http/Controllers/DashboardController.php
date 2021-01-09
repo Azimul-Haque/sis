@@ -106,23 +106,18 @@ class DashboardController extends Controller
     public function storeBalance(Request $request)
     {
         $this->validate($request,array(
-            'name'        => 'required|string|max:191',
-            'mobile'      => 'required|string|max:191|unique:users,mobile',
-            'role'        => 'required',
-            'password'    => 'required|string|min:8|max:191',
+            'amount'        => 'required|number|max:191',
         ));
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->mobile = $request->mobile;
-        $user->role = $request->role;
-        $user->password = Hash::make($request->password);
-        $user->save();
+        $balance = new Balance;
+        $balance->user_id = Auth::user()->id;
+        $balance->amount = $request->amount;
+        $balance->save();
 
-        Session::flash('success', 'User created successfully!');
-        return redirect()->route('dashboard.users');
+        Session::flash('success', 'Amount added successfully!');
+        return redirect()->route('dashboard.balance');
     }
-    
+
     public function getSites()
     {
         return view('components');
