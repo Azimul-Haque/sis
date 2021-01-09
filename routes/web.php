@@ -23,6 +23,8 @@ Route::post('/dashboard/users/{id}/update', 'DashboardController@updateUser')->n
 Route::get('/dashboard/users/{id}/delete', 'DashboardController@deleteUser')->name('dashboard.users.delete');
 
 Route::get('/dashboard/balance', 'DashboardController@getBalance')->name('dashboard.balance');
+Route::post('/dashboard/balance/store', 'DashboardController@storeBalance')->name('dashboard.balance.store');
+
 Route::get('/dashboard/sites', 'DashboardController@getSites')->name('dashboard.sites');
 
 // COMPONENTS

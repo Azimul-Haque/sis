@@ -103,6 +103,26 @@ class DashboardController extends Controller
         return view('balances.index')->withBalances($balances);
     }
 
+    public function storeBalance(Request $request)
+    {
+        $this->validate($request,array(
+            'name'        => 'required|string|max:191',
+            'mobile'      => 'required|string|max:191|unique:users,mobile',
+            'role'        => 'required',
+            'password'    => 'required|string|min:8|max:191',
+        ));
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->role = $request->role;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        Session::flash('success', 'User created successfully!');
+        return redirect()->route('dashboard.users');
+    }
+    
     public function getSites()
     {
         return view('components');
