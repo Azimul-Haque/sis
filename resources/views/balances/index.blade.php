@@ -52,34 +52,32 @@
                 			<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteBalanceModal{{ $balance->id }}">
                 				<i class="fas fa-user-minus"></i>
                 			</button>
-            			    {{-- Delete User Modal Code --}}
-            			    {{-- Delete User Modal Code --}}
-            			    <!-- Modal -->
-            			    <div class="modal fade" id="deleteBalanceModal{{ $balance->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteBalanceModalLabel" aria-hidden="true" data-backdrop="static">
-            			      <div class="modal-dialog" role="document">
-            			        <div class="modal-content">
-            			          <div class="modal-header bg-danger">
-            			            <h5 class="modal-title" id="deleteBalanceModalLabel">Delete User</h5>
-            			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            			              <span aria-hidden="true">&times;</span>
-            			            </button>
-            			          </div>
-            			          <div class="modal-body">
-        			                <p style="float: left;">
-        			                	Are you sure to delete this user:<br/>
-        			                	<center>{{ $balance->name }}, (<small><i class="fas fa-phone"></i> {{ $balance->mobile }}</small>)</center>
-        			                </p>
-            			          </div>
-            			          <div class="modal-footer">
-            			            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            			            <a href="{{ route('dashboard.users.delete', $balance->id) }}" class="btn btn-danger">Delete</a>
-            			          </div>
-            			        </div>
-            			      </div>
-            			    </div>
-            			    {{-- Delete User Modal Code --}}
-            			    {{-- Delete User Modal Code --}}
                 		</td>
+                        {{-- Delete User Modal Code --}}
+                        {{-- Delete User Modal Code --}}
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteBalanceModal{{ $balance->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteBalanceModalLabel" aria-hidden="true" data-backdrop="static">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header bg-danger">
+                                <h5 class="modal-title" id="deleteBalanceModalLabel">Delete User</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Are you sure to delete this balance?<br/>
+                                <center>$ {{ $balance->amount }}, (<small><i class="fas fa-user"></i> {{ $balance->user->name }}</small>)</center>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a href="{{ route('dashboard.users.delete', $balance->id) }}" class="btn btn-danger">Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {{-- Delete User Modal Code --}}
+                        {{-- Delete User Modal Code --}}
                 	</tr>
                 @endforeach
               </tbody>
@@ -104,7 +102,6 @@
           </div>
           <form method="post" action="{{ route('dashboard.balance.store') }}">
 	          <div class="modal-body">
-	            
 	                @csrf
 
 	                <div class="input-group mb-3">

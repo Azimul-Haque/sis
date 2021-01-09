@@ -142,7 +142,7 @@
             			          </div>
             			          <div class="modal-body">
         			                <p style="float: left;">
-        			                	Are you sure to delete this user:<br/>
+        			                	Are you sure to delete this user?<br/>
         			                	<center>{{ $user->name }}, (<small><i class="fas fa-phone"></i> {{ $user->mobile }}</small>)</center>
         			                </p>
             			          </div>
