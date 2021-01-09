@@ -106,7 +106,7 @@ class DashboardController extends Controller
     public function storeBalance(Request $request)
     {
         $this->validate($request,array(
-            'amount'        => 'required|number|max:191',
+            'amount'        => 'required|integer'
         ));
 
         $balance = new Balance;

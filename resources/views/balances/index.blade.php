@@ -41,12 +41,13 @@
                 </tr> --}}
                 @foreach($balances as $balance)
                 	<tr>
-                		<td>
-                			{{ $balance->name }}
-                			<br/>
-                			<small class="text-black-50">{{ $balance->mobile }}</small> 
-                			<span class="badge @if($balance->role == 'admin') bg-success @else bg-info @endif">{{ ucfirst($balance->role) }}</span>
-                		</td>
+                        <td style="line-height: 1;">
+                            <span class="badge bg-success"><big>৳ {{ $balance->amount }}</big></span><br/>
+                            <small>
+                                <span class="text-black-50">Added by</span> {{ $balance->user->name }} <span class="text-black-50"><br/>
+                                </span> {{ date('F d, Y', strtotime($balance->created_at)) }}
+                            </small> 
+                        </td>
                 		<td align="right" width="40%">
                 			<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteBalanceModal{{ $balance->id }}">
                 				<i class="fas fa-user-minus"></i>
@@ -107,7 +108,7 @@
 	                @csrf
 
 	                <div class="input-group mb-3">
-	                    <input type="text"
+	                    <input type="number"
 	                           name="amount"
 	                           class="form-control"
 	                           value="{{ old('amount') }}"
