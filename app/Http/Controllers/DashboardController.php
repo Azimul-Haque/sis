@@ -14,7 +14,7 @@ use Auth;
 // use Image;
 // use File;
 use Session;
-// use Artisan;
+use Artisan;
 // use Redirect;
 
 class DashboardController extends Controller
@@ -26,7 +26,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('clear');
         $this->middleware('admin')->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance');
     }
 
@@ -143,5 +143,18 @@ class DashboardController extends Controller
     public function getComponents()
     {
         return view('components');
+    }
+
+    // clear configs, routes and serve
+    public function clear()
+    {
+        // Artisan::call('route:cache');
+        // Artisan::call('optimize');
+        Artisan::call('cache:clear');
+        Artisan::call('view:clear');
+        Artisan::call('key:generate');
+        Artisan::call('config:clear');
+        Session::flush();
+        return 'Config and Route Cached. All Cache Cleared';
     }
 }
