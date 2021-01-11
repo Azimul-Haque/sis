@@ -136,11 +136,9 @@
 </div>
 
 <script src="{{ mix('js/app.js') }}" defer></script>
-<script src="{{ asset('js/pace.min.js') }}" defer></script>
+<script src="{{ asset('js/pace.min.js') }}"></script>
 <script>
- $(document).ajaxStart(function () {
-    Pace.restart()
- })
+ Pace.restart();
 </script>
 
 @yield('third_party_scripts')
