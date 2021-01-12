@@ -192,7 +192,7 @@ class DashboardController extends Controller
 
     public function getCategories()
     {
-        $categories = Category::all();
+        $categories = Category::where('name', '!=', null)->paginate(10);
         return view('sites.categories')->withCategories($categories);
     }
 
