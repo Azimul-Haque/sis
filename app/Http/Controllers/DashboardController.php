@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Balance;
+use App\Site;
 
 // use Carbon\Carbon;
 // use DB;
@@ -135,7 +136,8 @@ class DashboardController extends Controller
 
     public function getSites()
     {
-        return view('components');
+        $sites = User::where('name', '!=', null)->paginate(5);
+        return view('sites.index')->withSites($sites);
     }
 
 
