@@ -13,9 +13,11 @@
             <h3 class="card-title">Sites</h3>
 
             <div class="card-tools">
-            	<button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addSiteModal">
-            		<i class="fas fa-user-plus"></i> Add
+            	@if(Auth::user()->role == 'admin')
+                <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addSiteModal">
+            		<i class="fas fa-folder-plus"></i> Add
             	</button>
+                @endif
               {{-- <ul class="pagination pagination-sm float-right">
                 <li class="page-item"><a class="page-link" href="#">«</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -39,80 +41,58 @@
                   </td>
                   <td><span class="badge bg-danger">55%</span></td>
                 </tr> --}}
-                @foreach($users as $user)
+                @foreach($sites as $site)
                 	<tr>
                 		<td>
-                			{{ $user->name }}
-                			<br/>
-                			<small class="text-black-50">{{ $user->mobile }}</small> 
-                			<span class="badge @if($user->role == 'admin') bg-success @else bg-info @endif">{{ ucfirst($user->role) }}</span>
+                            <a href="{{ route('dashboard.sites.single', $site->id) }}">
+                    			{{ $site->name }}
+                    			<br/>
+                    			<small class="text-black-50">{{ $site->address }}</small>
+                            </a>
                 		</td>
                 		<td align="right" width="40%">
-                			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUserModal{{ $user->id }}">
-                				<i class="fas fa-user-edit"></i>
+                            @if(Auth::user()->role == 'admin')
+                			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editSiteModal{{ $site->id }}">
+                				<i class="fas fa-edit"></i>
                 			</button>
-            			    {{-- Edit User Modal Code --}}
-            			    {{-- Edit User Modal Code --}}
+            			    {{-- Edit Site Modal Code --}}
+            			    {{-- Edit Site Modal Code --}}
             			    <!-- Modal -->
-            			    <div class="modal fade" id="editUserModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true" data-backdrop="static">
+            			    <div class="modal fade" id="editSiteModal{{ $site->id }}" tabindex="-1" role="dialog" aria-labelledby="editSiteModalLabel" aria-hidden="true" data-backdrop="static">
             			      <div class="modal-dialog" role="document">
             			        <div class="modal-content">
             			          <div class="modal-header bg-primary">
-            			            <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+            			            <h5 class="modal-title" id="editSiteModalLabel">Edit Site</h5>
             			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             			              <span aria-hidden="true">&times;</span>
             			            </button>
             			          </div>
-            			          <form method="post" action="{{ route('dashboard.users.update', $user->id) }}">
+            			          <form method="post" action="{{ route('dashboard.sites.update', $site->id) }}">
             				          <div class="modal-body">
             				            
             				                @csrf
 
             				                <div class="input-group mb-3">
+                                                <input type="text"
+                                                       name="name"
+                                                       class="form-control"
+                                                       value="{{ $site->name }}"
+                                                       placeholder="Site Name" required>
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><span class="fas fa-user"></span></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group mb-3">
             				                    <input type="text"
-            				                           name="name"
+            				                           name="address"
             				                           class="form-control"
-            				                           value="{{ $user->name }}"
-            				                           placeholder="Full name" required>
+            				                           value="{{ $site->address }}"
+            				                           placeholder="Address" required>
             				                    <div class="input-group-append">
-            				                        <div class="input-group-text"><span class="fas fa-user"></span></div>
+            				                        <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
             				                    </div>
-            				                </div>
-
-            				                <div class="input-group mb-3">
-            				                    <input type="text"
-            				                           name="mobile"
-            				                           value="{{ $user->mobile }}"
-            				                           autocomplete="off"
-            				                           class="form-control"
-            				                           placeholder="Mobile" required>
-            				                    <div class="input-group-append">
-            				                        <div class="input-group-text"><span class="fas fa-phone"></span></div>
-            				                    </div>
-            				                </div>
-
-            				                <div class="input-group mb-3">
-            				                	<select name="role" class="form-control" value="{{ old('role') }}" required>
-            				                		<option disabled="" value="">Select Role</option>
-            				                		<option value="admin" @if($user->role == 'admin') selected="" @endif>Admin</option>
-            				                		<option value="manager" @if($user->role == 'manager') selected="" @endif>Manager</option>
-            				                	</select>
-            				                    <div class="input-group-append">
-            				                        <div class="input-group-text"><span class="fas fa-user-secret"></span></div>
-            				                    </div>
-            				                </div>
-
-            				                <div class="input-group mb-3">
-            				                    <input type="password"
-            				                           name="password"
-            				                           class="form-control"
-            				                           autocomplete="off"
-            				                           placeholder="Password (Optional)">
-            				                    <div class="input-group-append">
-            				                        <div class="input-group-text"><span class="fas fa-lock"></span></div>
-            				                    </div>
-            				                </div>
-            				            
+            				                </div>            				            
             				          </div>
             				          <div class="modal-footer">
             				            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -122,41 +102,44 @@
             			        </div>
             			      </div>
             			    </div>
-            			    {{-- Edit User Modal Code --}}
-            			    {{-- Edit User Modal Code --}}
+            			    {{-- Edit Site Modal Code --}}
+            			    {{-- Edit Site Modal Code --}}
 
-                			<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">
-                				<i class="fas fa-user-minus"></i>
+                			<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal{{ $site->id }}">
+                				<i class="fas fa-trash-alt"></i>
                 			</button>
+                            @endif
                 		</td>
-                        {{-- Delete User Modal Code --}}
-                        {{-- Delete User Modal Code --}}
+                        @if(Auth::user()->role == 'admin')
+                        {{-- Delete Site Modal Code --}}
+                        {{-- Delete Site Modal Code --}}
                         <!-- Modal -->
-                        <div class="modal fade" id="deleteUserModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true" data-backdrop="static">
+                        <div class="modal fade" id="deleteUserModal{{ $site->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true" data-backdrop="static">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header bg-danger">
-                                <h5 class="modal-title" id="deleteUserModalLabel">Delete User</h5>
+                                <h5 class="modal-title" id="deleteUserModalLabel">Delete Site</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
                               <div class="modal-body">
-                                Are you sure to delete this user?<br/>
+                                Are you sure to delete this site?<br/>
                                 <center>
-                                    <big><b>{{ $user->name }}</b></big><br/>
-                                    <small><i class="fas fa-phone"></i> {{ $user->mobile }}</small>
+                                    <big><b>{{ $site->name }}</b></big><br/>
+                                    <small><i class="fas fa-map-marker-alt"></i> {{ $site->address }}</small>
                                 </center>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <a href="{{ route('dashboard.users.delete', $user->id) }}" class="btn btn-danger">Delete</a>
+                                <a href="{{ route('dashboard.sites.delete', $site->id) }}" class="btn btn-danger">Delete</a>
                               </div>
                             </div>
                           </div>
                         </div>
-                        {{-- Delete User Modal Code --}}
-                        {{-- Delete User Modal Code --}}
+                        {{-- Delete Site Modal Code --}}
+                        {{-- Delete Site Modal Code --}}
+                        @endif
                 	</tr>
                 @endforeach
               </tbody>
@@ -164,9 +147,11 @@
           </div>
           <!-- /.card-body -->
         </div>
-        {{ $users->links() }}
+        {{ $sites->links() }}
     </div>
 
+
+    @if(Auth::user()->role == 'admin')
     {{-- Add Site Modal Code --}}
     {{-- Add Site Modal Code --}}
     <!-- Modal -->
@@ -174,12 +159,12 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-success">
-            <h5 class="modal-title" id="addSiteModalLabel">Add New User</h5>
+            <h5 class="modal-title" id="addSiteModalLabel">Add New Site</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form method="post" action="{{ route('dashboard.users.store') }}">
+          <form method="post" action="{{ route('dashboard.sites.store') }}">
 	          <div class="modal-body">
 	            
 	                @csrf
@@ -189,45 +174,22 @@
 	                           name="name"
 	                           class="form-control"
 	                           value="{{ old('name') }}"
-	                           placeholder="Full name" required>
+	                           placeholder="Site Name" required>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-user"></span></div>
 	                    </div>
 	                </div>
 
-	                <div class="input-group mb-3">
-	                    <input type="text"
-	                           name="mobile"
-	                           value="{{ old('mobile') }}"
-	                           autocomplete="off"
-	                           class="form-control"
-	                           placeholder="Mobile" required>
-	                    <div class="input-group-append">
-	                        <div class="input-group-text"><span class="fas fa-phone"></span></div>
-	                    </div>
-	                </div>
-
-	                <div class="input-group mb-3">
-	                	<select name="role" class="form-control" value="{{ old('role') }}" required>
-	                		<option selected="" disabled="" value="">Select Role</option>
-	                		<option value="admin">Admin</option>
-	                		<option value="manager">Manager</option>
-	                	</select>
-	                    <div class="input-group-append">
-	                        <div class="input-group-text"><span class="fas fa-user-secret"></span></div>
-	                    </div>
-	                </div>
-
-	                <div class="input-group mb-3">
-	                    <input type="password"
-	                           name="password"
-	                           class="form-control"
-	                           autocomplete="off"
-	                           placeholder="Password" required>
-	                    <div class="input-group-append">
-	                        <div class="input-group-text"><span class="fas fa-lock"></span></div>
-	                    </div>
-	                </div>
+                    <div class="input-group mb-3">
+                        <input type="text"
+                               name="address"
+                               class="form-control"
+                               value="{{ old('address') }}"
+                               placeholder="Address" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
+                        </div>
+                    </div>  
 	            
 	          </div>
 	          <div class="modal-footer">
@@ -240,6 +202,7 @@
     </div>
     {{-- Add Site Modal Code --}}
     {{-- Add Site Modal Code --}}
+    @endif
 @endsection
 
 @section('third_party_scripts')

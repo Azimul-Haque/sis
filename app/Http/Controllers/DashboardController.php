@@ -136,8 +136,57 @@ class DashboardController extends Controller
 
     public function getSites()
     {
-        $sites = User::where('name', '!=', null)->paginate(5);
+        $sites = Site::where('name', '!=', null)->paginate(5);
         return view('sites.index')->withSites($sites);
+    }
+
+    public function storeSite(Request $request)
+    {
+        $this->validate($request,array(
+            'name'         => 'required|string|max:191',
+            'address'      => 'required|string|max:191'
+        ));
+
+        $site = new Site;
+        $site->name = $request->name;
+        $site->address = $request->address;
+        $site->save();
+
+        Session::flash('success', 'Site created successfully!');
+        return redirect()->route('dashboard.sites');
+    }
+
+    public function updateSite(Request $request, $id)
+    {
+        $this->validate($request,array(
+            'name'         => 'required|string|max:191',
+            'address'      => 'required|string|max:191'
+        ));
+
+        $site = Site::find($id);
+        $site->name = $request->name;
+        $site->address = $request->address;
+        $site->save();
+
+        Session::flash('success', 'Site updated successfully!');
+        return redirect()->route('dashboard.sites');
+    }
+
+    public function deleteSite($id)
+    {
+        $site = Site::find($id);
+        $site->delete();
+
+        Session::flash('success', 'Site deleted successfully!');
+        return redirect()->route('dashboard.sites');
+    }
+
+    public function getSingleSite($id)
+    {
+        $site = Site::find($id);
+
+        Session::flash('success', 'Site deleted successfully!');
+        return view('sites.single')->withSite($site);
     }
 
 

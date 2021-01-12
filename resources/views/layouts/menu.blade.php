@@ -20,7 +20,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('dashboard.sites') }}" class="nav-link {{ Request::is('dashboard/sites') ? 'active' : '' }}">
+    <a href="{{ route('dashboard.sites') }}" class="nav-link {{ Request::is('dashboard/sites') ? 'active' : '' }} {{ Request::is('dashboard/sites/*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-briefcase"></i>
         <p>Sites</p>
     </a>

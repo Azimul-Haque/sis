@@ -18,6 +18,7 @@ Route::get('/', function () { return redirect()->route('dashboard.index'); });
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+
 Route::get('/dashboard/users', 'DashboardController@getUsers')->name('dashboard.users');
 Route::post('/dashboard/users/store', 'DashboardController@storeUser')->name('dashboard.users.store');
 Route::post('/dashboard/users/{id}/update', 'DashboardController@updateUser')->name('dashboard.users.update');
@@ -28,6 +29,10 @@ Route::post('/dashboard/balance/store', 'DashboardController@storeBalance')->nam
 Route::get('/dashboard/balance/{id}/delete', 'DashboardController@deleteBalance')->name('dashboard.balance.delete');
 
 Route::get('/dashboard/sites', 'DashboardController@getSites')->name('dashboard.sites');
+Route::post('/dashboard/sites/store', 'DashboardController@storeSite')->name('dashboard.sites.store');
+Route::post('/dashboard/sites/{id}/update', 'DashboardController@updateSite')->name('dashboard.sites.update');
+Route::get('/dashboard/sites/{id}/delete', 'DashboardController@deleteSite')->name('dashboard.sites.delete');
+Route::get('/dashboard/sites/{id}', 'DashboardController@getSingleSite')->name('dashboard.sites.single');
 
 // COMPONENTS
 Route::get('/dashboard/components', 'DashboardController@getComponents')->name('dashboard.components');
