@@ -13,11 +13,9 @@
             <h3 class="card-title">Categories</h3>
 
             <div class="card-tools">
-            	@if(Auth::user()->role == 'admin')
-                <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addCategoryModal">
-            		<i class="fas fa-folder-plus"></i> Add
-            	</button>
-                @endif
+        	    <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addCategoryModal">
+        			<i class="fas fa-folder-plus"></i> Add
+        		</button>
               {{-- <ul class="pagination pagination-sm float-right">
                 <li class="page-item"><a class="page-link" href="#">«</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -151,7 +149,6 @@
     </div>
 
 
-    @if(Auth::user()->role == 'admin')
     {{-- Add Category Modal Code --}}
     {{-- Add Category Modal Code --}}
     <!-- Modal -->
@@ -159,12 +156,12 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-success">
-            <h5 class="modal-title" id="addCategoryModalLabel">Add New Site</h5>
+            <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form method="post" action="{{ route('dashboard.sites.store') }}">
+          <form method="post" action="{{ route('dashboard.category.store') }}">
 	          <div class="modal-body">
 	            
 	                @csrf
@@ -174,22 +171,11 @@
 	                           name="name"
 	                           class="form-control"
 	                           value="{{ old('name') }}"
-	                           placeholder="Site Name" required>
+	                           placeholder="Category Name" required>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-user"></span></div>
 	                    </div>
 	                </div>
-
-                    <div class="input-group mb-3">
-                        <input type="text"
-                               name="address"
-                               class="form-control"
-                               value="{{ old('address') }}"
-                               placeholder="Address" required>
-                        <div class="input-group-append">
-                            <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
-                        </div>
-                    </div>  
 	            
 	          </div>
 	          <div class="modal-footer">
@@ -202,7 +188,6 @@
     </div>
     {{-- Add Category Modal Code --}}
     {{-- Add Category Modal Code --}}
-    @endif
 @endsection
 
 @section('third_party_scripts')
