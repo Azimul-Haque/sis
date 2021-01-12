@@ -136,7 +136,7 @@ class DashboardController extends Controller
 
     public function getSites()
     {
-        $sites = Site::where('name', '!=', null)->paginate(5);
+        $sites = Site::where('name', '!=', null)->paginate(10);
         return view('sites.index')->withSites($sites);
     }
 

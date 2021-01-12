@@ -34,6 +34,10 @@ Route::post('/dashboard/sites/{id}/update', 'DashboardController@updateSite')->n
 Route::get('/dashboard/sites/{id}/delete', 'DashboardController@deleteSite')->name('dashboard.sites.delete');
 Route::get('/dashboard/sites/{id}', 'DashboardController@getSingleSite')->name('dashboard.sites.single');
 
+Route::get('/dashboard/categories', 'DashboardController@getCategories')->name('dashboard.categories');
+Route::post('/dashboard/categories/store', 'DashboardController@storeCategory')->name('dashboard.categories.store');
+Route::post('/dashboard/categories/{id}/update', 'DashboardController@updateCategory')->name('dashboard.categories.update');
+
 // COMPONENTS
 Route::get('/dashboard/components', 'DashboardController@getComponents')->name('dashboard.components');
 
