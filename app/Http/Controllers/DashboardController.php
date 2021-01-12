@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Balance;
 use App\Site;
+use App\Category;
 
 // use Carbon\Carbon;
 // use DB;
@@ -187,6 +188,40 @@ class DashboardController extends Controller
 
         Session::flash('success', 'Site deleted successfully!');
         return view('sites.single')->withSite($site);
+    }
+
+    public function getCategories()
+    {
+        $categories = Category::all();
+        return view('sites.categories')->withCategories($categories);
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $this->validate($request,array(
+            'name'         => 'required|string|max:191'
+        ));
+
+        $category = new Category;
+        $category->name = $request->name;
+        $category->save();
+
+        Session::flash('success', 'Category created successfully!');
+        return redirect()->route('dashboard.categories');
+    }
+
+    public function updateCategory(Request $request, $id)
+    {
+        $this->validate($request,array(
+            'name'         => 'required|string|max:191'
+        ));
+
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->save();
+
+        Session::flash('success', 'Category updated successfully!');
+        return redirect()->route('dashboard.categories');
     }
 
 

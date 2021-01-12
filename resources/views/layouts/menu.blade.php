@@ -27,8 +27,8 @@
 </li>
 <li class="nav-item">
     <a href="{{ route('dashboard.categories') }}" class="nav-link {{ Request::is('dashboard/categories') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-laptop-code"></i>
-        <p>Components</p>
+        <i class="nav-icon fas fa-tags"></i>
+        <p>Categories</p>
     </a>
 </li>
 <li class="nav-item">
