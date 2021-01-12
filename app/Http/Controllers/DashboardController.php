@@ -137,7 +137,9 @@ class DashboardController extends Controller
 
     public function getSites()
     {
-        $sites = Site::where('name', '!=', null)->paginate(10);
+        $sites = Site::where('name', '!=', null)
+                     ->orderBy('id', 'desc')
+                     ->paginate(10);
         return view('sites.index')->withSites($sites);
     }
 
@@ -192,7 +194,9 @@ class DashboardController extends Controller
 
     public function getCategories()
     {
-        $categories = Category::where('name', '!=', null)->paginate(10);
+        $categories = Category::where('name', '!=', null)
+                              ->orderBy('id', 'desc')
+                              ->paginate(10);
         return view('sites.categories')->withCategories($categories);
     }
 
