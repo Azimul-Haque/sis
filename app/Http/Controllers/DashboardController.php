@@ -148,12 +148,14 @@ class DashboardController extends Controller
     {
         $this->validate($request,array(
             'name'         => 'required|string|max:191',
-            'address'      => 'required|string|max:191'
+            'address'      => 'required|string|max:191',
+            'progress'     => 'required|integer'
         ));
 
         $site = new Site;
         $site->name = $request->name;
         $site->address = $request->address;
+        $site->progress = $request->progress;
         $site->save();
 
         Session::flash('success', 'Site created successfully!');
@@ -164,12 +166,14 @@ class DashboardController extends Controller
     {
         $this->validate($request,array(
             'name'         => 'required|string|max:191',
-            'address'      => 'required|string|max:191'
+            'address'      => 'required|string|max:191',
+            'progress'     => 'required|integer'
         ));
 
         $site = Site::find($id);
         $site->name = $request->name;
         $site->address = $request->address;
+        $site->progress = $request->progress;
         $site->save();
 
         Session::flash('success', 'Site updated successfully!');

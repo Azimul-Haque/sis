@@ -73,25 +73,36 @@
             				                @csrf
 
             				                <div class="input-group mb-3">
-                                                <input type="text"
-                                                       name="name"
-                                                       class="form-control"
-                                                       value="{{ $site->name }}"
-                                                       placeholder="Site Name" required>
-                                                <div class="input-group-append">
-                                                    <div class="input-group-text"><span class="fas fa-user"></span></div>
-                                                </div>
-                                            </div>
+                                      <input type="text"
+                                             name="name"
+                                             class="form-control"
+                                             value="{{ $site->name }}"
+                                             placeholder="Site Name" required>
+                                      <div class="input-group-append">
+                                          <div class="input-group-text"><span class="fas fa-user"></span></div>
+                                      </div>
+                                    </div>
 
-                                            <div class="input-group mb-3">
-            				                    <input type="text"
-            				                           name="address"
-            				                           class="form-control"
-            				                           value="{{ $site->address }}"
-            				                           placeholder="Address" required>
-            				                    <div class="input-group-append">
-            				                        <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
-            				                    </div>
+                                    <div class="input-group mb-3">
+                                      <input type="text"
+                                             name="address"
+                                             class="form-control"
+                                             value="{{ $site->address }}"
+                                             placeholder="Address" required>
+                                      <div class="input-group-append">
+                                          <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
+                                      </div>
+                                    </div> 
+
+                                    <div class="input-group mb-3">
+          				                    <input type="text"
+          				                           name="progress"
+          				                           class="form-control"
+          				                           value="{{ $site->progress }}"
+          				                           placeholder="Progress (%)" required>
+          				                    <div class="input-group-append">
+          				                        <div class="input-group-text"><span class="fas fa-hourglass-start"></span></div>
+          				                    </div>
             				                </div>            				            
             				          </div>
             				          <div class="modal-footer">
@@ -180,17 +191,29 @@
 	                    </div>
 	                </div>
 
-                    <div class="input-group mb-3">
-                        <input type="text"
-                               name="address"
-                               class="form-control"
-                               value="{{ old('address') }}"
-                               placeholder="Address" required>
-                        <div class="input-group-append">
-                            <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
-                        </div>
-                    </div>  
-	            
+                  <div class="input-group mb-3">
+                      <input type="text"
+                             name="address"
+                             class="form-control"
+                             value="{{ old('address') }}"
+                             placeholder="Address" required>
+                      <div class="input-group-append">
+                          <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
+                      </div>
+                  </div>  
+
+                  <div class="input-group mb-3">
+                      <input type="number"
+                             min=0
+                             max=100
+                             name="progress"
+                             class="form-control"
+                             value="{{ old('progress') }}"
+                             placeholder="Progress (%)" required>
+                      <div class="input-group-append">
+                          <div class="input-group-text"><span class="fas fa-hourglass-start"></span></div>
+                      </div>
+                  </div>
 	          </div>
 	          <div class="modal-footer">
 	            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

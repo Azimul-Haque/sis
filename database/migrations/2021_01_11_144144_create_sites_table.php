@@ -17,6 +17,7 @@ class CreateSitesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
+            $table->integer('progress');
             $table->timestamps();
         });
     }
