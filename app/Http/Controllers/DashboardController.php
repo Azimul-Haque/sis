@@ -211,22 +211,14 @@ class DashboardController extends Controller
                     ->withMonthlyexpensetotal($monthlyexpensetotal);
     }
 
-    public function getExpensePage($id)
+    public function getExpensePage()
     {
-        $site = Site::find($id);
-        $expenses = Expense::where('site_id', $id)->paginate(10);
+        $sites = Site::orderBy('id', 'desc')->get();
         $categories = Category::orderBy('id', 'desc')->get();
-        $monthlyexpensetotal = DB::table('expenses')
-                                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
-                                 ->where('site_id', $id)
-                                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
-                                 ->first();       
-        // dd($monthlyexpensetotal);
-        return view('sites.single')
-                    ->withSite($site)
-                    ->withExpenses($expenses)
-                    ->withCategories($categories)
-                    ->withMonthlyexpensetotal($monthlyexpensetotal);
+        
+        return view('sites.expense')
+                    ->withSites($sites)
+                    ->withCategories($categories);
     }
 
     public function storeExpense(Request $request)
