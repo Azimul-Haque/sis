@@ -32,7 +32,10 @@ Route::get('/dashboard/sites', 'DashboardController@getSites')->name('dashboard.
 Route::post('/dashboard/sites/store', 'DashboardController@storeSite')->name('dashboard.sites.store');
 Route::post('/dashboard/sites/{id}/update', 'DashboardController@updateSite')->name('dashboard.sites.update');
 Route::get('/dashboard/sites/{id}/delete', 'DashboardController@deleteSite')->name('dashboard.sites.delete');
+
 Route::get('/dashboard/sites/{id}', 'DashboardController@getSingleSite')->name('dashboard.sites.single');
+Route::post('/dashboard/expense/store', 'DashboardController@storeExpense')->name('dashboard.expense.store');
+Route::get('/dashboard/expense/{id}/delete', 'DashboardController@deleteExpense')->name('dashboard.expense.delete');
 
 Route::get('/dashboard/categories', 'DashboardController@getCategories')->name('dashboard.categories');
 Route::post('/dashboard/categories/store', 'DashboardController@storeCategory')->name('dashboard.categories.store');

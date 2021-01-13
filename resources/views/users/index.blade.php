@@ -92,7 +92,7 @@
             				                </div>
 
             				                <div class="input-group mb-3">
-            				                	<select name="role" class="form-control" value="{{ old('role') }}" required>
+            				                	<select name="role" class="form-control" required>
             				                		<option disabled="" value="">Select Role</option>
             				                		<option value="admin" @if($user->role == 'admin') selected="" @endif>Admin</option>
             				                		<option value="manager" @if($user->role == 'manager') selected="" @endif>Manager</option>
@@ -208,7 +208,7 @@
 	                </div>
 
 	                <div class="input-group mb-3">
-	                	<select name="role" class="form-control" value="{{ old('role') }}" required>
+	                	<select name="role" class="form-control" required>
 	                		<option selected="" disabled="" value="">Select Role</option>
 	                		<option value="admin">Admin</option>
 	                		<option value="manager">Manager</option>

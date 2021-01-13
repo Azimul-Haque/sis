@@ -11,4 +11,8 @@ class Category extends Model
     public function site(){
         return $this->belongsTo('App\Site');
     }
+
+    public function expenses(){
+        return $this->hasMany('App\Expense');
+    }
 }

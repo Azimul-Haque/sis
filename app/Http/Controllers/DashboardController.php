@@ -8,6 +8,7 @@ use App\User;
 use App\Balance;
 use App\Site;
 use App\Category;
+use App\Expense;
 
 // use Carbon\Carbon;
 // use DB;
@@ -187,9 +188,12 @@ class DashboardController extends Controller
     public function getSingleSite($id)
     {
         $site = Site::find($id);
+        $expenses = Expense::where('site_id', $id)->paginate(10);
 
         Session::flash('success', 'Site deleted successfully!');
-        return view('sites.single')->withSite($site);
+        return view('sites.single')
+                    ->withSite($site)
+                    ->withExpenses($expenses);
     }
 
     public function getCategories()
