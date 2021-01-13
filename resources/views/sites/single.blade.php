@@ -103,12 +103,25 @@
 
 	                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" required>
 	                <input type="hidden" name="site_id" value="{{ $site->id }}" required>
+
+	                <div class="input-group mb-3">
+	                	<select name="role" class="form-control" required>
+	                		<option selected="" disabled="" value="">Select Category</option>
+	                		@foreach($categories as $category)
+	                			<option value="{{ $category->id }}">{{ $category->name }}</option>
+	                		@endforeach
+	                	</select>
+	                    <div class="input-group-append">
+	                        <div class="input-group-text"><span class="fas fa-tags"></span></div>
+	                    </div>
+	                </div>
+
 	                <div class="input-group mb-3">
 	                    <input type="number"
 	                           name="amount"
 	                           class="form-control"
 	                           value="{{ old('amount') }}"
-	                           placeholder="Add Balance" required>
+	                           placeholder="Write Amount" required>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-money-check-alt"></span></div>
 	                    </div>

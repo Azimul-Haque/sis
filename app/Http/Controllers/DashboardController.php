@@ -189,11 +189,29 @@ class DashboardController extends Controller
     {
         $site = Site::find($id);
         $expenses = Expense::where('site_id', $id)->paginate(10);
+        $categories = Category::orderBy('id', 'desc')->get();
 
-        Session::flash('success', 'Site deleted successfully!');
         return view('sites.single')
                     ->withSite($site)
-                    ->withExpenses($expenses);
+                    ->withExpenses($expenses)
+                    ->withCategories($categories);
+    }
+
+    public function storeExpense(Request $request)
+    {
+        $this->validate($request,array(
+            'user_id'       => 'required',
+            'site_id'       => 'required',
+            'category_id'   => 'required',
+            'amount'          => 'required|string|max:191',
+        ));
+
+        $category = new Category;
+        $category->name = $request->name;
+        $category->save();
+
+        Session::flash('success', 'Category created successfully!');
+        return redirect()->route('dashboard.categories');
     }
 
     public function getCategories()
