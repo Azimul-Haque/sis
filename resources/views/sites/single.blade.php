@@ -8,6 +8,15 @@
 @section('content')
 	@section('page-header') {{ $site->name }} @endsection
     <div class="container-fluid">
+    	<div class="info-box mb-3">
+	      <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+
+	      <div class="info-box-content">
+	        <span class="info-box-text">{{ date('F Y') }}</span>
+	        <span class="info-box-number">2,000</span>
+	      </div>
+	      <!-- /.info-box-content -->
+	    </div>
 		<div class="card">
           <div class="card-header">
             <h3 class="card-title">Expenses</h3>

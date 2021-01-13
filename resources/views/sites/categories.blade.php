@@ -72,7 +72,7 @@
                                                        value="{{ $category->name }}"
                                                        placeholder="Site Name" required>
                                                 <div class="input-group-append">
-                                                    <div class="input-group-text"><span class="fas fa-user"></span></div>
+                                                    <div class="input-group-text"><span class="fas fa-tag"></span></div>
                                                 </div>
                                             </div>
                                                   				            
@@ -123,7 +123,7 @@
 	                           value="{{ old('name') }}"
 	                           placeholder="Category Name" required>
 	                    <div class="input-group-append">
-	                        <div class="input-group-text"><span class="fas fa-user"></span></div>
+	                        <div class="input-group-text"><span class="fas fa-tag"></span></div>
 	                    </div>
 	                </div>
 	            
