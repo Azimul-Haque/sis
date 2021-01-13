@@ -34,6 +34,7 @@ Route::post('/dashboard/sites/{id}/update', 'DashboardController@updateSite')->n
 Route::get('/dashboard/sites/{id}/delete', 'DashboardController@deleteSite')->name('dashboard.sites.delete');
 
 Route::get('/dashboard/sites/{id}', 'DashboardController@getSingleSite')->name('dashboard.sites.single');
+Route::get('/dashboard/expense', 'DashboardController@getExpensePage')->name('dashboard.expense.index');
 Route::post('/dashboard/expense/store', 'DashboardController@storeExpense')->name('dashboard.expense.store');
 Route::get('/dashboard/expense/{id}/delete', 'DashboardController@deleteExpense')->name('dashboard.expense.delete');
 
