@@ -214,7 +214,7 @@ class DashboardController extends Controller
         $expense->save();
 
         Session::flash('success', 'Expense added successfully!');
-        return redirect()->route('dashboard.sites.single', $request->user_id);
+        return redirect()->route('dashboard.sites.single', $request->site_id);
     }
 
     public function getCategories()

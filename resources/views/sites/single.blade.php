@@ -10,7 +10,7 @@
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">
-            <h3 class="card-title">{{ $site->name }}</h3>
+            <h3 class="card-title">Expenses</h3>
 
             <div class="card-tools">
             	<button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addExpenseModal">
@@ -35,7 +35,7 @@
                 @foreach($expenses as $expense)
                 	<tr>
                         <td style="line-height: 1;">
-                            <span class="badge bg-success"><big>৳ {{ $expense->amount }}</big></span><br/>
+                            <span class="badge bg-info"><big>৳ {{ $expense->amount }}</big></span><br/>
                             <small>
                                 <span class="text-black-50">Added by</span> {{ $expense->user->name }} <span class="text-black-50"><br/>
                                 </span> {{ date('F d, Y h:i A', strtotime($expense->created_at)) }}
