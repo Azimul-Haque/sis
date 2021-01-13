@@ -196,7 +196,7 @@ class DashboardController extends Controller
     public function getSingleSite($id)
     {
         $site = Site::find($id);
-        $expenses = Expense::where('site_id', $id)->paginate(10);
+        $expenses = Expense::where('site_id', $id)->orderBy('id', 'desc')->paginate(10);
         $categories = Category::orderBy('id', 'desc')->get();
         $monthlyexpensetotal = DB::table('expenses')
                                  ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
