@@ -203,15 +203,18 @@ class DashboardController extends Controller
             'user_id'       => 'required',
             'site_id'       => 'required',
             'category_id'   => 'required',
-            'amount'          => 'required|string|max:191',
+            'amount'        => 'required|integer'
         ));
 
-        $category = new Category;
-        $category->name = $request->name;
-        $category->save();
+        $expense = new Expense;
+        $expense->user_id = $request->user_id;
+        $expense->site_id = $request->site_id;
+        $expense->category_id = $request->category_id;
+        $expense->amount = $request->amount;
+        $expense->save();
 
-        Session::flash('success', 'Category created successfully!');
-        return redirect()->route('dashboard.categories');
+        Session::flash('success', 'Expense added successfully!');
+        return redirect()->route('dashboard.sites.single', $request->user_id);
     }
 
     public function getCategories()
