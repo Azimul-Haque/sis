@@ -44,11 +44,17 @@
                 @foreach($sites as $site)
                 	<tr>
                 		<td>
-                            <a href="{{ route('dashboard.sites.single', $site->id) }}">
+                        <a href="{{ route('dashboard.sites.single', $site->id) }}">
                     			{{ $site->name }}
                     			<br/>
                     			<small class="text-black-50">{{ $site->address }}</small>
-                            </a>
+                          <br/>
+                          <div class="progress progress-sm progress-striped active">
+                            <div class="progress-bar 
+                                bg-success
+                                " style="width: {{ $site->progress }}%"></div>
+                          </div>
+                        </a>
                 		</td>
                 		<td align="right" width="40%">
                             @if(Auth::user()->role == 'admin')
