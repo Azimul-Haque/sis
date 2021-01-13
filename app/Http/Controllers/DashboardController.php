@@ -179,6 +179,10 @@ class DashboardController extends Controller
     public function deleteSite($id)
     {
         $site = Site::find($id);
+
+        foreach ($site->expenses as $expense) {
+            $expense->delete();
+        }
         $site->delete();
 
         Session::flash('success', 'Site deleted successfully!');
@@ -215,6 +219,15 @@ class DashboardController extends Controller
 
         Session::flash('success', 'Expense added successfully!');
         return redirect()->route('dashboard.sites.single', $request->site_id);
+    }
+
+    public function deleteExpense($id)
+    {
+        $expense = Expense::find($id);
+        $expense->delete();
+
+        Session::flash('success', 'Expense deleted successfully!');
+        return redirect()->route('dashboard.sites.single', $expense->site_id);
     }
 
     public function getCategories()
