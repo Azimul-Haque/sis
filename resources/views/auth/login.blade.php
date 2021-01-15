@@ -25,7 +25,7 @@
     <!-- /.login-box-body -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">লগইন করুন</p>
 
             <form method="post" action="{{ url('/login') }}">
                 @csrf
@@ -34,7 +34,7 @@
                     <input type="number"
                            name="mobile"
                            value="{{ old('mobile') }}"
-                           placeholder="Mobile"
+                           placeholder="মোবিয়াল নম্বর (১১ ডিজিট)"
                            class="form-control @error('mobile') is-invalid @enderror">
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-phone"></span></div>
@@ -47,7 +47,7 @@
                 <div class="input-group mb-3">
                     <input type="password"
                            name="password"
-                           placeholder="Password"
+                           placeholder="পাসওয়ার্ড"
                            class="form-control @error('password') is-invalid @enderror">
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -64,12 +64,12 @@
                     <div class="col-8">
                         <div class="icheck-primary">
                             <input type="checkbox" id="remember">
-                            <label for="remember">Remember Me</label>
+                            <label for="remember">মনে রাখুন</label>
                         </div>
                     </div>
 
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block">লগইন করুন</button>
                     </div>
 
                 </div>
