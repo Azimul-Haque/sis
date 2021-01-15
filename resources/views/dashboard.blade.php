@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title') Dashboard @endsection
+@section('title') ড্যাশবোর্ড @endsection
 
 @section('third_party_stylesheets')
 
 @endsection
 
 @section('content')
-	@section('page-header') Dashboard @endsection
+	@section('page-header') ড্যাশবোর্ড @endsection
     <div class="container-fluid">
         <div class="row">
           <div class="col-lg-3 col-6">

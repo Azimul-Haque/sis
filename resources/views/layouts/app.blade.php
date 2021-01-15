@@ -86,7 +86,7 @@
                              alt="User Image">
                         <p>
                             {{ Auth::user()->name }}
-                            <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                            <small>যোগদানঃ {{ bangla(Auth::user()->created_at->format('F Y')) }}</small>
                         </p>
                     </li>
                     <!-- Menu Footer-->
