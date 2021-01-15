@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') Dashboard | Add Expense @endsection
+@section('title') ড্যাশবোর্ড | Add Expense @endsection
 
 @section('third_party_stylesheets')
 

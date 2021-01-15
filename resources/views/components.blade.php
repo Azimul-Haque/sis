@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') Dashboard | Components @endsection
+@section('title') ড্যাশবোর্ড | Components @endsection
 
 @section('third_party_stylesheets')
 

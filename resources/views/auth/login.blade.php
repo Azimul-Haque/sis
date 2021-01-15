@@ -18,7 +18,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>Site Inventory System</b></a>
+        <a href="{{ url('/home') }}"><b>সাইট ইনভেনটরি সিস্টেম</b></a>
     </div>
     <!-- /.login-logo -->
 

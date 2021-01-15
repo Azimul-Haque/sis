@@ -1,20 +1,20 @@
 @extends('layouts.app')
-@section('title') Dashboard | Users @endsection
+@section('title') ড্যাশবোর্ড | ব্যবহারকারীগণ @endsection
 
 @section('third_party_stylesheets')
 
 @endsection
 
 @section('content')
-	@section('page-header') Users @endsection
+	@section('page-header') ব্যবহারকারীগণ @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">
-            <h3 class="card-title">Users</h3>
+            <h3 class="card-title">ব্যবহারকারীগণ</h3>
 
             <div class="card-tools">
             	<button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addUserModal">
-            		<i class="fas fa-user-plus"></i> Add
+            		<i class="fas fa-user-plus"></i> নতুন
             	</button>
               {{-- <ul class="pagination pagination-sm float-right">
                 <li class="page-item"><a class="page-link" href="#">«</a></li>
@@ -58,7 +58,7 @@
             			      <div class="modal-dialog" role="document">
             			        <div class="modal-content">
             			          <div class="modal-header bg-primary">
-            			            <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+            			            <h5 class="modal-title" id="editUserModalLabel">ব্যবহারকারী তথ্য হালনাগাদ</h5>
             			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             			              <span aria-hidden="true">&times;</span>
             			            </button>
@@ -73,7 +73,7 @@
             				                           name="name"
             				                           class="form-control"
             				                           value="{{ $user->name }}"
-            				                           placeholder="Full name" required>
+            				                           placeholder="নাম" required>
             				                    <div class="input-group-append">
             				                        <div class="input-group-text"><span class="fas fa-user"></span></div>
             				                    </div>
@@ -85,7 +85,7 @@
             				                           value="{{ $user->mobile }}"
             				                           autocomplete="off"
             				                           class="form-control"
-            				                           placeholder="Mobile" required>
+            				                           placeholder="মোবাইল নম্বর (১১ ডিজিট)" required>
             				                    <div class="input-group-append">
             				                        <div class="input-group-text"><span class="fas fa-phone"></span></div>
             				                    </div>
@@ -93,7 +93,7 @@
 
             				                <div class="input-group mb-3">
             				                	<select name="role" class="form-control" required>
-            				                		<option disabled="" value="">Select Role</option>
+            				                		<option disabled="" value="">ধরন নির্ধারণ করুন</option>
             				                		<option value="admin" @if($user->role == 'admin') selected="" @endif>Admin</option>
             				                		<option value="manager" @if($user->role == 'manager') selected="" @endif>Manager</option>
             				                	</select>
@@ -107,7 +107,7 @@
             				                           name="password"
             				                           class="form-control"
             				                           autocomplete="off"
-            				                           placeholder="Password (Optional)">
+            				                           placeholder="পাসওয়ার্ড (ঐচ্ছিক)">
             				                    <div class="input-group-append">
             				                        <div class="input-group-text"><span class="fas fa-lock"></span></div>
             				                    </div>
@@ -115,8 +115,8 @@
             				            
             				          </div>
             				          <div class="modal-footer">
-            				            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            				            <button type="submit" class="btn btn-primary">Update</button>
+            				            <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
+            				            <button type="submit" class="btn btn-primary">দাখিল করুন</button>
             				          </div>
             			          </form>
             			        </div>
@@ -136,21 +136,21 @@
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header bg-danger">
-                                <h5 class="modal-title" id="deleteUserModalLabel">Delete User</h5>
+                                <h5 class="modal-title" id="deleteUserModalLabel">ব্যবহারকারী ডিলেট</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
                               <div class="modal-body">
-                                Are you sure to delete this user?<br/>
+                                আপনি কি নিশ্চিতভাবে এই ব্যবহারকারীকে ডিলেট করতে চান?<br/>
                                 <center>
                                     <big><b>{{ $user->name }}</b></big><br/>
                                     <small><i class="fas fa-phone"></i> {{ $user->mobile }}</small>
                                 </center>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <a href="{{ route('dashboard.users.delete', $user->id) }}" class="btn btn-danger">Delete</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
+                                <a href="{{ route('dashboard.users.delete', $user->id) }}" class="btn btn-danger">ডিলেট করুন</a>
                               </div>
                             </div>
                           </div>
