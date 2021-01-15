@@ -94,8 +94,8 @@
             				                <div class="input-group mb-3">
             				                	<select name="role" class="form-control" required>
             				                		<option disabled="" value="">ধরন নির্ধারণ করুন</option>
-            				                		<option value="admin" @if($user->role == 'admin') selected="" @endif>Admin</option>
-            				                		<option value="manager" @if($user->role == 'manager') selected="" @endif>Manager</option>
+            				                		<option value="admin" @if($user->role == 'admin') selected="" @endif>এডমিন</option>
+            				                		<option value="manager" @if($user->role == 'manager') selected="" @endif>ম্যানেজার</option>
             				                	</select>
             				                    <div class="input-group-append">
             				                        <div class="input-group-text"><span class="fas fa-user-secret"></span></div>
@@ -174,7 +174,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-success">
-            <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+            <h5 class="modal-title" id="addUserModalLabel">নতুন ব্যবহারকারী যোগ</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -189,7 +189,7 @@
 	                           name="name"
 	                           class="form-control"
 	                           value="{{ old('name') }}"
-	                           placeholder="Full name" required>
+	                           placeholder="নাম" required>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-user"></span></div>
 	                    </div>
@@ -201,7 +201,7 @@
 	                           value="{{ old('mobile') }}"
 	                           autocomplete="off"
 	                           class="form-control"
-	                           placeholder="Mobile" required>
+	                           placeholder="মোবাইল নম্বর (১১ ডিজিট)" required>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-phone"></span></div>
 	                    </div>
@@ -209,9 +209,9 @@
 
 	                <div class="input-group mb-3">
 	                	<select name="role" class="form-control" required>
-	                		<option selected="" disabled="" value="">Select Role</option>
-	                		<option value="admin">Admin</option>
-	                		<option value="manager">Manager</option>
+	                		<option selected="" disabled="" value="">ধরন</option>
+	                		<option value="admin">এডমিন</option>
+	                		<option value="manager">ম্যানেজার</option>
 	                	</select>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-user-secret"></span></div>
@@ -223,7 +223,7 @@
 	                           name="password"
 	                           class="form-control"
 	                           autocomplete="off"
-	                           placeholder="Password" required>
+	                           placeholder="পাসওয়ার্ড" required>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-lock"></span></div>
 	                    </div>
@@ -231,8 +231,8 @@
 	            
 	          </div>
 	          <div class="modal-footer">
-	            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	            <button type="submit" class="btn btn-success">Save</button>
+	            <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
+	            <button type="submit" class="btn btn-success">দাখিল করুন</button>
 	          </div>
           </form>
         </div>
