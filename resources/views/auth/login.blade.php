@@ -34,7 +34,7 @@
                     <input type="number"
                            name="mobile"
                            value="{{ old('mobile') }}"
-                           placeholder="মোবিয়াল নম্বর (১১ ডিজিট)"
+                           placeholder="মোবাইল নম্বর (১১ ডিজিট)"
                            class="form-control @error('mobile') is-invalid @enderror">
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-phone"></span></div>
@@ -61,14 +61,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-6">
                         <div class="icheck-primary">
                             <input type="checkbox" id="remember">
                             <label for="remember">মনে রাখুন</label>
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-6">
                         <button type="submit" class="btn btn-primary btn-block">লগইন করুন</button>
                     </div>
 
