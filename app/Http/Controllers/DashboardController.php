@@ -10,7 +10,7 @@ use App\Site;
 use App\Category;
 use App\Expense;
 
-// use Carbon\Carbon;
+use Carbon\Carbon;
 use DB;
 use Hash;
 use Auth;
@@ -215,15 +215,16 @@ class DashboardController extends Controller
         $monthlyexpensetotalcurrent = DB::table('expenses')
                                         ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
                                         ->where('site_id', $id)
+                                        ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), "=", Carbon::now()->format('Y-m'))
                                         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
                                         ->first();
 
-        $monthlyexpensetotalcurrent = DB::table('expenses')
-                                        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
-                                        ->where('site_id', $id)
-                                        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
-                                        ->first();
-                                        
+        $monthlyexpensetotal = DB::table('expenses')
+                                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                 ->where('site_id', $id)
+                                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
+                                 ->first();
+
         // dd($monthlyexpensetotalcurrent);
         return view('sites.single')
                     ->withSite($site)
