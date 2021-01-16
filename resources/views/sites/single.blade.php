@@ -2,7 +2,7 @@
 @section('title') ড্যাশবোর্ড | একক | {{ $site->name }} @endsection
 
 @section('third_party_stylesheets')
-
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 @endsection
 
 @section('content')
@@ -104,13 +104,15 @@
             </div>
           </div>
           <!-- /.card-header -->
-          <div class="card-body p-0">
+          <div class="card-body">
             <table class="table dataTables_wrapper dt-bootstrap4" id="example1_wrapper">
-              <tbody>
+              <thead>
                 <tr>
-                  <td>মাস</td>
-                  <td>মোট ব্যয়</td>
+                  <th>মাস</th>
+                  <th>মোট ব্যয়</th>
                 </tr>
+              </thead>
+              <tbody>
                 @foreach($monthlyexpenses as $monthlyexpense)
                   <tr>
                     <td>{{ date('F Y', strtotime($monthlyexpense->created_at)) }}</td>
@@ -180,15 +182,19 @@
 @endsection
 
 @section('third_party_scripts')
-  <script type="text/javascript" defer="">
-    $("#example1_wrapper").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" >
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        $('#example1_wrapper').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+        });
     });
+    
   </script>
 @endsection
