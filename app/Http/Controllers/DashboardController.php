@@ -153,7 +153,8 @@ class DashboardController extends Controller
     {
         $sites = Site::where('name', '!=', null)
                      ->orderBy('id', 'desc')
-                     ->paginate(10);
+                     ->paginate(5);
+
         return view('sites.index')->withSites($sites);
     }
 
@@ -211,17 +212,24 @@ class DashboardController extends Controller
         $site = Site::find($id);
         $expenses = Expense::where('site_id', $id)->orderBy('id', 'desc')->paginate(10);
         $categories = Category::orderBy('id', 'desc')->get();
-        $monthlyexpensetotal = DB::table('expenses')
-                                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
-                                 ->where('site_id', $id)
-                                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
-                                 ->first();
-        // dd($monthlyexpensetotal);
+        $monthlyexpensetotalcurrent = DB::table('expenses')
+                                        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                        ->where('site_id', $id)
+                                        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
+                                        ->first();
+
+        $monthlyexpensetotalcurrent = DB::table('expenses')
+                                        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                        ->where('site_id', $id)
+                                        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
+                                        ->first();
+                                        
+        // dd($monthlyexpensetotalcurrent);
         return view('sites.single')
                     ->withSite($site)
                     ->withExpenses($expenses)
                     ->withCategories($categories)
-                    ->withMonthlyexpensetotal($monthlyexpensetotal);
+                    ->withMonthlyexpensetotalcurrent($monthlyexpensetotalcurrent);
     }
 
     public function getExpensePage()

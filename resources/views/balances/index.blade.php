@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title') Dashboard | Balance @endsection
+@section('title') ড্যাশবোর্ড | ব্যালেন্স @endsection
 
 @section('third_party_stylesheets')
 
 @endsection
 
 @section('content')
-	@section('page-header') Total Balance: ৳ {{ $totalbalance - $totalexpense }} @endsection
+	@section('page-header') বর্তমান ব্যালেন্স ৳ {{ $totalbalance - $totalexpense }} @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">
