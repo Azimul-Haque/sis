@@ -98,14 +98,12 @@
             <h3 class="card-title">ব্যয়ের তালিকা</h3>
 
             <div class="card-tools">
-              <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addExpenseModal">
-                <i class="fas fa-hand-holding-usd"></i> Add
-              </button>
+              
             </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table class="table dataTables_wrapper dt-bootstrap4" id="example1_wrapper">
+            <table class="table" id="example1_wrapper">
               <thead>
                 <tr>
                   <th>মাস</th>
@@ -189,10 +187,11 @@
     jQuery( document ).ready(function( $ ) {
         $('#example1_wrapper').DataTable({
           "paging": true,
-          "lengthChange": true,
+          "pageLength": 5,
+          "lengthChange": false,
           "ordering": true,
           "info": true,
-          "autoWidth": false,
+          "autoWidth": true,
         });
     });
     
