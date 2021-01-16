@@ -20,7 +20,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('dashboard.sites') }}" class="small-box-footer">ব্যালেন্স পাতা <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('dashboard.balance') }}" class="small-box-footer">ব্যালেন্স পাতা <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -35,7 +35,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{{ route('dashboard.sites') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('dashboard.expense.index') }}" class="small-box-footer">খরচ যোগ করুন <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
