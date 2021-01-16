@@ -42,13 +42,14 @@ class DashboardController extends Controller
     {
         $totalsites = Site::count();
         $totalusers = User::count();
-        $totalexpense = DB::table('expenses')
-                          ->select(DB::raw('SUM(amount) as totalamount'))
-                          ->first();
+
+        $totalbalance = Balance::sum('amount');
+        $totalexpense = Expense::sum('amount');
 
         return view('dashboard')
                     ->withTotalsites($totalsites)
                     ->withTotalusers($totalusers)
+                    ->withTotalbalance($totalbalance)
                     ->withTotalexpense($totalexpense);
     }
 
@@ -112,13 +113,16 @@ class DashboardController extends Controller
     public function getBalance()
     {
         $totalbalance = Balance::sum('amount');
+        $totalexpense = Expense::sum('amount');
+
         $balances = Balance::where('amount', '>', 0)
                            ->orderBy('id', 'desc')
                            ->paginate(5);
 
         return view('balances.index')
                     ->withBalances($balances)
-                    ->withTotalbalance($totalbalance);
+                    ->withTotalbalance($totalbalance)
+                    ->withTotalexpense($totalexpense);
     }
 
     public function storeBalance(Request $request)

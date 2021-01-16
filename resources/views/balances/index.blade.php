@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-	@section('page-header') Total Balance: ৳ {{ $totalbalance }} @endsection
+	@section('page-header') Total Balance: ৳ {{ $totalbalance - $totalexpense }} @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">

@@ -13,7 +13,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h4>{{ $totalexpense->totalamount }}<sup style="font-size: 20px">৳</sup></h4>
+                <h4>{{ $totalbalance - $totalexpense }}<sup style="font-size: 20px">৳</sup></h4>
 
                 <p>বর্তমান ব্যালেন্স</p>
               </div>
@@ -28,7 +28,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h4>{{ $totalexpense->totalamount }}<sup style="font-size: 20px">৳</sup></h4>
+                <h4>{{ $totalexpense }}<sup style="font-size: 20px">৳</sup></h4>
 
                 <p>মোট খরচ</p>
               </div>
