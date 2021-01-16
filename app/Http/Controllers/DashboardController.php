@@ -40,7 +40,16 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $totalsites = Site::count();
+        $totalusers = User::count();
+        $totalexpense = DB::table('expenses')
+                          ->select(DB::raw('SUM(amount) as totalamount'))
+                          ->first();
+
+        return view('dashboard')
+                    ->withTotalsites($totalsites)
+                    ->withTotalusers($totalusers)
+                    ->withTotalexpense($totalexpense);
     }
 
     public function getUsers()
@@ -202,7 +211,7 @@ class DashboardController extends Controller
                                  ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
                                  ->where('site_id', $id)
                                  ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
-                                 ->first();       
+                                 ->first();
         // dd($monthlyexpensetotal);
         return view('sites.single')
                     ->withSite($site)
