@@ -219,18 +219,20 @@ class DashboardController extends Controller
                                         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
                                         ->first();
 
-        $monthlyexpensetotal = DB::table('expenses')
+        $monthlyexpenses = DB::table('expenses')
                                  ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
                                  ->where('site_id', $id)
                                  ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
-                                 ->first();
+                                 ->orderBy('created_at', 'DESC')
+                                 ->get();
 
-        // dd($monthlyexpensetotalcurrent);
+        // dd($monthlyexpensetotal);
         return view('sites.single')
                     ->withSite($site)
                     ->withExpenses($expenses)
                     ->withCategories($categories)
-                    ->withMonthlyexpensetotalcurrent($monthlyexpensetotalcurrent);
+                    ->withMonthlyexpensetotalcurrent($monthlyexpensetotalcurrent)
+                    ->withMonthlyexpenses($monthlyexpenses);
     }
 
     public function getExpensePage()

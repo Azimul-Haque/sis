@@ -19,7 +19,7 @@
 	    </div>
 		<div class="card">
           <div class="card-header">
-            <h3 class="card-title">খরচের তালিকা</h3>
+            <h3 class="card-title">ব্য্যের তালিকা</h3>
 
             <div class="card-tools">
             	<button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addExpenseModal">
@@ -92,6 +92,37 @@
           <!-- /.card-body -->
         </div>
         {{ $expenses->links() }}
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">ব্য্যের তালিকা</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addExpenseModal">
+                <i class="fas fa-hand-holding-usd"></i> Add
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>মাস</td>
+                  <td>মোট ব্যয়</td>
+                </tr>
+                @foreach($monthlyexpenses as $monthlyexpense)
+                  <tr>
+                    <td>{{ date('F Y', strtotime($monthlyexpense->created_at)) }}</td>
+                    <td>৳ {{ $monthlyexpense->totalamount }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+
     </div>
 
     {{-- Add Expense Modal Code --}}
