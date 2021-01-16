@@ -19,7 +19,7 @@
 	    </div>
 		<div class="card">
           <div class="card-header">
-            <h3 class="card-title">ব্য্যের তালিকা</h3>
+            <h3 class="card-title">ব্যয়ের তালিকা</h3>
 
             <div class="card-tools">
             	<button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addExpenseModal">
@@ -95,7 +95,7 @@
 
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">ব্য্যের তালিকা</h3>
+            <h3 class="card-title">ব্যয়ের তালিকা</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addExpenseModal">
@@ -105,11 +105,11 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body p-0">
-            <table class="table">
+            <table class="table dataTables_wrapper dt-bootstrap4" id="example1_wrapper">
               <tbody>
                 <tr>
                   <td>মাস</td>
-                  <td>মোট ব্যয়</td>
+                  <td>মোট ব্যয়</td>
                 </tr>
                 @foreach($monthlyexpenses as $monthlyexpense)
                   <tr>
@@ -180,5 +180,15 @@
 @endsection
 
 @section('third_party_scripts')
-
+  <script type="text/javascript" defer="">
+    $("#example1_wrapper").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  </script>
 @endsection
