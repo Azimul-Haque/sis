@@ -132,7 +132,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-success">
-            <h5 class="modal-title" id="addExpenseModalLabel">Add Expense</h5>
+            <h5 class="modal-title" id="addExpenseModalLabel">ব্যয় যোগ করুন</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -146,7 +146,7 @@
 
 	                <div class="input-group mb-3">
 	                	<select name="category_id" class="form-control" required>
-	                		<option selected="" disabled="" value="">Select Category</option>
+	                		<option selected="" disabled="" value="">ক্যাটাগরি নির্ধারণ করুন</option>
 	                		@foreach($categories as $category)
 	                			<option value="{{ $category->id }}">{{ $category->name }}</option>
 	                		@endforeach
