@@ -23,7 +23,7 @@
 
             <div class="card-tools">
             	<button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addExpenseModal">
-            		<i class="fas fa-hand-holding-usd"></i> Add
+            		<i class="fas fa-hand-holding-usd"></i> নতুন ব্যয়
             	</button>
             </div>
           </div>
@@ -46,7 +46,7 @@
                         <td style="line-height: 1;">
                             <span class="badge bg-info"><big>৳ {{ $expense->amount }}</big></span><br/>
                             <small>
-                                <span class="text-black-50">Added by</span> {{ $expense->user->name }} <span class="text-black-50"><br/>
+                                <span class="text-black-50">যোগ করেছেনঃ</span> {{ $expense->user->name }} <span class="text-black-50"><br/>
                                 </span> {{ date('F d, Y h:i A', strtotime($expense->created_at)) }}
                             </small> 
                         </td>
@@ -70,14 +70,14 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                Are you sure to delete this expense?<br/>
+                                আপনি কি নিশ্চিতভাবে এই ব্যয়টি ডিলেট করতে চান?<br/>
                                 <center><big><b>$ {{ $expense->amount }}</b></big><br/>
                                     <small><i class="fas fa-user"></i> {{ $expense->user->name }}, <i class="fas fa-calendar-alt"></i> {{ date('F d, Y', strtotime($expense->created_at)) }}</small>
                                 </center>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <a href="{{ route('dashboard.expense.delete', $expense->id) }}" class="btn btn-danger">Delete</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
+                                <a href="{{ route('dashboard.expense.delete', $expense->id) }}" class="btn btn-danger">ডিলেট করুন</a>
                               </div>
                             </div>
                           </div>
