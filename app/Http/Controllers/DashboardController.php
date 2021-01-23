@@ -19,6 +19,7 @@ use Auth;
 use Session;
 use Artisan;
 // use Redirect;
+use OneSignal;
 
 class DashboardController extends Controller
 {
@@ -135,6 +136,15 @@ class DashboardController extends Controller
         $balance->user_id = Auth::user()->id;
         $balance->amount = $request->amount;
         $balance->save();
+
+        OneSignal::sendNotificationToAll(
+            "অর্থ যোগ করেছেনঃ " . Auth::user()->name,
+            $url = null, 
+            $data = null, // array("answer" => $charioteer->answer), // to send some variable
+            $buttons = null, 
+            $schedule = null,
+            $headings = "৳ " . bangla($request->amount) . " যোগ করা হয়েছে!"
+        );
 
         Session::flash('success', 'Amount added successfully!');
         return redirect()->route('dashboard.balance');
