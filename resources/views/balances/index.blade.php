@@ -69,7 +69,7 @@
                               </div>
                               <div class="modal-body">
                                 আপনি কি নিশ্চিতভাবে এই অর্থ ডিলেট করতে চান?<br/>
-                                <center><big><b>$ {{ $balance->amount }}</b></big><br/>
+                                <center><big><b>৳ {{ $balance->amount }}</b></big><br/>
                                     <small><i class="fas fa-user"></i> {{ $balance->user->name }}, <i class="fas fa-calendar-alt"></i> {{ date('F d, Y', strtotime($balance->created_at)) }}</small>
                                 </center>
                               </div>
