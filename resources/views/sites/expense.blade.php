@@ -24,9 +24,7 @@
 		          <div class="card-body">
 	      	          <form method="post" action="{{ route('dashboard.expense.store') }}">
 				          @csrf
-
-				          <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" required>
-
+				          
 				          <div class="input-group mb-3">
 				          	<select name="site_id" class="form-control" required>
 				          		<option selected="" disabled="" value="">Select Site</option>

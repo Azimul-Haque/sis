@@ -140,8 +140,7 @@
           <form method="post" action="{{ route('dashboard.expense.store') }}">
 	          <div class="modal-body">
 	                @csrf
-
-	                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" required>
+                  
 	                <input type="hidden" name="site_id" value="{{ $site->id }}" required>
 
 	                <div class="input-group mb-3">

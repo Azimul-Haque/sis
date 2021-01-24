@@ -271,6 +271,15 @@ class DashboardController extends Controller
         $expense->amount = $request->amount;
         $expense->save();
 
+        OneSignal::sendNotificationToAll(
+            "অর্থ যোগ করেছেনঃ " . Auth::user()->name,
+            $url = null, 
+            $data = null, // array("answer" => $charioteer->answer), // to send some variable
+            $buttons = null, 
+            $schedule = null,
+            $headings = "৳ " . bangla($request->amount) . " যোগ করা হয়েছে!"
+        );
+
         Session::flash('success', 'Expense added successfully!');
         return redirect()->route('dashboard.sites.single', $request->site_id);
     }
