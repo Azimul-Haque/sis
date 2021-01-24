@@ -258,30 +258,33 @@ class DashboardController extends Controller
     public function storeExpense(Request $request)
     {
         $this->validate($request,array(
-            'user_id'       => 'required',
-            'site_id'       => 'required',
-            'category_id'   => 'required',
-            'amount'        => 'required|integer'
+            'site_data'       => 'required',
+            'category_data'   => 'required',
+            'amount'          => 'required|integer'
         ));
 
+        // parse data
+        $site_data = explode(',', $request->site_data);
+        $category_data = explode(',', $request->category_data);
+
         $expense = new Expense;
-        $expense->user_id = $request->user_id;
-        $expense->site_id = $request->site_id;
-        $expense->category_id = $request->category_id;
+        $expense->user_id = Auth::user()->id;
+        $expense->site_id = $site_data[0];
+        $expense->category_id = $category_data[0];
         $expense->amount = $request->amount;
         $expense->save();
 
         OneSignal::sendNotificationToAll(
-            "অর্থ যোগ করেছেনঃ " . Auth::user()->name,
+            "ব্যয় করেছেনঃ " . Auth::user()->name . ', খাতঃ ' . $category_data[1],
             $url = null, 
             $data = null, // array("answer" => $charioteer->answer), // to send some variable
             $buttons = null, 
             $schedule = null,
-            $headings = "৳ " . bangla($request->amount) . " যোগ করা হয়েছে!"
+            $headings = $site_data[1] ."-এ ৳ " . bangla($request->amount) . " ব্যয় করা হয়েছে!"
         );
 
         Session::flash('success', 'Expense added successfully!');
-        return redirect()->route('dashboard.sites.single', $request->site_id);
+        return redirect()->route('dashboard.sites.single', $site_data[0]);
     }
 
     public function deleteExpense($id)

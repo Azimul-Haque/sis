@@ -24,12 +24,12 @@
 		          <div class="card-body">
 	      	          <form method="post" action="{{ route('dashboard.expense.store') }}">
 				          @csrf
-				          
+
 				          <div class="input-group mb-3">
-				          	<select name="site_id" class="form-control" required>
+				          	<select name="site_data" class="form-control" required>
 				          		<option selected="" disabled="" value="">Select Site</option>
 				          		@foreach($sites as $site)
-				          			<option value="{{ $site->id }}">{{ $site->name }}</option>
+				          			<option value="{{ $site->id }},{{ $site->name }}">{{ $site->name }}</option>
 				          		@endforeach
 				          	</select>
 				              <div class="input-group-append">
@@ -38,10 +38,10 @@
 				          </div>
 
 				          <div class="input-group mb-3">
-				          	<select name="category_id" class="form-control" required>
+				          	<select name="category_data" class="form-control" required>
 				          		<option selected="" disabled="" value="">Select Category</option>
 				          		@foreach($categories as $category)
-				          			<option value="{{ $category->id }}">{{ $category->name }}</option>
+				          			<option value="{{ $category->id }},{{ $category->name }}">{{ $category->name }}</option>
 				          		@endforeach
 				          	</select>
 				              <div class="input-group-append">

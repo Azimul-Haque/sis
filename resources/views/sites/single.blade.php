@@ -140,14 +140,14 @@
           <form method="post" action="{{ route('dashboard.expense.store') }}">
 	          <div class="modal-body">
 	                @csrf
-                  
-	                <input type="hidden" name="site_id" value="{{ $site->id }}" required>
+
+	                <input type="hidden" name="site_data" value="{{ $site->id }},{{ $site->name }}" required>
 
 	                <div class="input-group mb-3">
-	                	<select name="category_id" class="form-control" required>
+	                	<select name="category_data" class="form-control" required>
 	                		<option selected="" disabled="" value="">ক্যাটাগরি নির্ধারণ করুন</option>
 	                		@foreach($categories as $category)
-	                			<option value="{{ $category->id }}">{{ $category->name }}</option>
+	                			<option value="{{ $category->id }},{{ $category->name }}">{{ $category->name }}</option>
 	                		@endforeach
 	                	</select>
 	                    <div class="input-group-append">
