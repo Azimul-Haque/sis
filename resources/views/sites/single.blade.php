@@ -64,7 +64,7 @@
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header bg-danger">
-                                <h5 class="modal-title" id="deleteExpenseModalLabel">Delete Expense</h5>
+                                <h5 class="modal-title" id="deleteExpenseModalLabel">ব্যয় ডিলেট</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -145,7 +145,7 @@
 
 	                <div class="input-group mb-3">
 	                	<select name="category_data" class="form-control" required>
-	                		<option selected="" disabled="" value="">ক্যাটাগরি নির্ধারণ করুন</option>
+	                		<option selected="" disabled="" value="">খাত নির্ধারণ করুন</option>
 	                		@foreach($categories as $category)
 	                			<option value="{{ $category->id }},{{ $category->name }}">{{ $category->name }}</option>
 	                		@endforeach
@@ -160,7 +160,7 @@
 	                           name="amount"
 	                           class="form-control"
 	                           value="{{ old('amount') }}"
-	                           placeholder="Write Amount" required>
+	                           placeholder="ব্যয়ের পরিমাণ লিখুন" required>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-money-check-alt"></span></div>
 	                    </div>
