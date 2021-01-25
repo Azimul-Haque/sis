@@ -1,21 +1,21 @@
 @extends('layouts.app')
-@section('title') ড্যাশবোর্ড | Sites @endsection
+@section('title') ড্যাশবোর্ড | সাইটসমূহ @endsection
 
 @section('third_party_stylesheets')
 
 @endsection
 
 @section('content')
-	@section('page-header') Sites @endsection
+	@section('page-header') সাইটসমূহ @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">
-            <h3 class="card-title">Sites</h3>
+            <h3 class="card-title">সাইটসমূহ</h3>
 
             <div class="card-tools">
             	@if(Auth::user()->role == 'admin')
                 <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addSiteModal">
-            		<i class="fas fa-folder-plus"></i> Add
+            		<i class="fas fa-folder-plus"></i> সাইট যোগ
             	</button>
                 @endif
               {{-- <ul class="pagination pagination-sm float-right">
@@ -68,7 +68,7 @@
             			      <div class="modal-dialog" role="document">
             			        <div class="modal-content">
             			          <div class="modal-header bg-primary">
-            			            <h5 class="modal-title" id="editSiteModalLabel">Edit Site</h5>
+            			            <h5 class="modal-title" id="editSiteModalLabel">সাইট সম্পাদনা করুন</h5>
             			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             			              <span aria-hidden="true">&times;</span>
             			            </button>
@@ -83,7 +83,7 @@
                                              name="name"
                                              class="form-control"
                                              value="{{ $site->name }}"
-                                             placeholder="Site Name" required>
+                                             placeholder="সাইটের নাম" required>
                                       <div class="input-group-append">
                                           <div class="input-group-text"><span class="fas fa-user"></span></div>
                                       </div>
@@ -94,7 +94,7 @@
                                              name="address"
                                              class="form-control"
                                              value="{{ $site->address }}"
-                                             placeholder="Address" required>
+                                             placeholder="ঠিকানা" required>
                                       <div class="input-group-append">
                                           <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
                                       </div>
@@ -105,15 +105,15 @@
           				                           name="progress"
           				                           class="form-control"
           				                           value="{{ $site->progress }}"
-          				                           placeholder="Progress (%)" required>
+          				                           placeholder="অগ্রগতি (%)" required>
           				                    <div class="input-group-append">
           				                        <div class="input-group-text"><span class="fas fa-hourglass-start"></span></div>
           				                    </div>
             				                </div>            				            
             				          </div>
             				          <div class="modal-footer">
-            				            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            				            <button type="submit" class="btn btn-primary">Update</button>
+            				            <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
+            				            <button type="submit" class="btn btn-primary">হালনাগাদ করুন</button>
             				          </div>
             			          </form>
             			        </div>
@@ -135,21 +135,21 @@
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header bg-danger">
-                                <h5 class="modal-title" id="deleteUserModalLabel">Delete Site</h5>
+                                <h5 class="modal-title" id="deleteUserModalLabel">সাইট ডিলেট</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
                               <div class="modal-body">
-                                Are you sure to delete this site?<br/>
+                                আপনি কি নিশ্চিতভাবে এই সাইটটি ডিলেট করতে চান?<br/>
                                 <center>
                                     <big><b>{{ $site->name }}</b></big><br/>
                                     <small><i class="fas fa-map-marker-alt"></i> {{ $site->address }}</small>
                                 </center>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <a href="{{ route('dashboard.sites.delete', $site->id) }}" class="btn btn-danger">Delete</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
+                                <a href="{{ route('dashboard.sites.delete', $site->id) }}" class="btn btn-danger">ডিলেট করুন</a>
                               </div>
                             </div>
                           </div>
@@ -176,7 +176,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-success">
-            <h5 class="modal-title" id="addSiteModalLabel">Add New Site</h5>
+            <h5 class="modal-title" id="addSiteModalLabel">নতুন সাইট যোগ করুন</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -191,7 +191,7 @@
 	                           name="name"
 	                           class="form-control"
 	                           value="{{ old('name') }}"
-	                           placeholder="Site Name" required>
+	                           placeholder="সাইটের নাম" required>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-user"></span></div>
 	                    </div>
@@ -202,7 +202,7 @@
                              name="address"
                              class="form-control"
                              value="{{ old('address') }}"
-                             placeholder="Address" required>
+                             placeholder="ঠিকানা" required>
                       <div class="input-group-append">
                           <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
                       </div>
@@ -215,15 +215,15 @@
                              name="progress"
                              class="form-control"
                              value="{{ old('progress') }}"
-                             placeholder="Progress (%)" required>
+                             placeholder="অগ্রগতি (%)" required>
                       <div class="input-group-append">
                           <div class="input-group-text"><span class="fas fa-hourglass-start"></span></div>
                       </div>
                   </div>
 	          </div>
 	          <div class="modal-footer">
-	            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	            <button type="submit" class="btn btn-success">Save</button>
+	            <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
+	            <button type="submit" class="btn btn-success">দাখিল করুন</button>
 	          </div>
           </form>
         </div>
