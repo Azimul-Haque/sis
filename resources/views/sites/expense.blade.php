@@ -65,7 +65,7 @@
 				                     name="image"
 				                     class="form-control"
 				                     placeholder="ছবি যোগ করুন"
-				                     accept="image/*" capture="camera">
+				                     accept="image/*" capture>
 				              <div class="input-group-append">
 				                  <div class="input-group-text"><span class="fas fa-image"></span></div>
 				              </div>
