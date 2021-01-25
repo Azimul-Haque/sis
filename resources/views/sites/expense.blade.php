@@ -2,7 +2,12 @@
 @section('title') ড্যাশবোর্ড | ব্যয় যোগ করুন @endsection
 
 @section('third_party_stylesheets')
-
+	<style type="text/css">
+		#img-upload{
+		    height: 100px;
+		    width: auto;
+		}
+	</style>
 @endsection
 
 @section('content')
@@ -60,18 +65,18 @@
 				              </div>
 				          </div>
 
-				          <label class="form-label" for="imageFile">ছবি যোগ করুন (ঐচ্ছিক)</label>
-				          <div class="input-group mb-3">
-				              <input type="file"
-				                     name="image"
-				                     id="imageFile" 
-				                     class="form-control"
-				                     placeholder="ছবি যোগ করুন"
-				                     accept="image/*" >
-				              <div class="input-group-append">
-				                  <div class="input-group-text"><span class="fas fa-image"></span></div>
-				              </div>
-				          </div>
+				          <div class="form-group">
+			                  <label>ছবি যোগ করুন (ঐচ্ছিক)</label>
+			                  <div class="input-group">
+			                      <span class="input-group-btn">
+			                          <span class="btn btn-default btn-file">
+			                              ফাইল আপ্লোড করুন <input type="file" name="image" id="imgInp">
+			                          </span>
+			                      </span>
+			                      <input type="text" class="form-control" readonly>
+			                  </div><br/>
+			                  <center><img id='img-upload'/></center>
+			              </div>
 				          <button type="submit" class="btn btn-success">দাখিল করুন</button>
 			          </form>
 		          </div>
@@ -83,5 +88,42 @@
 @endsection
 
 @section('third_party_scripts')
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready( function() {
+		    	$(document).on('change', '.btn-file :file', function() {
+				var input = $(this),
+					label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+				input.trigger('fileselect', [label]);
+				});
 
+				$('.btn-file :file').on('fileselect', function(event, label) {
+				    
+				    var input = $(this).parents('.input-group').find(':text'),
+				        log = label;
+				    
+				    if( input.length ) {
+				        input.val(log);
+				    } else {
+				        if( log ) alert(log);
+				    }
+			    
+				});
+				function readURL(input) {
+				    if (input.files && input.files[0]) {
+				        var reader = new FileReader();
+				        
+				        reader.onload = function (e) {
+				            $('#img-upload').attr('src', e.target.result);
+				        }
+				        
+				        reader.readAsDataURL(input.files[0]);
+				    }
+				}
+
+				$("#imgInp").change(function(){
+				    readURL(this);
+				}); 	
+			});
+	</script>
 @endsection
