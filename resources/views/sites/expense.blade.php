@@ -59,6 +59,17 @@
 				                  <div class="input-group-text"><span class="fas fa-money-check-alt"></span></div>
 				              </div>
 				          </div>
+
+				          <div class="input-group mb-3">
+				              <input type="file"
+				                     name="image"
+				                     class="form-control"
+				                     placeholder="ছবি যোগ করুন"
+				                     accept="image/*" capture="camera">
+				              <div class="input-group-append">
+				                  <div class="input-group-text"><span class="fas fa-image"></span></div>
+				              </div>
+				          </div>
 				          <button type="submit" class="btn btn-success">দাখিল করুন</button>
 			          </form>
 		          </div>
