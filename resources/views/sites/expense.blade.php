@@ -70,7 +70,7 @@
 			                  <div class="input-group">
 			                      <span class="input-group-btn">
 			                          <span class="btn btn-default btn-file">
-			                              ফাইল আপ্লোড করুন <input type="file" name="image" id="imgInp">
+			                              ফাইল আপ্লোড করুন <input type="file" name="image" id="imgInp" accept="image/*" capture>
 			                          </span>
 			                      </span>
 			                      <input type="text" class="form-control" readonly>
