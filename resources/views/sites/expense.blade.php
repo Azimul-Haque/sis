@@ -22,7 +22,7 @@
 		          </div>
 		          <!-- /.card-header -->
 		          <div class="card-body">
-	      	          <form method="post" action="{{ route('dashboard.expense.store') }}">
+	      	          <form method="post" action="{{ route('dashboard.expense.store') }}" enctype="multipart/form-data">
 				          @csrf
 
 				          <div class="input-group mb-3">
