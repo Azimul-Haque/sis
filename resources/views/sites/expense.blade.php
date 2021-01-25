@@ -60,9 +60,11 @@
 				              </div>
 				          </div>
 
+				          <label class="form-label" for="imageFile">ছবি যোগ করুন (ঐচ্ছিক)</label>
 				          <div class="input-group mb-3">
 				              <input type="file"
 				                     name="image"
+				                     id="imageFile" 
 				                     class="form-control"
 				                     placeholder="ছবি যোগ করুন"
 				                     accept="image/*" >
