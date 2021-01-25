@@ -4,8 +4,8 @@
 @section('third_party_stylesheets')
 	<style type="text/css">
 		#img-upload{
-		    height: 100px;
-		    width: auto;
+		    width: 200px;
+		    height: auto;
 		}
 	</style>
 @endsection
