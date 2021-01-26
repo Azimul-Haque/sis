@@ -28,7 +28,7 @@
 <li class="nav-item">
     <a href="{{ route('dashboard.categories') }}" class="nav-link {{ Request::is('dashboard/categories') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tags"></i>
-        <p>ক্যাটাগরি</p>
+        <p>খাতসমূহ</p>
     </a>
 </li>
 {{-- <li class="nav-item">
