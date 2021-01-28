@@ -274,14 +274,16 @@ class DashboardController extends Controller
         $expense->category_id = $category_data[0];
         $expense->amount = $request->amount;
 
+        // upload image
         if($request->hasFile('image')) {
             $receipt      = $request->file('image');
-            $filename   = $request->submitter_id.'_donation_receipt_' . time() .'.' . $receipt->getClientOriginalExtension();
-            $location   = public_path('/images/receipts/'. $filename);
-            Image::make($receipt)->resize(800, null, function ($constraint) { $constraint->aspectRatio(); })->save($location);
-            $donation->image = $filename;
+            $filename   = Auth::user()->id.'_receipt_' . time() .'.' . $receipt->getClientOriginalExtension();
+            $location   = public_path('/images/expenses/'. $filename);
+            Image::make($receipt)->resize(600, null, function ($constraint) { $constraint->aspectRatio(); })->save($location);
+            $expense->image = $filename;
         }
-        
+        // upload image
+
         $expense->save();
 
         OneSignal::sendNotificationToAll(
