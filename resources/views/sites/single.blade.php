@@ -165,6 +165,19 @@
 	                        <div class="input-group-text"><span class="fas fa-money-check-alt"></span></div>
 	                    </div>
 	                </div>
+
+                  <div class="form-group">
+                        <label>ছবি যোগ করুন (ঐচ্ছিক)</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-default btn-file">
+                                    ফাইল আপ্লোড করুন <input type="file" name="image" id="imgInp">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" readonly>
+                        </div><br/>
+                        <center><img id='img-upload'/></center>
+                    </div>
 	          </div>
 	          <div class="modal-footer">
 	            <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>

@@ -59,6 +59,7 @@ return array(
     'League\\CommonMark\\' => array($vendorDir . '/league/commonmark/src'),
     'Laravel\\Ui\\' => array($vendorDir . '/laravel/ui/src'),
     'Laravel\\Tinker\\' => array($vendorDir . '/laravel/tinker/src'),
+    'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src/Intervention/Image'),
     'InfyOm\\GeneratorHelpers\\' => array($vendorDir . '/infyomlabs/laravel-generator-helpers/src'),
     'InfyOm\\AdminLTEPreset\\' => array($vendorDir . '/infyomlabs/laravel-ui-adminlte/src'),
     'Illuminate\\Foundation\\Auth\\' => array($vendorDir . '/laravel/ui/auth-backend'),
