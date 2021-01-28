@@ -14,7 +14,7 @@ use Carbon\Carbon;
 use DB;
 use Hash;
 use Auth;
-// use Image;
+use Image;
 // use File;
 use Session;
 use Artisan;
@@ -260,7 +260,8 @@ class DashboardController extends Controller
         $this->validate($request,array(
             'site_data'       => 'required',
             'category_data'   => 'required',
-            'amount'          => 'required|integer'
+            'amount'          => 'required|integer',
+            'image'           => 'sometimes'
         ));
 
         // parse data
@@ -272,6 +273,15 @@ class DashboardController extends Controller
         $expense->site_id = $site_data[0];
         $expense->category_id = $category_data[0];
         $expense->amount = $request->amount;
+
+        if($request->hasFile('image')) {
+            $receipt      = $request->file('image');
+            $filename   = $request->submitter_id.'_donation_receipt_' . time() .'.' . $receipt->getClientOriginalExtension();
+            $location   = public_path('/images/receipts/'. $filename);
+            Image::make($receipt)->resize(800, null, function ($constraint) { $constraint->aspectRatio(); })->save($location);
+            $donation->image = $filename;
+        }
+        
         $expense->save();
 
         OneSignal::sendNotificationToAll(

@@ -177,7 +177,7 @@
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <span class="btn btn-default btn-file">
-                                    ফাইল আপ্লোড করুন <input type="file" name="image" id="imgInp">
+                                    ছবি আপ্লোড করুন <input type="file" name="image" id="imgInp" accept="image/*">
                                 </span>
                             </span>
                             <input type="text" class="form-control" readonly>
