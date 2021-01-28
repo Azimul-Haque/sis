@@ -58,9 +58,9 @@
                         </td>
                 		<td align="right" width="40%">
                       @if($expense->image != null)
-                        <a class="zoomImage" href="{{ asset('images/expenses/' . $expense->image) }}">
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#receiptExpenseModal{{ $expense->id }}">
                             <i class="fas fa-image"></i>
-                        </a>
+                        </button>
                       @endif
                 			@if(Auth::user()->role == 'admin')
                           <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteExpenseModal{{ $expense->id }}">
@@ -68,6 +68,35 @@
                           </button>
                       @endif
                 		</td>
+                        
+                        {{-- Expense Receipt Modal Code --}}
+                        {{-- Expense Receipt Modal Code --}}
+                        <!-- Modal -->
+                        <div class="modal fade" id="receiptExpenseModal{{ $expense->id }}" tabindex="-1" role="dialog" aria-labelledby="receiptExpenseModalLabel" aria-hidden="true" data-backdrop="static">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header bg-warning">
+                                <h5 class="modal-title" id="receiptExpenseModalLabel">ব্যয় রিসিট</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p style="width: 100%; overflow-y: scroll;">
+                                  @if($expense->image != null)
+                                    <img src="{{ asset('images/expenses/' . $expense->image) }}">
+                                  @endif
+                                </p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {{-- Expense Receipt Modal Code --}}
+                        {{-- Expense Receipt Modal Code --}}
+
                         {{-- Delete Expense Modal Code --}}
                         {{-- Delete Expense Modal Code --}}
                         <!-- Modal -->
@@ -205,7 +234,6 @@
 @section('third_party_scripts')
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-  <script src="{{ asset('js/magnifik.js') }}"></script>
   <script type="text/javascript">
     $.noConflict();
     jQuery( document ).ready(function( $ ) {
@@ -216,10 +244,6 @@
           "ordering": true,
           "info": true,
           "autoWidth": true,
-        });
-
-        $('a.zoomImage').magnifik({
-          ratio:2.0
         });
     });
 
