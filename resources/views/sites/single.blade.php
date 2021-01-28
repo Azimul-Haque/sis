@@ -57,11 +57,16 @@
                             </small> 
                         </td>
                 		<td align="right" width="40%">
+                      @if($expense->image != null)
+                        <a class="zoomImage" href="{{ asset('images/expenses/' . $expense->image) }}">
+                            <i class="fas fa-image"></i>
+                        </a>
+                      @endif
                 			@if(Auth::user()->role == 'admin')
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteExpenseModal{{ $expense->id }}">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            @endif
+                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteExpenseModal{{ $expense->id }}">
+                              <i class="fas fa-trash-alt"></i>
+                          </button>
+                      @endif
                 		</td>
                         {{-- Delete Expense Modal Code --}}
                         {{-- Delete Expense Modal Code --}}
@@ -200,6 +205,7 @@
 @section('third_party_scripts')
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+  <script src="{{ asset('js/magnifik.js') }}"></script>
   <script type="text/javascript">
     $.noConflict();
     jQuery( document ).ready(function( $ ) {
@@ -210,6 +216,10 @@
           "ordering": true,
           "info": true,
           "autoWidth": true,
+        });
+
+        $('a.zoomImage').magnifik({
+          ratio:2.0
         });
     });
 

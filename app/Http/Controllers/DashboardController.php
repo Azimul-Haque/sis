@@ -15,7 +15,7 @@ use DB;
 use Hash;
 use Auth;
 use Image;
-// use File;
+use File;
 use Session;
 use Artisan;
 // use Redirect;
@@ -302,6 +302,10 @@ class DashboardController extends Controller
     public function deleteExpense($id)
     {
         $expense = Expense::find($id);
+        $image_path = public_path('images/expenses/'. $expense->image);
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
         $expense->delete();
 
         Session::flash('success', 'Expense deleted successfully!');
