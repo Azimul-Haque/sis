@@ -50,7 +50,8 @@
                 @foreach($expenses as $expense)
                 	<tr>
                         <td style="line-height: 1;">
-                            <span class="badge bg-info"><big>৳ {{ $expense->amount }}</big></span><br/>
+                            <span class="badge bg-primary"><big>৳ {{ $expense->amount }}</big>
+                            </span> <span class="badge bg-info"><big>{{ $expense->category->name }}</big></span><br/>
                             <small>
                                 <span class="text-black-50">যোগ করেছেনঃ</span> {{ $expense->user->name }} <span class="text-black-50"><br/>
                                 </span> {{ date('F d, Y h:i A', strtotime($expense->created_at)) }}
