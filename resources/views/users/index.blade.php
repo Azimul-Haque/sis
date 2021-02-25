@@ -2,7 +2,7 @@
 @section('title') ড্যাশবোর্ড | ব্যবহারকারীগণ @endsection
 
 @section('third_party_stylesheets')
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -200,9 +200,20 @@
 	                    </div>
 	                </div>
 
+                    <div class="input-group mb-3">
+                        <select name="role" class="form-control" required>
+                            <option selected="" disabled="" value="">ধরন</option>
+                            <option value="admin">এডমিন</option>
+                            <option value="manager">ম্যানেজার</option>
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text"><span class="fas fa-user-secret"></span></div>
+                        </div>
+                    </div>
+
 	                <div class="input-group mb-3">
-	                	<select name="role" class="form-control" required>
-	                		<option selected="" disabled="" value="">ধরন</option>
+	                	<select name="sites" class="sitesselect2 form-control" id="sitesselect2" multiple="" readonly="" required>
+	                		{{-- <option selected="" disabled="" value="">ধরন</option> --}}
 	                		<option value="admin">এডমিন</option>
 	                		<option value="manager">ম্যানেজার</option>
 	                	</select>
@@ -236,5 +247,12 @@
 @endsection
 
 @section('third_party_scripts')
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $('.sitesselect2').select2({
+          placeholder: 'Select an item',
+          width: 100,
+        });
+    </script>
 @endsection
