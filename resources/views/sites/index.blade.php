@@ -122,7 +122,7 @@
             			    {{-- Edit Site Modal Code --}}
             			    {{-- Edit Site Modal Code --}}
 
-                			<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal{{ $site->id }}">
+                			<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal{{ $site->id }}" disabled="">
                 				<i class="fas fa-trash-alt"></i>
                 			</button>
                             @endif
