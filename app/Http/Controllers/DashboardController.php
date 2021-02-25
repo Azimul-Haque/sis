@@ -65,6 +65,7 @@ class DashboardController extends Controller
 
     public function storeUser(Request $request)
     {
+        dd(serialize($request->sitecheck));
         $this->validate($request,array(
             'name'        => 'required|string|max:191',
             'mobile'      => 'required|string|max:191|unique:users,mobile',

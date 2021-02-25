@@ -2,7 +2,7 @@
 @section('title') ড্যাশবোর্ড | ব্যবহারকারীগণ @endsection
 
 @section('third_party_stylesheets')
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/icheck-bootstrap@3.0.1/icheck-bootstrap.min.css">
 @endsection
 
 @section('content')
@@ -210,6 +210,15 @@
 	                        <div class="input-group-text"><span class="fas fa-user-secret"></span></div>
 	                    </div>
 	                </div>
+
+                    <label>এই ব্যবহারকারীর সাইট সিলেক্ট করুন</label><br/>
+                    @foreach($sites as $site)
+                        <div class="icheck-primary icheck-inline">
+                            <input type="checkbox" id="chb{{ $site->id }}" name="sitecheck[]" value="{{ $site->id }}" />
+                            <label for="chb{{ $site->id }}">{{ $site->name }}</label>
+                        </div>
+                    @endforeach
+                    <br/><br/>
 
 	                <div class="input-group mb-3">
 	                    <input type="password"
