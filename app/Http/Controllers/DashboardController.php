@@ -65,11 +65,12 @@ class DashboardController extends Controller
 
     public function storeUser(Request $request)
     {
-        dd(serialize($request->sitecheck));
+        // dd(serialize($request->sitecheck));
         $this->validate($request,array(
             'name'        => 'required|string|max:191',
             'mobile'      => 'required|string|max:191|unique:users,mobile',
             'role'        => 'required',
+            'sitecheck'   => 'required',
             'password'    => 'required|string|min:8|max:191',
         ));
 
@@ -77,6 +78,7 @@ class DashboardController extends Controller
         $user->name = $request->name;
         $user->mobile = $request->mobile;
         $user->role = $request->role;
+        $user->sites = implode(',', $request->sitecheck);
         $user->password = Hash::make($request->password);
         $user->save();
 
