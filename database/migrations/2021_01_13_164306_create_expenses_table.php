@@ -19,8 +19,8 @@ class CreateExpensesTable extends Migration
             $table->integer('site_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->double('amount');
-            $table->string('image');
             $table->string('qty')->nullable();
+            $table->string('image');
             $table->timestamps();
         });
     }
