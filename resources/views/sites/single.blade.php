@@ -49,14 +49,15 @@
                 </tr> --}}
                 @foreach($expenses as $expense)
                 	<tr>
-                        <td style="line-height: 1;">
-                            <span class="badge bg-primary"><big>৳ {{ $expense->amount }}</big>
-                            </span> <span class="badge bg-info"><big>{{ $expense->category->name }}</big></span><br/>
-                            <small>
-                                <span class="text-black-50">যোগ করেছেনঃ</span> {{ $expense->user->name }} <span class="text-black-50"><br/>
-                                </span> {{ date('F d, Y h:i A', strtotime($expense->created_at)) }}
-                            </small> 
-                        </td>
+                    <td style="line-height: 1;">
+                        <span class="badge bg-primary">৳ {{ $expense->amount }}</span>
+                        <span class="badge bg-success">{{ $expense->category->name }}</span>
+                        <span class="badge bg-info">{{ $expense->qty }}</span><br/>
+                        <small>
+                            <span class="text-black-50">যোগ করেছেনঃ</span> {{ $expense->user->name }}<br/>
+                            <small>{{ date('F d, Y h:i A', strtotime($expense->created_at)) }}</small>
+                        </small> 
+                    </td>
                 		<td align="right" width="40%">
                       @if($expense->image != null)
                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#receiptExpenseModal{{ $expense->id }}">
