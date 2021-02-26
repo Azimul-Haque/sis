@@ -38,7 +38,14 @@
                 			{{ $user->name }}
                 			<br/>
                 			<small class="text-black-50">{{ $user->mobile }}</small> 
-                			<span class="badge @if($user->role == 'admin') bg-success @else bg-info @endif">{{ ucfirst($user->role) }}</span>
+                			<span class="badge @if($user->role == 'admin') bg-success @else bg-info @endif">{{ ucfirst($user->role) }}</span><br/>
+                            <small>
+                                @foreach($sites as $site)
+                                    @if(in_array($site->id, explode(',', $user->sites)))
+                                        <span class="badge badge-pill badge-warning">{{ $site->name }}</span>
+                                    @endif
+                                @endforeach
+                            </small>
                 		</td>
                 		<td align="right" width="40%">
                 			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUserModal{{ $user->id }}">
