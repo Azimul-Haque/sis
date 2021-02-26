@@ -65,6 +65,17 @@
 				              </div>
 				          </div>
 
+				          <div class="input-group mb-3">
+				              <input type="text"
+				                     name="qty"
+				                     class="form-control"
+				                     value="{{ old('qty') }}"
+				                     placeholder="পরিমাণ (যেমনঃ ১০ টি, ২০ বস্তা, ৩০ কেজি ইত্যাদি)">
+				              <div class="input-group-append">
+				                  <div class="input-group-text"><span class="fas fa-archive"></span></div>
+				              </div>
+				          </div>
+
 				          <div class="form-group">
 			                  <label>ছবি যোগ করুন (ঐচ্ছিক)</label>
 			                  <div class="input-group">

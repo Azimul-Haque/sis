@@ -196,14 +196,25 @@
 	                    </div>
 	                </div>
 
+                  <div class="input-group mb-3">
+                      <input type="number"
+                             name="amount"
+                             class="form-control"
+                             value="{{ old('amount') }}"
+                             placeholder="ব্যয়ের পরিমাণ লিখুন" required>
+                      <div class="input-group-append">
+                          <div class="input-group-text"><span class="fas fa-money-check-alt"></span></div>
+                      </div>
+                  </div>
+
 	                <div class="input-group mb-3">
-	                    <input type="number"
-	                           name="amount"
+	                    <input type="text"
+	                           name="qty"
 	                           class="form-control"
-	                           value="{{ old('amount') }}"
-	                           placeholder="ব্যয়ের পরিমাণ লিখুন" required>
+	                           value="{{ old('qty') }}"
+	                           placeholder="পরিমাণ (যেমনঃ ১০ টি, ২০ বস্তা, ৩০ কেজি ইত্যাদি)">
 	                    <div class="input-group-append">
-	                        <div class="input-group-text"><span class="fas fa-money-check-alt"></span></div>
+	                        <div class="input-group-text"><span class="fas fa-archive"></span></div>
 	                    </div>
 	                </div>
 
