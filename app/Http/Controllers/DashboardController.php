@@ -92,6 +92,7 @@ class DashboardController extends Controller
             'name'        => 'required|string|max:191',
             'mobile'      => 'required|string|max:191|unique:users,mobile,'.$id,
             'role'        => 'required',
+            'sitecheck'   => 'required',
             'password'    => 'nullable|string|min:8|max:191',
         ));
 
@@ -99,6 +100,7 @@ class DashboardController extends Controller
         $user->name = $request->name;
         $user->mobile = $request->mobile;
         $user->role = $request->role;
+        $user->sites = implode(',', $request->sitecheck);
         if(!empty($request->password)) {
             $user->password = Hash::make($request->password);
         }
