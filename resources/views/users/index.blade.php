@@ -102,6 +102,15 @@
             				                    </div>
             				                </div>
 
+                                            <p><label style="float: left;">এই ব্যবহারকারীর সাইট সিলেক্ট করুন</label></p><br/>
+                                            @foreach($sites as $site)
+                                                <div class="icheck-primary icheck-inline" style="float: left;">
+                                                    <input type="checkbox" id="chb2{{ $site->id }}" name="sitecheck[]" value="{{ $site->id }}" @if(in_array($site->id, explode(',', $user->sites))) checked="" @endif />
+                                                    <label for="chb2{{ $site->id }}">{{ $site->name }}</label>
+                                                </div>
+                                            @endforeach
+                                            <br/><br/>
+
             				                <div class="input-group mb-3">
             				                    <input type="password"
             				                           name="password"
