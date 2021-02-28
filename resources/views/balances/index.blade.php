@@ -109,15 +109,27 @@
 	                @csrf
 
 	                <div class="input-group mb-3">
-	                    <input type="number"
-	                           name="amount"
-	                           class="form-control"
-	                           value="{{ old('amount') }}"
-	                           placeholder="পরিমাণ লিখুন" required>
-	                    <div class="input-group-append">
-	                        <div class="input-group-text"><span class="fas fa-money-check-alt"></span></div>
-	                    </div>
-	                </div>
+                      <input type="number"
+                             name="amount"
+                             class="form-control"
+                             value="{{ old('amount') }}"
+                             placeholder="পরিমাণ লিখুন" required>
+                      <div class="input-group-append">
+                          <div class="input-group-text"><span class="fas fa-money-check-alt"></span></div>
+                      </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <select name="receiver_id" class="form-control" required>
+                      <option disabled="" selected="">ব্যক্তি নির্ধারণ করুন</option>
+                      @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                      @endforeach
+                    </select>
+                      <div class="input-group-append">
+                          <div class="input-group-text"><span class="fas fa-user"></span></div>
+                      </div>
+                  </div>
 	          </div>
 	          <div class="modal-footer">
 	            <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>

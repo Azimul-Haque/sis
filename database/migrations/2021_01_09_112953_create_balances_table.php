@@ -16,6 +16,7 @@ class CreateBalancesTable extends Migration
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
+            $table->integer('receiver_id')->unsigned();
             $table->double('amount');
             $table->timestamps();
         });

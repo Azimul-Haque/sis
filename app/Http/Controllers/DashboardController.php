@@ -121,6 +121,7 @@ class DashboardController extends Controller
 
     public function getBalance()
     {
+        $users = User::whereNotIn('mobile', ['01751398392', '01837409842'])->get();
         $totalbalance = Balance::sum('amount');
         $totalexpense = Expense::sum('amount');
 
@@ -129,6 +130,7 @@ class DashboardController extends Controller
                            ->paginate(5);
 
         return view('balances.index')
+                    ->withUsers($users)
                     ->withBalances($balances)
                     ->withTotalbalance($totalbalance)
                     ->withTotalexpense($totalexpense);
