@@ -15,7 +15,7 @@
 @endif
 <li class="nav-item">
     <a href="{{ route('dashboard.balance') }}" class="nav-link {{ Request::is('dashboard/balance') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-hand-holding-usd"></i>
+        <i class="nav-icon fas fa-funnel-dollar"></i>
         <p>ব্যালেন্স</p>
     </a>
 </li>
