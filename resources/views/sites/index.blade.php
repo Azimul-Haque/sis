@@ -42,7 +42,7 @@
                   <td><span class="badge bg-danger">55%</span></td>
                 </tr> --}}
                 @foreach($sites as $site)
-                  @if(in_array($site->id, explode(',', Auth::user()->sites)))
+                  @if(in_array($site->id, explode(',', Auth::user()->sites)) || Auth::user()->role == 'admin')
                     <tr>
                       <td>
                           <a href="{{ route('dashboard.sites.single', $site->id) }}">
