@@ -44,7 +44,8 @@
                         <td style="line-height: 1;">
                             <span class="badge bg-success"><big>৳ {{ $balance->amount }}</big></span><br/>
                             <small>
-                                <span class="text-black-50">যোগ করেছেনঃ </span> {{ $balance->user->name }} <span class="text-black-50"><br/>
+                                <span class="text-black-50">যোগ করেছেনঃ </span> {{ $balance->user->name }},
+                                <span class="text-black-50">গ্রহণ করেছেনঃ </span> {{ $balance->receiver ? $balance->receiver->name : ''}}<br/>
                                 </span> {{ date('F d, Y h:i A', strtotime($balance->created_at)) }}
                             </small> 
                         </td>

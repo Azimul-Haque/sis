@@ -9,4 +9,8 @@ class Balance extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    public function receiver() {
+      return $this->belongsTo('App\User', 'receiver_id', 'id');
+    }
 }
