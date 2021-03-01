@@ -144,17 +144,18 @@ class DashboardController extends Controller
 
         $balance = new Balance;
         $balance->user_id = Auth::user()->id;
+        $balance->receiver_id = $request->receiver_id;
         $balance->amount = $request->amount;
         $balance->save();
 
-        OneSignal::sendNotificationToAll(
-            "অর্থ যোগ করেছেনঃ " . Auth::user()->name,
-            $url = null, 
-            $data = null, // array("answer" => $charioteer->answer), // to send some variable
-            $buttons = null, 
-            $schedule = null,
-            $headings = "৳ " . bangla($request->amount) . " যোগ করা হয়েছে!"
-        );
+        // OneSignal::sendNotificationToAll(
+        //     "অর্থ যোগ করেছেনঃ " . Auth::user()->name,
+        //     $url = null, 
+        //     $data = null, // array("answer" => $charioteer->answer), // to send some variable
+        //     $buttons = null, 
+        //     $schedule = null,
+        //     $headings = "৳ " . bangla($request->amount) . " যোগ করা হয়েছে!"
+        // );
 
         Session::flash('success', 'Amount added successfully!');
         return redirect()->route('dashboard.balance');
