@@ -66,6 +66,7 @@ class DashboardController extends Controller
     public function getUser($id)
     {
         $user = User::find($id);
+        // $expenses = 
 
         return view('users.single')
                     ->withUser($user);
