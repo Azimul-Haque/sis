@@ -19,7 +19,7 @@ class User extends Authenticatable
     }
 
     public function expenses(){
-        return $this->hasMany('App\Expenses');
+        return $this->hasMany('App\Expense');
     }
 
     /**

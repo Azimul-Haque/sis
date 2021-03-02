@@ -66,9 +66,24 @@ class DashboardController extends Controller
     public function getUser($id)
     {
         $user = User::find($id);
-        // $expenses = 
+
+        // $expenses = Expense::where('user_id', $id)
+        //                    ->orderBy('id', 'desc')
+        //                    ->get();
 
         return view('users.single')
+                    ->withUser($user);
+    }
+
+    public function getUserWithOtherPage($id)
+    {
+        $user = User::find($id);
+
+        // $expenses = Expense::where('user_id', $id)
+        //                    ->orderBy('id', 'desc')
+        //                    ->get();
+
+        return view('users.singleother')
                     ->withUser($user);
     }
 
