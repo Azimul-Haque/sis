@@ -63,6 +63,14 @@ class DashboardController extends Controller
                     ->withSites($sites);
     }
 
+    public function getUser($id)
+    {
+        $user = User::find($id);
+
+        return view('users.single')
+                    ->withUser($user);
+    }
+
     public function storeUser(Request $request)
     {
         // dd(serialize($request->sitecheck));
