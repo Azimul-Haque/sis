@@ -30,10 +30,8 @@
         <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
           <li class="nav-item">
             <a class="nav-link" id="custom-tabs-four-balance-tab" href="{{ route('dashboard.users.single', $user->id) }}" role="tab" aria-controls="custom-tabs-four-balance" aria-selected="true">প্রদানকৃত অর্থের তালিকা</a>
-            {{-- <a class="nav-link active" id="custom-tabs-four-balance-tab" data-toggle="pill" href="#custom-tabs-four-balance" role="tab" aria-controls="custom-tabs-four-balance" aria-selected="true">প্রদানকৃত অর্থের তালিকা</a> --}}
           </li>
           <li class="nav-item">
-            {{-- <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">ব্যয়ের তালিকা</a> --}}
             <a class="nav-link active" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">ব্যয়ের তালিকা</a>
           </li>
         </ul>
