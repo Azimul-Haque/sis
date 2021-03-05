@@ -38,9 +38,9 @@
       </div>
       <div class="card-body">
         <div class="tab-content" id="custom-tabs-four-tabContent">
-          <div class="tab-pane" id="custom-tabs-four-balance" role="tabpanel" aria-labelledby="custom-tabs-four-balance-tab">
+          {{-- <div class="tab-pane" id="custom-tabs-four-balance" role="tabpanel" aria-labelledby="custom-tabs-four-balance-tab">
             
-          </div>
+          </div> --}}
           <div class="tab-pane fade active show" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
             
           </div>
