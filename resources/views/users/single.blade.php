@@ -41,9 +41,9 @@
           <div class="tab-pane fade active show" id="custom-tabs-four-balance" role="tabpanel" aria-labelledby="custom-tabs-four-balance-tab">
              
           </div>
-          <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="">
+          {{-- <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="">
             
-          </div>
+          </div> --}}
         </div>
       </div>
       <!-- /.card -->
