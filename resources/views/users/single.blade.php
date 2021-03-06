@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-coins"></i></span>
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট অর্থ গ্রহণ)</span>
