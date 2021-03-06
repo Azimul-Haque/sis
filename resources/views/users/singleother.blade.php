@@ -8,16 +8,32 @@
 @section('content')
 	@section('page-header') {{ $user->name }} @endsection
     <div class="container-fluid">
-    	<div class="info-box mb-3">
-	      <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+    	<div class="row">
+        <div class="col-md-6">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-coins"></i></span>
 
-	      <div class="info-box-content">
-	        <span class="info-box-text">{{ bangla(date('F Y')) }}</span>
-          <span class="info-box-number">৳ 0</span>
-	        {{-- <span class="info-box-number">৳ {{ $monthlyexpensetotalcurrent ? $monthlyexpensetotalcurrent->totalamount : 0 }}</span> --}}
-	      </div>
-	      <!-- /.info-box-content -->
-	    </div>
+            <div class="info-box-content">
+              <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট অর্থ গ্রহণ)</span>
+              {{-- <span class="info-box-number">৳ 0</span> --}}
+              <span class="info-box-number">৳ {{ $monthlytotalbalance ? $monthlytotalbalance->totalamount : 0 }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট অর্থ ব্যয়)</span>
+              {{-- <span class="info-box-number">৳ 0</span> --}}
+              <span class="info-box-number">৳ {{ $monthlytotalexpense ? $monthlytotalexpense->totalamount : 0 }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+      </div>
 
       <div class="card card-primary card-outline card-outline-tabs">
         <div class="card-header p-0 border-bottom-0">

@@ -40,7 +40,6 @@
           </div>
         </div>
       </div>
-    	
 
       <div class="card card-primary card-outline card-outline-tabs">
         <div class="card-header p-0 border-bottom-0">
