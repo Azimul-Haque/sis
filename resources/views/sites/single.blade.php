@@ -54,7 +54,7 @@
                         <span class="badge bg-success">{{ $expense->category->name }}</span>
                         <span class="badge bg-info">{{ $expense->qty }}</span><br/>
                         <small>
-                            <span class="text-black-50">খরচ করেছেনঃ</span> {{ $expense->user->name }}<br/>
+                            <span class="text-black-50">ব্যয় করেছেনঃ</span> {{ $expense->user->name }}<br/>
                             <small>{{ date('F d, Y h:i A', strtotime($expense->created_at)) }}</small>
                         </small> 
                     </td>
