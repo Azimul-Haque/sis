@@ -95,6 +95,7 @@
                       {{-- Expense Receipt Modal Code --}}
                       {{-- Expense Receipt Modal Code --}}
 
+                      @if(Auth::user()->role == 'admin')
                       {{-- Delete Expense Modal Code --}}
                       {{-- Delete Expense Modal Code --}}
                       <!-- Modal -->
@@ -122,6 +123,7 @@
                       </div>
                       {{-- Delete Expense Modal Code --}}
                       {{-- Delete Expense Modal Code --}}
+                      @endif
                 </tr>
               @endforeach
             </tbody>

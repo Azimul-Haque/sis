@@ -72,7 +72,7 @@ class DashboardController extends Controller
 
         return view('users.single')
                     ->withUser($user)
-                    ->withExpenses($expenses);
+                    ->withBalances($balances);
     }
 
     public function getUserWithOtherPage($id)

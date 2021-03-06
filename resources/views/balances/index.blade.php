@@ -41,20 +41,20 @@
                 </tr> --}}
                 @foreach($balances as $balance)
                 	<tr>
-                        <td style="line-height: 1;">
-                            <span class="badge bg-success"><big>৳ {{ $balance->amount }}</big></span><br/>
-                            <small>
-                                <span class="text-black-50">যোগ করেছেনঃ </span> {{ $balance->user->name }},
-                                <span class="text-black-50">গ্রহণ করেছেনঃ </span> {{ $balance->receiver ? $balance->receiver->name : ''}}<br/>
-                                </span> {{ date('F d, Y h:i A', strtotime($balance->created_at)) }}
-                            </small> 
-                        </td>
+                    <td style="line-height: 1;">
+                      <span class="badge bg-success"><big>৳ {{ $balance->amount }}</big></span><br/>
+                      <small>
+                          <span class="text-black-50">প্রদান করেছেনঃ </span> {{ $balance->user->name }},
+                          <span class="text-black-50">গ্রহণ করেছেনঃ </span> {{ $balance->receiver ? $balance->receiver->name : ''}}<br/>
+                          </span> {{ date('F d, Y h:i A', strtotime($balance->created_at)) }}
+                      </small> 
+                    </td>
                 		<td align="right" width="40%">
                 			@if(Auth::user()->role == 'admin')
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteBalanceModal{{ $balance->id }}">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            @endif
+                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteBalanceModal{{ $balance->id }}">
+                              <i class="fas fa-trash-alt"></i>
+                          </button>
+                      @endif
                 		</td>
                         {{-- Delete Balance Modal Code --}}
                         {{-- Delete Balance Modal Code --}}
