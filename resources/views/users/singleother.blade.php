@@ -246,38 +246,8 @@
       </div>
       <!-- /.card-body -->
     </div>
-    {{-- {{ $expenses->links() }} --}}
-
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">ব্যয়ের তালিকা</h3>
-
-        <div class="card-tools">
-          
-        </div>
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body">
-        <table class="table" id="example1_wrapper">
-          <thead>
-            <tr>
-              <th>মাস</th>
-              <th>মোট ব্যয়</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{-- @foreach($monthlyexpenses as $monthlyexpense)
-              <tr>
-                <td>{{ date('F Y', strtotime($monthlyexpense->created_at)) }}</td>
-                <td>৳ {{ $monthlyexpense->totalamount }}</td>
-              </tr>
-            @endforeach --}}
-          </tbody>
-        </table>
-      </div>
-      <!-- /.card-body -->
-    </div>
-
+    
+    {{ $expenses->links() }}
     </div>
 @endsection
 

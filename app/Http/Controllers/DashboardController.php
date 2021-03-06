@@ -67,24 +67,26 @@ class DashboardController extends Controller
     {
         $user = User::find($id);
 
-        // $expenses = Expense::where('user_id', $id)
-        //                    ->orderBy('id', 'desc')
-        //                    ->get();
+        $expenses = Expense::where('user_id', $id)
+                           ->orderBy('id', 'desc')
+                           ->get();
 
         return view('users.single')
-                    ->withUser($user);
+                    ->withUser($user)
+                    ->withExpenses($expenses);
     }
 
     public function getUserWithOtherPage($id)
     {
         $user = User::find($id);
 
-        // $expenses = Expense::where('user_id', $id)
-        //                    ->orderBy('id', 'desc')
-        //                    ->get();
+        $expenses = Expense::where('user_id', $id)
+                           ->orderBy('id', 'desc')
+                           ->get();
 
         return view('users.singleother')
-                    ->withUser($user);
+                    ->withUser($user)
+                    ->withExpenses($expenses);
     }
 
     public function storeUser(Request $request)
