@@ -49,7 +49,7 @@
               </td>
               <td><span class="badge bg-danger">55%</span></td>
             </tr> --}}
-            @foreach($user->expenses->sortByDesc('created_at') as $expense)
+            @foreach($expenses as $expense)
               <tr>
                 <td style="line-height: 1;">
                     <span class="badge bg-primary">৳ {{ $expense->amount }}</span>

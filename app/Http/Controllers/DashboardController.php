@@ -82,7 +82,7 @@ class DashboardController extends Controller
 
         $expenses = Expense::where('user_id', $id)
                            ->orderBy('id', 'desc')
-                           ->get();
+                           ->paginate(10);
 
         return view('users.singleother')
                     ->withUser($user)
