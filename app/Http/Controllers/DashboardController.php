@@ -66,10 +66,9 @@ class DashboardController extends Controller
     public function getUser($id)
     {
         $user = User::find($id);
-
-        $expenses = Expense::where('user_id', $id)
+        $balances = Balance::where('receiver_id', $id)
                            ->orderBy('id', 'desc')
-                           ->get();
+                           ->paginate(10);
 
         return view('users.single')
                     ->withUser($user)
