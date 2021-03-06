@@ -41,6 +41,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // if user is a manager, redirect him to his profile
+        // if user is a manager, redirect him to his profile
+        if(Auth::user()->role != 'admin') {
+            return redirect()->route('dashboard.users.single', Auth::user()->id);
+        }
+
         $totalsites = Site::count();
         $totalusers = User::count();
 

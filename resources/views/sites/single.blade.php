@@ -18,7 +18,7 @@
 	      <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
 
 	      <div class="info-box-content">
-	        <span class="info-box-text">{{ bangla(date('F Y')) }}</span>
+	        <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট ব্যয়)</span>
 	        <span class="info-box-number">৳ {{ $monthlyexpensetotalcurrent ? $monthlyexpensetotalcurrent->totalamount : 0 }}</span>
 	      </div>
 	      <!-- /.info-box-content -->
