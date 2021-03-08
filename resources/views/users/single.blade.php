@@ -33,7 +33,6 @@
 
             <div class="info-box-content">
               <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট অর্থ ব্যয়)</span>
-              {{-- <span class="info-box-number">৳ 0</span> --}}
               <span class="info-box-number">৳ {{ $monthlytotalexpense ? $monthlytotalexpense->totalamount : 0 }}</span>
             </div>
             <!-- /.info-box-content -->
