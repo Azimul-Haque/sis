@@ -89,6 +89,10 @@ class DashboardController extends Controller
                                         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
                                         ->first();
                                         // dd($monthlytotalexpense->totalamount);
+
+        $totalbalance = Balance::sum('amount')->where('receiver_id', $id);
+        $totalexpense = Expense::sum('amount')->where('user_id', $id);
+
         return view('users.single')
                     ->withUser($user)
                     ->withBalances($balances)
