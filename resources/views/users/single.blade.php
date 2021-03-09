@@ -26,6 +26,8 @@
             <!-- /.info-box-content -->
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-md-6">
           <div class="info-box mb-3">
             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
