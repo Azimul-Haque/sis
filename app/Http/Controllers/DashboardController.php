@@ -90,14 +90,17 @@ class DashboardController extends Controller
                                         ->first();
                                         // dd($monthlytotalexpense->totalamount);
 
-        $totalbalance = Balance::sum('amount')->where('receiver_id', $id);
-        $totalexpense = Expense::sum('amount')->where('user_id', $id);
+        $totalbalance = Balance::where('receiver_id', $id)->sum('amount');
+        $totalexpense = Expense::where('user_id', $id)->sum('amount');
+        // dd($totalexpense);
 
         return view('users.single')
                     ->withUser($user)
                     ->withBalances($balances)
                     ->withMonthlytotalbalance($monthlytotalbalance)
-                    ->withMonthlytotalexpense($monthlytotalexpense);
+                    ->withMonthlytotalexpense($monthlytotalexpense)
+                    ->withTotalbalance($totalbalance)
+                    ->withTotalexpense($totalexpense);
     }
 
     public function getUserWithOtherPage($id)
