@@ -15,6 +15,18 @@
 	@section('page-header') {{ $user->name }} @endsection
     <div class="container-fluid">
       <div class="row">
+        <div class="col-md-12">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">{{ bangla(date('F Y')) }} (চলতি মাসের ব্যালেন্স)</span>
+              <span class="info-box-number">৳ 
+        {{ ($monthlytotalbalance ? $monthlytotalbalance->totalamount : 0) - ($monthlytotalexpense ? $monthlytotalexpense->totalamount : 0) }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
         <div class="col-md-6">
           <div class="info-box mb-3">
             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
