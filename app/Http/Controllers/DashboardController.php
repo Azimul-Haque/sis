@@ -124,12 +124,17 @@ class DashboardController extends Controller
                                         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
                                         ->first();
                                         // dd($monthlytotalexpense->totalamount);
+        $totalbalance = Balance::where('receiver_id', $id)->sum('amount');
+        $totalexpense = Expense::where('user_id', $id)->sum('amount');
+        // dd($totalexpense);
 
         return view('users.singleother')
                     ->withUser($user)
                     ->withExpenses($expenses)
                     ->withMonthlytotalbalance($monthlytotalbalance)
-                    ->withMonthlytotalexpense($monthlytotalexpense);
+                    ->withMonthlytotalexpense($monthlytotalexpense)
+                    ->withTotalbalance($totalbalance)
+                    ->withTotalexpense($totalexpense);
     }
 
     public function storeUser(Request $request)
