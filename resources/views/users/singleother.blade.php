@@ -17,7 +17,6 @@
               <span class="info-box-text">সর্বমোট ব্যালেন্স</span>
               <span class="info-box-number">৳ {{ $totalbalance - $totalexpense }}</span>
             </div>
-            <!-- /.info-box-content -->
           </div>
         </div>
       </div>
@@ -28,7 +27,6 @@
 
             <div class="info-box-content">
               <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট অর্থ গ্রহণ)</span>
-              {{-- <span class="info-box-number">৳ 0</span> --}}
               <span class="info-box-number">৳ {{ $monthlytotalbalance ? $monthlytotalbalance->totalamount : 0 }}</span>
             </div>
             <!-- /.info-box-content -->
@@ -40,10 +38,8 @@
 
             <div class="info-box-content">
               <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট অর্থ ব্যয়)</span>
-              {{-- <span class="info-box-number">৳ 0</span> --}}
               <span class="info-box-number">৳ {{ $monthlytotalexpense ? $monthlytotalexpense->totalamount : 0 }}</span>
             </div>
-            <!-- /.info-box-content -->
           </div>
         </div>
       </div>
