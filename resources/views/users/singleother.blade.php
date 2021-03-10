@@ -29,7 +29,6 @@
               <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট অর্থ গ্রহণ)</span>
               <span class="info-box-number">৳ {{ $monthlytotalbalance ? $monthlytotalbalance->totalamount : 0 }}</span>
             </div>
-            <!-- /.info-box-content -->
           </div>
         </div>
         <div class="col-md-6">
