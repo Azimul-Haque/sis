@@ -18,6 +18,8 @@ class CreateBalancesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('receiver_id')->unsigned();
             $table->double('amount');
+            $table->string('medium')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

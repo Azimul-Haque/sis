@@ -213,13 +213,17 @@ class DashboardController extends Controller
     public function storeBalance(Request $request)
     {
         $this->validate($request,array(
-            'amount'        => 'required|integer'
+            'amount'         => 'required|integer',
+            'medium'         => 'sometimes|max:50',
+            'description'    => 'sometimes|max:50'
         ));
 
         $balance = new Balance;
         $balance->user_id = Auth::user()->id;
         $balance->receiver_id = $request->receiver_id;
         $balance->amount = $request->amount;
+        $balance->medium = $request->medium;
+        $balance->description = $request->description;
         $balance->save();
 
         // OneSignal::sendNotificationToAll(
@@ -373,14 +377,14 @@ class DashboardController extends Controller
 
         $expense->save();
 
-        OneSignal::sendNotificationToAll(
-            "ব্যয় করেছেনঃ " . Auth::user()->name . ', খাতঃ ' . $category_data[1],
-            $url = null, 
-            $data = null, // array("answer" => $charioteer->answer), // to send some variable
-            $buttons = null, 
-            $schedule = null,
-            $headings = $site_data[1] ."-এ ৳ " . bangla($request->amount) . " ব্যয় করা হয়েছে!"
-        );
+        // OneSignal::sendNotificationToAll(
+        //     "ব্যয় করেছেনঃ " . Auth::user()->name . ', খাতঃ ' . $category_data[1],
+        //     $url = null, 
+        //     $data = null, // array("answer" => $charioteer->answer), // to send some variable
+        //     $buttons = null, 
+        //     $schedule = null,
+        //     $headings = $site_data[1] ."-এ ৳ " . bangla($request->amount) . " ব্যয় করা হয়েছে!"
+        // );
 
         Session::flash('success', 'Expense added successfully!');
         return redirect()->route('dashboard.sites.single', $site_data[0]);

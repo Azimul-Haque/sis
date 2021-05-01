@@ -46,7 +46,8 @@
                       <small>
                           <span class="text-black-50">প্রদান করেছেনঃ </span> {{ $balance->user->name }},
                           <span class="text-black-50">গ্রহণ করেছেনঃ </span> {{ $balance->receiver ? $balance->receiver->name : ''}}<br/>
-                          </span> {{ date('F d, Y h:i A', strtotime($balance->created_at)) }}
+                          <span class="text-black-50">মাধ্যমঃ </span> {{ $balance->medium ? $balance->medium : ''}}, <span class="text-black-50">বিবরণঃ </span> {{ $balance->description ? $balance->description : ''}}<br/>
+                          <small>{{ date('F d, Y h:i A', strtotime($balance->created_at)) }}</small>
                       </small> 
                     </td>
                 		<td align="right" width="40%">
@@ -129,6 +130,28 @@
                     </select>
                       <div class="input-group-append">
                           <div class="input-group-text"><span class="fas fa-user"></span></div>
+                      </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                      <input type="text"
+                             name="medium"
+                             class="form-control"
+                             value="{{ old('medium') }}"
+                             placeholder="মাধ্যম (ঐচ্ছিক)">
+                      <div class="input-group-append">
+                          <div class="input-group-text"><span class="fas fa-list-ul"></span></div>
+                      </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                      <input type="text"
+                             name="description"
+                             class="form-control"
+                             value="{{ old('description') }}"
+                             placeholder="বিবরণ (ঐচ্ছিক)">
+                      <div class="input-group-append">
+                          <div class="input-group-text"><span class="fas fa-file-alt"></span></div>
                       </div>
                   </div>
 	          </div>
