@@ -75,7 +75,7 @@
 				                  <div class="input-group-text"><span class="fas fa-file-alt"></span></div>
 				              </div>
 				          </div>
-				          
+
 				          <div class="input-group mb-3">
 				              <input type="number"
 				                     name="amount"
@@ -96,10 +96,10 @@
 			                  <div class="input-group">
 			                      <span class="input-group-btn">
 			                          <span class="btn btn-default btn-file">
-			                              ছবি আপ্লোড করুন <input type="file" name="image" id="imgInp" accept="image/*">
+			                              ছবি আপ্লোড করুন <input type="file" name="image" id="image" accept="image/*">
 			                          </span>
 			                      </span>
-			                      <input type="text" class="form-control" readonly>
+			                      <input type="text" id="imagetext" class="form-control" readonly>
 			                  </div><br/>
 			                  <center><img id='img-upload'/></center>
 			              </div>
@@ -116,40 +116,71 @@
 @section('third_party_scripts')
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready( function() {
-		    	$(document).on('change', '.btn-file :file', function() {
-				var input = $(this),
-					label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-				input.trigger('fileselect', [label]);
-				});
+		var _URL = window.URL || window.webkitURL;
+		jQuery(document).ready( function() {
+		      $(document).on('change', '.btn-file :file', function() {
+		    var input = $(this),
+		      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		    input.trigger('fileselect', [label]);
+		    });
 
-				$('.btn-file :file').on('fileselect', function(event, label) {
-				    
-				    var input = $(this).parents('.input-group').find(':text'),
-				        log = label;
-				    
-				    if( input.length ) {
-				        input.val(log);
-				    } else {
-				        if( log ) alert(log);
-				    }
-			    
-				});
-				function readURL(input) {
-				    if (input.files && input.files[0]) {
-				        var reader = new FileReader();
-				        
-				        reader.onload = function (e) {
-				            $('#img-upload').attr('src', e.target.result);
-				        }
-				        
-				        reader.readAsDataURL(input.files[0]);
-				    }
-				}
+		    $('.btn-file :file').on('fileselect', function(event, label) {
+		        
+		        var input = $(this).parents('.input-group').find(':text'),
+		            log = label;
+		        
+		        if( input.length ) {
+		            input.val(log);
+		        } else {
+		            if( log ) alert(log);
+		        }
+		      
+		    });
+		    function readURL(input) {
+		        if (input.files && input.files[0]) {
+		            var reader = new FileReader();
+		            reader.onload = function (e) {
+		              $('#img-upload').attr('src', e.target.result);
+		            }
+		            reader.readAsDataURL(input.files[0]);
+		        }
+		    }
 
-				$("#imgInp").change(function(){
-				    readURL(this);
-				}); 	
-			});
+		    $("#image").change(function(){
+		      readURL(this);
+		      var file, img;
+
+		      if ((file = this.files[0])) {
+		        img = new Image();
+		        img.onload = function() {
+		          filesize = parseInt((file.size / 1024));
+		          if(filesize > 1000) {
+		            $("#image").val('');
+		            $('#imagetext').val('');
+		            Toast.fire({
+		              icon: 'warning',
+		              title: 'ফাইলের আকৃতি '+filesize+' কিলোবাইট. ১০২৪ কিলোবাইটের মধ্যে আপলোড করার চেস্টা করুন'
+		            })
+		            setTimeout(function() {
+		              $("#img-upload").attr('src', '');
+		            }, 1000);
+		          }
+		          
+		        };
+		        img.onerror = function() {
+		          $("#image").val('');
+		          $('#imagetext').val('');
+		          Toast.fire({
+		              icon: 'warning',
+		              title: 'অনুগ্রহ করে ছবি সিলেক্ট করুন!'
+		            })
+		          setTimeout(function() {
+		            $("#img-upload").attr('src', '');
+		          }, 1000);
+		        };
+		        img.src = _URL.createObjectURL(file);
+		      }
+		    });   
+		  });
 	</script>
 @endsection
