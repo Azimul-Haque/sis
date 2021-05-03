@@ -325,13 +325,18 @@ class DashboardController extends Controller
                                  ->orderBy('created_at', 'DESC')
                                  ->get();
 
+        $totalbalance = Balance::where('receiver_id', Auth::user()->id)->sum('amount');
+        $totalexpense = Expense::where('user_id', Auth::user()->id)->sum('amount');
+
         // dd($monthlyexpensetotal);
         return view('sites.single')
                     ->withSite($site)
                     ->withExpenses($expenses)
                     ->withCategories($categories)
                     ->withMonthlyexpensetotalcurrent($monthlyexpensetotalcurrent)
-                    ->withMonthlyexpenses($monthlyexpenses);
+                    ->withMonthlyexpenses($monthlyexpenses)
+                    ->withTotalbalance($totalbalance)
+                    ->withTotalexpense($totalexpense);
     }
 
     public function getExpensePage()
@@ -339,9 +344,14 @@ class DashboardController extends Controller
         $sites = Site::orderBy('id', 'desc')->get();
         $categories = Category::orderBy('id', 'desc')->get();
         
+        $totalbalance = Balance::where('receiver_id', Auth::user()->id)->sum('amount');
+        $totalexpense = Expense::where('user_id', Auth::user()->id)->sum('amount');
+
         return view('sites.expense')
                     ->withSites($sites)
-                    ->withCategories($categories);
+                    ->withCategories($categories)
+                    ->withTotalbalance($totalbalance)
+                    ->withTotalexpense($totalexpense);
     }
 
     public function storeExpense(Request $request)
@@ -351,9 +361,10 @@ class DashboardController extends Controller
             'category_data'   => 'required',
             'amount'          => 'required|integer',
             'qty'             => 'sometimes',
-            'image'           => 'sometimes'
+            'image'           => 'sometimes|image'
         ));
 
+        // dd($request->all());
         // parse data
         $site_data = explode(',', $request->site_data);
         $category_data = explode(',', $request->category_data);
@@ -384,6 +395,14 @@ class DashboardController extends Controller
         //     $buttons = null, 
         //     $schedule = null,
         //     $headings = $site_data[1] ."-এ ৳ " . bangla($request->amount) . " ব্যয় করা হয়েছে!"
+        // );
+        // OneSignal::sendNotificationToAll(
+        //     "Test",
+        //     $url = null, 
+        //     $data = null, // array("answer" => $charioteer->answer), // to send some variable
+        //     $buttons = null, 
+        //     $schedule = null,
+        //     $headings = "Test 2"
         // );
 
         Session::flash('success', 'Expense added successfully!');

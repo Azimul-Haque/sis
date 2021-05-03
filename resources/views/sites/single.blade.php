@@ -55,7 +55,8 @@
                         <span class="badge bg-info">{{ $expense->qty }}</span><br/>
                         <small>
                             <span class="text-black-50">ব্যয় করেছেনঃ</span> {{ $expense->user->name }}<br/>
-                            <small>{{ date('F d, Y h:i A', strtotime($expense->created_at)) }}</small>
+                            <small>{{ date('F d, Y h:i A', strtotime($expense->created_at)) }}</small>, 
+                            <span class="text-black-50">বিবরণঃ</span>  {{ $expense->description }}
                         </small> 
                     </td>
                 		<td align="right" width="40%">
@@ -198,36 +199,51 @@
 	                </div>
 
                   <div class="input-group mb-3">
+                      <input type="text"
+                             name="qty"
+                             class="form-control"
+                             value="{{ old('qty') }}"
+                             placeholder="সংখ্যা/ পরিমাণ (যেমনঃ ১০ টি, ২০ বস্তা, ৩০ কেজি ইত্যাদি)">
+                      <div class="input-group-append">
+                          <div class="input-group-text"><span class="fas fa-archive"></span></div>
+                      </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                      <input type="text"
+                             name="description"
+                             class="form-control"
+                             value="{{ old('description') }}"
+                             placeholder="বিবরণ (ঐচ্ছিক)">
+                      <div class="input-group-append">
+                          <div class="input-group-text"><span class="fas fa-file-alt"></span></div>
+                      </div>
+                  </div>
+
+                  <div class="input-group mb-3">
                       <input type="number"
                              name="amount"
                              class="form-control"
                              value="{{ old('amount') }}"
+                             @if(Auth::user()->role != 'admin')
+                             max="{{ $totalbalance - $totalexpense }}"
+                             @endif
+                             min="1" 
                              placeholder="ব্যয়ের পরিমাণ লিখুন" required>
                       <div class="input-group-append">
                           <div class="input-group-text"><span class="fas fa-money-check-alt"></span></div>
                       </div>
                   </div>
 
-	                <div class="input-group mb-3">
-	                    <input type="text"
-	                           name="qty"
-	                           class="form-control"
-	                           value="{{ old('qty') }}"
-	                           placeholder="পরিমাণ (যেমনঃ ১০ টি, ২০ বস্তা, ৩০ কেজি ইত্যাদি)">
-	                    <div class="input-group-append">
-	                        <div class="input-group-text"><span class="fas fa-archive"></span></div>
-	                    </div>
-	                </div>
-
                   <div class="form-group">
                         <label>ছবি যোগ করুন (ঐচ্ছিক)</label>
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <span class="btn btn-default btn-file">
-                                    ছবি আপ্লোড করুন <input type="file" name="image" id="imgInp" accept="image/*">
+                                    ছবি আপ্লোড করুন <input type="file" name="image" id="image" accept="image/*">
                                 </span>
                             </span>
-                            <input type="text" class="form-control" readonly>
+                            <input type="text" id="imagetext" class="form-control" readonly>
                         </div><br/>
                         <center><img id='img-upload'/></center>
                     </div>
@@ -260,6 +276,7 @@
         });
     });
 
+    var _URL = window.URL || window.webkitURL;
     jQuery(document).ready( function() {
           $(document).on('change', '.btn-file :file', function() {
         var input = $(this),
@@ -282,18 +299,50 @@
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                
                 reader.onload = function (e) {
-                    $('#img-upload').attr('src', e.target.result);
+                  $('#img-upload').attr('src', e.target.result);
                 }
-                
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
-        $("#imgInp").change(function(){
-            readURL(this);
+        $("#image").change(function(){
+          readURL(this);
+          var file, img;
+
+          if ((file = this.files[0])) {
+            img = new Image();
+            img.onload = function() {
+              filesize = parseInt((file.size / 1024));
+              if(filesize > 1000) {
+                $("#image").val('');
+                $('#imagetext').val('');
+                Toast.fire({
+                  icon: 'warning',
+                  title: 'ফাইলের আকৃতি '+filesize+' কিলোবাইট. ১০২৪ কিলোবাইটের মধ্যে আপলোড করার চেস্টা করুন'
+                })
+                setTimeout(function() {
+                  $("#img-upload").attr('src', '');
+                }, 1000);
+              }
+              
+            };
+            img.onerror = function() {
+              $("#image").val('');
+              $('#imagetext').val('');
+              Toast.fire({
+                  icon: 'warning',
+                  title: 'অনুগ্রহ করে ছবি সিলেক্ট করুন!'
+                })
+              setTimeout(function() {
+                $("#img-upload").attr('src', '');
+              }, 1000);
+            };
+            img.src = _URL.createObjectURL(file);
+          }
         });   
       });
+
+
   </script>
 @endsection
