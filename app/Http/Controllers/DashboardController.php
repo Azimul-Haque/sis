@@ -361,6 +361,7 @@ class DashboardController extends Controller
             'category_data'   => 'required',
             'amount'          => 'required|integer',
             'qty'             => 'sometimes',
+            'description'     => 'sometimes',
             'image'           => 'sometimes|image'
         ));
 
@@ -375,6 +376,7 @@ class DashboardController extends Controller
         $expense->category_id = $category_data[0];
         $expense->amount = $request->amount;
         $expense->qty = $request->qty;
+        $expense->description = $request->description;
 
         // upload image
         if($request->hasFile('image')) {
