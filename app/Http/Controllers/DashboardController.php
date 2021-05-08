@@ -363,13 +363,14 @@ class DashboardController extends Controller
 
     public function storeExpense(Request $request)
     {
+        dd($request->file('image'));
         $this->validate($request,array(
             'site_data'       => 'required',
             'category_data'   => 'required',
             'amount'          => 'required|integer',
             'qty'             => 'sometimes',
             'description'     => 'sometimes',
-            'image'           => 'sometimes|image'
+            'image'           => 'sometimes|image|mimes:jpeg,bmp,png'
         ));
 
         // dd($request->all());
@@ -386,6 +387,7 @@ class DashboardController extends Controller
         $expense->description = $request->description;
 
         // upload image
+
         if($request->hasFile('image')) {
             $receipt      = $request->file('image');
             $filename   = Auth::user()->id.'_receipt_' . time() .'.' . $receipt->getClientOriginalExtension();
@@ -397,16 +399,18 @@ class DashboardController extends Controller
 
         $expense->save();
 
-        // OneSignal::sendNotificationToAll(
+        // OneSignal::sendNotificationToUser(
         //     "ব্যয় করেছেনঃ " . Auth::user()->name . ', খাতঃ ' . $category_data[1],
+        //     "a1050399-4f1b-4bd5-9304-47049552749c", 
         //     $url = null, 
         //     $data = null, // array("answer" => $charioteer->answer), // to send some variable
         //     $buttons = null, 
         //     $schedule = null,
         //     $headings = $site_data[1] ."-এ ৳ " . bangla($request->amount) . " ব্যয় করা হয়েছে!"
         // );
-        // OneSignal::sendNotificationToAll(
+        // OneSignal::sendNotificationToUser(
         //     "Test",
+        //     "a1050399-4f1b-4bd5-9304-47049552749c", 
         //     $url = null, 
         //     $data = null, // array("answer" => $charioteer->answer), // to send some variable
         //     $buttons = null, 

@@ -154,18 +154,17 @@
 		        img = new Image();
 		        img.onload = function() {
 		          filesize = parseInt((file.size / 1024));
-		          if(filesize > 1000) {
-		            $("#image").val('');
-		            $('#imagetext').val('');
-		            Toast.fire({
-		              icon: 'warning',
-		              title: 'ফাইলের আকৃতি '+filesize+' কিলোবাইট. ১০২৪ কিলোবাইটের মধ্যে আপলোড করার চেস্টা করুন'
-		            })
-		            setTimeout(function() {
-		              $("#img-upload").attr('src', '');
-		            }, 1000);
-		          }
-		          
+		          // if(filesize > 1500) {
+		          //   $("#image").val('');
+		          //   $('#imagetext').val('');
+		          //   Toast.fire({
+		          //     icon: 'warning',
+		          //     title: 'ফাইলের আকৃতি '+filesize+' কিলোবাইট। ১.৫ মেগাবাইটের মধ্যে আপলোড করার চেস্টা করুন'
+		          //   })
+		          //   setTimeout(function() {
+		          //     $("#img-upload").attr('src', '');
+		          //   }, 1000);
+		          // }
 		        };
 		        img.onerror = function() {
 		          $("#image").val('');
