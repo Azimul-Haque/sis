@@ -69,6 +69,17 @@
             </div>
           </div>
           <!-- ./col -->
+
+          <div class="col-md-6">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-receipt"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">আজকের খরচ</span>
+                <span class="info-box-number">৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</span>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 @endsection

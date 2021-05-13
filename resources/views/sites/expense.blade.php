@@ -34,7 +34,9 @@
 				          	<select name="site_data" class="form-control" required>
 				          		<option selected="" disabled="" value="">সাইট নির্ধারণ করুন</option>
 				          		@foreach($sites as $site)
-				          			<option value="{{ $site->id }},{{ $site->name }}">{{ $site->name }}</option>
+				          			@if(in_array($site->id, explode(',', Auth::user()->sites)) || Auth::user()->role == 'admin')
+				          				<option value="{{ $site->id }},{{ $site->name }}">{{ $site->name }}</option>
+				          			@endif
 				          		@endforeach
 				          	</select>
 				              <div class="input-group-append">

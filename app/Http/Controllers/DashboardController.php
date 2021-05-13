@@ -53,11 +53,18 @@ class DashboardController extends Controller
         $totalbalance = Balance::sum('amount');
         $totalexpense = Expense::sum('amount');
 
+        $todaystotalexpense = DB::table('expenses')
+                                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", Carbon::now()->format('Y-m-d'))
+                                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+                                ->first();
+
         return view('dashboard')
                     ->withTotalsites($totalsites)
                     ->withTotalusers($totalusers)
                     ->withTotalbalance($totalbalance)
-                    ->withTotalexpense($totalexpense);
+                    ->withTotalexpense($totalexpense)
+                    ->withTodaystotalexpense($todaystotalexpense);
     }
 
     public function getUsers()
@@ -363,7 +370,7 @@ class DashboardController extends Controller
 
     public function storeExpense(Request $request)
     {
-        dd($request->file('image'));
+        // dd($request->file('image'));
         $this->validate($request,array(
             'site_data'       => 'required',
             'category_data'   => 'required',
@@ -399,15 +406,15 @@ class DashboardController extends Controller
 
         $expense->save();
 
-        // OneSignal::sendNotificationToUser(
-        //     "ব্যয় করেছেনঃ " . Auth::user()->name . ', খাতঃ ' . $category_data[1],
-        //     "a1050399-4f1b-4bd5-9304-47049552749c", 
-        //     $url = null, 
-        //     $data = null, // array("answer" => $charioteer->answer), // to send some variable
-        //     $buttons = null, 
-        //     $schedule = null,
-        //     $headings = $site_data[1] ."-এ ৳ " . bangla($request->amount) . " ব্যয় করা হয়েছে!"
-        // );
+        OneSignal::sendNotificationToUser(
+            "ব্যয় করেছেনঃ " . Auth::user()->name . ', খাতঃ ' . $category_data[1],
+            "a1050399-4f1b-4bd5-9304-47049552749c", 
+            $url = null, 
+            $data = null, // array("answer" => $charioteer->answer), // to send some variable
+            $buttons = null, 
+            $schedule = null,
+            $headings = $site_data[1] ."-এ ৳ " . bangla($request->amount) . " ব্যয় করা হয়েছে!"
+        );
         // OneSignal::sendNotificationToUser(
         //     "Test",
         //     "a1050399-4f1b-4bd5-9304-47049552749c", 
