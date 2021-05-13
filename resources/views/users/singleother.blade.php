@@ -9,13 +9,23 @@
 	@section('page-header') {{ $user->name }} @endsection
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="info-box mb-3">
             <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-balance-scale-right"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text">সর্বমোট ব্যালেন্স</span>
               <span class="info-box-number">৳ {{ $totalbalance - $totalexpense }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-receipt"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">আজকের খরচ</span>
+              <span class="info-box-number">৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</span>
             </div>
           </div>
         </div>

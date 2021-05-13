@@ -125,6 +125,13 @@ class DashboardController extends Controller
                            ->orderBy('id', 'desc')
                            ->paginate(10);
 
+        $todaystotalexpense = DB::table('expenses')
+                                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                ->where('user_id', $id)
+                                ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", Carbon::now()->format('Y-m-d'))
+                                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+                                ->first();
+
         $monthlytotalbalance = DB::table('balances')
                                         ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
                                         ->where('receiver_id', $id)
@@ -145,6 +152,7 @@ class DashboardController extends Controller
         return view('users.singleother')
                     ->withUser($user)
                     ->withExpenses($expenses)
+                    ->withTodaystotalexpense($todaystotalexpense)
                     ->withMonthlytotalbalance($monthlytotalbalance)
                     ->withMonthlytotalexpense($monthlytotalexpense)
                     ->withTotalbalance($totalbalance)
