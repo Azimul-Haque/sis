@@ -378,7 +378,7 @@ class DashboardController extends Controller
 
     public function storeExpense(Request $request)
     {
-        dd($request->file('image'));
+        // dd($request->file('image'));
         $this->validate($request,array(
             'site_data'       => 'required',
             'category_data'   => 'required',
