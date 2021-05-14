@@ -33,7 +33,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('clear');
-        $this->middleware('admin')->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance', 'getCreditors', 'getSingleCreditor', 'getAddDuePage', 'deleteCreditorDue');
+        $this->middleware('admin')->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance', 'getCreditors', 'getSingleCreditor', 'getAddDuePage', 'deleteCreditorDue', 'getSiteCategorywise');
     }
 
     /**
@@ -368,6 +368,22 @@ class DashboardController extends Controller
                     ->withMonthlyexpenses($monthlyexpenses)
                     ->withTotalbalance($totalbalance)
                     ->withTotalexpense($totalexpense);
+    }
+
+    public function getSiteCategorywise($id)
+    {
+        $site = Site::find($id);
+        $categories = Category::orderBy('id', 'desc')->get();
+        $categorywise = DB::table('expenses')
+                          ->select('category_id', DB::raw('SUM(amount) as totalamount'))
+                          ->where('site_id', $id)
+                          ->groupBy('category_id')
+                          ->get();
+        // dd($categorywise);
+        return view('sites.categorywise')
+                    ->withSite($site)
+                    ->withCategories($categories)
+                    ->withCategorywise($categorywise);
     }
 
     public function getExpensePage()

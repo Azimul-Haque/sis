@@ -1,21 +1,21 @@
 @extends('layouts.app')
-@section('title') ড্যাশবোর্ড | খাতসমূহ @endsection
+@section('title') ড্যাশবোর্ড | {{ $site->name }} @endsection
 
 @section('third_party_stylesheets')
 
 @endsection
 
 @section('content')
-	@section('page-header') খাতসমূহ @endsection
+	@section('page-header') {{ $site->name }} @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">
-            <h3 class="card-title">খাতসমূহ</h3>
+            <h3 class="card-title">{{ $site->name }}-এর খাতওয়ারি ব্যয়</h3>
 
             <div class="card-tools">
-        	    <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addCategoryModal">
-        			<i class="fas fa-plus-square"></i> খাত যোগ
-        		</button>
+        	    {{-- <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addCategoryModal">
+          			<i class="fas fa-plus-square"></i> খাত যোগ
+          		</button> --}}
               {{-- <ul class="pagination pagination-sm float-right">
                 <li class="page-item"><a class="page-link" href="#">«</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>

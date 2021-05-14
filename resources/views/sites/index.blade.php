@@ -50,11 +50,12 @@
                             <br/>
                             <small class="text-black-50">{{ $site->address }}</small>
                             <br/>
-                            <div class="progress progress-sm progress-striped active">
-                              <div class="progress-bar 
-                                  bg-success
-                                  " style="width: {{ $site->progress }}%"></div>
+                            <div class="progress progress-xs progress-striped active">
+                              <div class="progress-bar bg-success " style="width: {{ $site->progress }}%"></div>
                             </div>
+                            @if(Auth::user()->role == 'admin')
+                              <a href="{{ route('dashboard.sites.categorywise', $site->id) }}">খাতওয়ারি ব্যয় তালিকা</a>
+                            @endif
                           </a>
                       </td>
                       <td align="right" width="40%">
