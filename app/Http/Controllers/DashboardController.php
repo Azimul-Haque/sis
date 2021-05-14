@@ -374,7 +374,7 @@ class DashboardController extends Controller
     {
         $site = Site::find($id);
         $categories = Category::orderBy('id', 'desc')->get();
-        $categorywise = DB::table('expenses')
+        $categorywises = DB::table('expenses')
                           ->select('category_id', DB::raw('SUM(amount) as totalamount'))
                           ->where('site_id', $id)
                           ->groupBy('category_id')
@@ -383,7 +383,7 @@ class DashboardController extends Controller
         return view('sites.categorywise')
                     ->withSite($site)
                     ->withCategories($categories)
-                    ->withCategorywise($categorywise);
+                    ->withCategorywises($categorywises);
     }
 
     public function getExpensePage()
