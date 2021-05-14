@@ -14,15 +14,30 @@
 @section('content')
 	@section('page-header') {{ $site->name }} @endsection
     <div class="container-fluid">
-    	<div class="info-box mb-3">
-	      <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+    	<div class="row">
+       <div class="col-md-6">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
 
-	      <div class="info-box-content">
-	        <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট ব্যয়)</span>
-	        <span class="info-box-number">৳ {{ $monthlyexpensetotalcurrent ? $monthlyexpensetotalcurrent->totalamount : 0 }}</span>
-	      </div>
-	      <!-- /.info-box-content -->
-	    </div>
+            <div class="info-box-content">
+              <span class="info-box-text">আজকের মোট ব্যয়</span>
+              <span class="info-box-number">৳ {{ $todaytotalcurrent ? $todaytotalcurrent->totalamount : 0 }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+       </div>
+       <div class="col-md-6">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট ব্যয়)</span>
+              <span class="info-box-number">৳ {{ $monthlyexpensetotalcurrent ? $monthlyexpensetotalcurrent->totalamount : 0 }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+       </div> 
+      </div>      
 		<div class="card">
           <div class="card-header">
             <h3 class="card-title">ব্যয়ের তালিকা</h3>
@@ -55,7 +70,7 @@
                         <span class="badge bg-info">{{ $expense->qty }}</span><br/>
                         <small>
                             <span class="text-black-50">ব্যয় করেছেনঃ</span> {{ $expense->user->name }}<br/>
-                            <small>{{ date('F d, Y h:i A', strtotime($expense->created_at)) }}</small>, 
+                            <span>{{ date('F d, Y h:i A', strtotime($expense->created_at)) }}</span>, 
                             <span class="text-black-50">বিবরণঃ</span>  {{ $expense->description }}
                         </small> 
                     </td>

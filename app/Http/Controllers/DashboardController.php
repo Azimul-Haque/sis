@@ -9,6 +9,8 @@ use App\Balance;
 use App\Site;
 use App\Category;
 use App\Expense;
+use App\Creditor;
+use App\Due;
 
 use Carbon\Carbon;
 use DB;
@@ -31,7 +33,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('clear');
-        $this->middleware('admin')->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance');
+        $this->middleware('admin')->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance', 'getCreditors', 'getSingleCreditor', 'getAddDuePage', 'deleteCreditorDue');
     }
 
     /**
@@ -333,6 +335,12 @@ class DashboardController extends Controller
         $site = Site::find($id);
         $expenses = Expense::where('site_id', $id)->orderBy('id', 'desc')->paginate(10);
         $categories = Category::orderBy('id', 'desc')->get();
+        $todaytotalcurrent = DB::table('expenses')
+                               ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                               ->where('site_id', $id)
+                               ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", Carbon::now()->format('Y-m-d'))
+                               ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+                               ->first();
         $monthlyexpensetotalcurrent = DB::table('expenses')
                                         ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
                                         ->where('site_id', $id)
@@ -355,6 +363,7 @@ class DashboardController extends Controller
                     ->withSite($site)
                     ->withExpenses($expenses)
                     ->withCategories($categories)
+                    ->withTodaytotalcurrent($todaytotalcurrent)
                     ->withMonthlyexpensetotalcurrent($monthlyexpensetotalcurrent)
                     ->withMonthlyexpenses($monthlyexpenses)
                     ->withTotalbalance($totalbalance)
@@ -484,6 +493,113 @@ class DashboardController extends Controller
         Session::flash('success', 'Category updated successfully!');
         return redirect()->route('dashboard.categories');
     }
+
+    public function getCreditors()
+    {
+        $creditors = Creditor::orderBy('id', 'desc')->paginate(10);
+
+        return view('creditors.index')->withCreditors($creditors);
+    }
+
+    public function getSingleCreditor($id)
+    {
+        $creditor = Creditor::find($id);
+        $dues = Due::where('creditor_id', $id)
+                   ->orderBy('id', 'desc')
+                   ->paginate(10);
+        return view('creditors.single')
+                    ->withCreditor($creditor)
+                    ->withDues($dues);
+    }
+
+    public function storeCreditor(Request $request)
+    {
+        $this->validate($request,array(
+            'name'         => 'required|string|max:191'
+        ));
+
+        $creditor = new Creditor;
+        $creditor->name = $request->name;
+        $creditor->save();
+
+        Session::flash('success', 'Creditor created successfully!');
+        return redirect()->route('dashboard.creditors');
+    }
+
+    public function updateCreditor(Request $request, $id)
+    {
+        $this->validate($request,array(
+            'name'         => 'required|string|max:191'
+        ));
+
+        $creditor = Creditor::find($id);
+        $creditor->name = $request->name;
+        $creditor->save();
+
+        Session::flash('success', 'Creditor updated successfully!');
+        return redirect()->route('dashboard.creditors');
+    }
+
+    public function getAddDuePage()
+    {
+        $creditors = Creditor::orderBy('id', 'desc')->get();
+
+        return view('creditors.adddue')->withCreditors($creditors);
+    }
+
+    public function storeCreditorDue(Request $request)
+    {
+        $this->validate($request,array(
+            'creditor_id'           => 'required',
+            'description'           => 'sometimes',
+            'amount'                => 'required|integer'
+        ));
+
+        $due = new Due;
+        $due->creditor_id = $request->creditor_id;
+        $due->description = $request->description;
+        $due->amount = $request->amount;
+        $due->save();
+
+        Session::flash('success', 'Due added successfully!');
+        return redirect()->route('dashboard.creditors.single', $request->creditor_id);
+    }
+
+    public function updateCreditorDue(Request $request, $id)
+    {
+        $this->validate($request,array(
+            'description'           => 'sometimes',
+            'amount'                => 'required|integer'
+        ));
+
+        $due = Due::find($id);
+        $due->description = $request->description;
+        $due->amount = $request->amount;
+        $due->save();
+
+        Session::flash('success', 'Due updated successfully!');
+        return redirect()->route('dashboard.creditors.single', $due->creditor_id);
+    }
+
+    public function deleteCreditorDue($id)
+    {
+        $due = Due::find($id);
+        $due->delete();
+
+        Session::flash('success', 'Due deleted successfully!');
+        return redirect()->route('dashboard.creditors.single', $due->creditor_id);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

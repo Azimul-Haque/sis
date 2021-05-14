@@ -117,10 +117,9 @@
                 <h1 class="m-0">@yield('page-header')</h1>
               </div>
               <div class="col-sm-6">
-                {{-- <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">Dashboard v1</li>
-                </ol> --}}
+                <div class="float-sm-right">
+                  @yield('page-header-right')
+                </div>
               </div>
             </div>
           </div>

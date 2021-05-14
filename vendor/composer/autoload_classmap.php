@@ -9,6 +9,8 @@ return array(
     'App\\Balance' => $baseDir . '/app/Balance.php',
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Creditor' => $baseDir . '/app/Creditor.php',
+    'App\\Due' => $baseDir . '/app/Due.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Expense' => $baseDir . '/app/Expense.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',

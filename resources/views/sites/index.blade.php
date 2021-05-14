@@ -58,7 +58,7 @@
                           </a>
                       </td>
                       <td align="right" width="40%">
-                              @if(Auth::user()->role == 'admin')
+                      @if(Auth::user()->role == 'admin')
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editSiteModal{{ $site->id }}">
                           <i class="fas fa-edit"></i>
                         </button>
@@ -126,7 +126,7 @@
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal{{ $site->id }}" disabled="">
                           <i class="fas fa-trash-alt"></i>
                         </button>
-                              @endif
+                      @endif
                       </td>
                           @if(Auth::user()->role == 'admin')
                           {{-- Delete Site Modal Code --}}

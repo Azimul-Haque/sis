@@ -5,6 +5,7 @@
         <p>ড্যাশবোর্ড</p>
     </a>
 </li>
+
 @if(Auth::user()->role == 'admin')
 <li class="nav-item">
     <a href="{{ route('dashboard.users') }}" class="nav-link {{ Request::is('dashboard/users') ? 'active' : '' }} {{ Request::is('dashboard/users/*') ? 'active' : '' }}">
@@ -29,12 +30,22 @@
         <p>সাইটসমূহ</p>
     </a>
 </li>
+
 <li class="nav-item">
     <a href="{{ route('dashboard.categories') }}" class="nav-link {{ Request::is('dashboard/categories') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tags"></i>
         <p>খাতসমূহ</p>
     </a>
 </li>
+
+@if(Auth::user()->role == 'admin')
+<li class="nav-item">
+    <a href="{{ route('dashboard.creditors') }}" class="nav-link {{ Request::is('dashboard/creditors') ? 'active' : '' }} {{ Request::is('dashboard/creditors/*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-user-clock"></i>
+        <p>পাওনাদারের হিসাব</p>
+    </a>
+</li>
+@endif
 {{-- <li class="nav-item">
     <a href="{{ route('dashboard.components') }}" class="nav-link {{ Request::is('dashboard/components') ? 'active' : '' }}">
         <i class="nav-icon fas fa-laptop-code"></i>

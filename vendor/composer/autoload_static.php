@@ -525,6 +525,8 @@ class ComposerStaticInitd99be2aa22b662638be63ef18831ea06
         'App\\Balance' => __DIR__ . '/../..' . '/app/Balance.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Creditor' => __DIR__ . '/../..' . '/app/Creditor.php',
+        'App\\Due' => __DIR__ . '/../..' . '/app/Due.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Expense' => __DIR__ . '/../..' . '/app/Expense.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
