@@ -40,7 +40,7 @@
       </div>      
 		<div class="card">
           <div class="card-header">
-            <h3 class="card-title">ব্যয়ের তালিকা (মাসভিত্তিক)</h3>
+            <h3 class="card-title">ব্যয়ের তালিকা</h3>
 
             <div class="card-tools">
             	<button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addExpenseModal">
@@ -151,35 +151,43 @@
         </div>
         {{ $expenses->links() }}
 
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">ব্যয়ের তালিকা</h3>
+        @if(Auth::user()->role == 'admin')
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">ব্যয়ের তালিকা (মাসভিত্তিক)</h3>
 
-            <div class="card-tools">
-              
+              <div class="card-tools">
+                
+              </div>
             </div>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <table class="table" id="example1_wrapper">
-              <thead>
-                <tr>
-                  <th>মাস</th>
-                  <th>মোট ব্যয়</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach($monthlyexpenses as $monthlyexpense)
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table" {{-- id="example1_wrapper" --}}>
+                <thead>
                   <tr>
-                    <td>{{ date('F Y', strtotime($monthlyexpense->created_at)) }}</td>
-                    <td>৳ {{ $monthlyexpense->totalamount }}</td>
+                    <th>মাস</th>
+                    <th>মোট ব্যয়</th>
                   </tr>
-                @endforeach
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  @foreach($monthlyexpenses as $monthlyexpense)
+                    <tr>
+                      <td>{{ date('F Y', strtotime($monthlyexpense->created_at)) }}</td>
+                      <td align="right">৳ {{ $monthlyexpense->totalamount }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td><b>মোট ব্যয়</b></td>
+                    <td align="right"><b>৳ {{ $intotalexpense ? $intotalexpense->totalamount : 0 }}</b></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
           </div>
-          <!-- /.card-body -->
-        </div>
+        @endif
 
     </div>
 

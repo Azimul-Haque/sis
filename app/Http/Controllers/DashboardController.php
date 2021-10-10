@@ -332,6 +332,13 @@ class DashboardController extends Controller
 
     public function getSingleSite($id)
     {
+        if(Auth::user()->role == 'manager') {
+            $sitesarray = explode(',', Auth::user()->sites);
+            // dd($sitesarray);
+            if(!in_array($id, $sitesarray)) {
+                abort(403);
+            } 
+        }
         $site = Site::find($id);
         $expenses = Expense::where('site_id', $id)->orderBy('id', 'desc')->paginate(10);
         $categories = Category::orderBy('id', 'desc')->get();
@@ -355,8 +362,14 @@ class DashboardController extends Controller
                                  ->orderBy('created_at', 'DESC')
                                  ->get();
 
-        $totalbalance = Balance::where('receiver_id', Auth::user()->id)->sum('amount');
-        $totalexpense = Expense::where('user_id', Auth::user()->id)->sum('amount');
+        $intotalexpense = DB::table('expenses')
+                             ->select(DB::raw('SUM(amount) as totalamount'))
+                             ->where('site_id', $id)
+                             ->orderBy('created_at', 'DESC')
+                             ->first();
+
+        $totalbalance = Balance::where('receiver_id', Auth::user()->id)->sum('amount'); // to calculate user balance
+        $totalexpense = Expense::where('user_id', Auth::user()->id)->sum('amount'); // to calculate user balance
 
         // dd($monthlyexpensetotal);
         return view('sites.single')
@@ -367,7 +380,8 @@ class DashboardController extends Controller
                     ->withMonthlyexpensetotalcurrent($monthlyexpensetotalcurrent)
                     ->withMonthlyexpenses($monthlyexpenses)
                     ->withTotalbalance($totalbalance)
-                    ->withTotalexpense($totalexpense);
+                    ->withTotalexpense($totalexpense)
+                    ->withIntotalexpense($intotalexpense);
     }
 
     public function getSiteCategorywise($id)
