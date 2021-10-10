@@ -24,7 +24,7 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">আজকের মোট খরচঃ <b>৳ {{ $todaystotalexpense->totalamount }}</b></h3>
+          <h3 class="card-title">আজকের মোট খরচঃ <b>৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</b></h3>
 
           <div class="card-tools">
             {{-- <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addBalanceModal">

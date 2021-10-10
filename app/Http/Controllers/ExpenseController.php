@@ -35,12 +35,11 @@ class ExpenseController extends Controller
     {
     	$todaystotalexpense = DB::table('expenses')
     	                        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
-    	                        ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", Carbon::now()->format('Y-m-d'))
+    	                        ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)
     	                        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
     	                        ->first();
 
-        $expenses = Expense::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", Carbon::now()->format('Y-m-d'))
-                        ->paginate(10);
+        $expenses = Expense::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)->paginate(10);
 
         return view('expenses.todaystotalexpense')
                     ->withExpenses($expenses)
