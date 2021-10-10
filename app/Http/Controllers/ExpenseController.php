@@ -33,9 +33,10 @@ class ExpenseController extends Controller
 
     public function getTodaysExpenseList($transactiondate)
     {
+    	// DD(date('Y-m-d', strtotime($transactiondate)));
     	$todaystotalexpense = DB::table('expenses')
     	                        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
-    	                        ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)
+    	                        ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", date('Y-m-d', strtotime($transactiondate)))
     	                        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
     	                        ->first();
 

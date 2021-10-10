@@ -91,6 +91,9 @@
     $('#loaddailyOtherAmounts').click(function() {
       var transactiondate = $('#transactiondate').val();
 
+      // toastr.warning('Select Date!', 'WARNING').css('width', '400px');
+      
+
       if(isEmptyOrSpaces(transactiondate)) {
         if($(window).width() > 768) {
           toastr.warning('Select Date!', 'WARNING').css('width', '400px');
