@@ -40,7 +40,7 @@ class ExpenseController extends Controller
     	                        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
     	                        ->first();
 
-        $expenses = Expense::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)->paginate(10);
+        $expenses = Expense::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)->get(); // paginate(10);
 
         return view('expenses.todaystotalexpense')
                     ->withExpenses($expenses)

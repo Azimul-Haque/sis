@@ -71,7 +71,7 @@
         </div>
         <!-- /.card-body -->
       </div>
-      {{ $expenses->links() }}
+      {{-- {{ $expenses->links() }} --}}
     </div>
 
     
@@ -95,11 +95,10 @@
       
 
       if(isEmptyOrSpaces(transactiondate)) {
-        if($(window).width() > 768) {
-          toastr.warning('Select Date!', 'WARNING').css('width', '400px');
-        } else {
-          toastr.warning('Select Date!', 'WARNING').css('width', ($(window).width()-25)+'px');
-        }
+        Toast.fire({
+          icon: 'warning',
+          title: 'Select Date!'
+        })
       } else {
         window.location.href = '/dashboard/expenses/'+ moment(transactiondate).format('YYYY-MM-DD');
       }
