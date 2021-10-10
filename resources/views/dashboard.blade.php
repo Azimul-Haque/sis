@@ -23,7 +23,7 @@
               <a href="{{ route('dashboard.balance') }}" class="small-box-footer">ব্যালেন্স পাতা <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
+          
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
@@ -68,7 +68,6 @@
               <a href="{{ route('dashboard.users') }}" class="small-box-footer">ব্যবহারকারীগণ <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
 
           <div class="col-md-6">
             <a href="{{ route('dashboard.expenses.getlist', date('Y-m-d')) }}" class="info-box mb-3">
