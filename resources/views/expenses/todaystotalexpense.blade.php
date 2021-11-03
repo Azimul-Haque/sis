@@ -14,8 +14,13 @@
   @endsection
     <div class="container-fluid">
       <div class="form-row">
-        <div class="form-group col-xs-8">
+        <div class="form-group col-xs-6">
           <input class="form-control" type="text" name="transactiondate" id="transactiondate" @if(!empty($transactiondate)) value="{{ date('F d, Y', strtotime($transactiondate)) }}" @else value="{{ date('F d, Y') }}" @endif placeholder="Select Date" readonly="">
+        </div>
+        <div class="form-group col-xs-6">
+          <select class="form-control" name="username" id="username">
+            <option value="All">সকল ব্যবহারকারী</option>
+          </select>
         </div>
         <div class="form-group col-xs-4">
           <button id="loaddailyOtherAmounts" class="btn btn-success"><i class="fa fa fa-search"></i> দেখুন</button>
