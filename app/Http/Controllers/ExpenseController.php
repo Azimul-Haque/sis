@@ -37,13 +37,27 @@ class ExpenseController extends Controller
 
         $users = User::all();
         
-    	$todaystotalexpense = DB::table('expenses')
-    	                        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
-    	                        ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", date('Y-m-d', strtotime($transactiondate)))
-    	                        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
-    	                        ->first();
+        if($selecteduser == 'All') {
+            $todaystotalexpense = DB::table('expenses')
+                                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", date('Y-m-d', strtotime($transactiondate)))
+                                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+                                ->first();
 
-        $expenses = Expense::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)->get(); // paginate(10);
+            $expenses = Expense::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)->get(); // paginate(10);
+        } else {
+            $todaystotalexpense = DB::table('expenses')
+                                ->where('user_id', $selecteduser)
+                                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", date('Y-m-d', strtotime($transactiondate)))
+                                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+                                ->first();
+
+            $expenses = Expense::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)
+                               ->where('user_id', $selecteduser)
+                               ->get(); // paginate(10);
+        }
+    	
 
         return view('expenses.todaystotalexpense')
                     ->withExpenses($expenses)
