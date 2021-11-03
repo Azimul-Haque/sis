@@ -55,7 +55,7 @@ Route::post('/dashboard/creditors/due/{id}/update', 'DashboardController@updateC
 Route::get('/dashboard/creditors/due/{id}/delete', 'DashboardController@deleteCreditorDue')->name('dashboard.creditorsdue.delete');
 
 
-Route::get('/dashboard/expenses/{transactiondate}', 'ExpenseController@getTodaysExpenseList')->name('dashboard.expenses.getlist');
+Route::get('/dashboard/expenses/{transactiondate}/{user}', 'ExpenseController@getTodaysExpenseList')->name('dashboard.expenses.getlist');
 
 // COMPONENTS
 Route::get('/dashboard/components', 'DashboardController@getComponents')->name('dashboard.components');

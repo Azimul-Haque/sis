@@ -18,8 +18,11 @@
           <input class="form-control" type="text" name="transactiondate" id="transactiondate" @if(!empty($transactiondate)) value="{{ date('F d, Y', strtotime($transactiondate)) }}" @else value="{{ date('F d, Y') }}" @endif placeholder="Select Date" readonly="">
         </div>
         <div class="form-group col-xs-6">
-          <select class="form-control" name="username" id="username">
-            <option value="All">সকল ব্যবহারকারী</option>
+          <select class="form-control" name="selecteduser" id="selecteduser">
+            <option value="All" @if($selecteduser == 'All') selected="" @endif>সকল ব্যবহারকারী</option>
+            @foreach($users as $user)
+            <option value="{{ $user->id }}" @if($selecteduser == $user->id) selected="" @endif>{{ $user->name }}</option>
+            @endforeach
           </select>
         </div>
         <div class="form-group col-xs-4">
@@ -98,14 +101,15 @@
 
       // toastr.warning('Select Date!', 'WARNING').css('width', '400px');
       
-
+      selecteduser = $('#selecteduser').val();
+      console.log(selecteduser);
       if(isEmptyOrSpaces(transactiondate)) {
         Toast.fire({
           icon: 'warning',
           title: 'Select Date!'
         })
       } else {
-        window.location.href = '/dashboard/expenses/'+ moment(transactiondate).format('YYYY-MM-DD');
+        window.location.href = '/dashboard/expenses/'+ moment(transactiondate).format('YYYY-MM-DD') + '/' + selecteduser;
       }
     });
 

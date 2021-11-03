@@ -31,9 +31,11 @@ class ExpenseController extends Controller
         $this->middleware('admin')->only('getTodaysExpenseList');
     }
 
-    public function getTodaysExpenseList($transactiondate)
+    public function getTodaysExpenseList($transactiondate, $selecteduser)
     {
     	// DD(date('Y-m-d', strtotime($transactiondate)));
+
+        $users = User::all();
         
     	$todaystotalexpense = DB::table('expenses')
     	                        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
@@ -46,6 +48,8 @@ class ExpenseController extends Controller
         return view('expenses.todaystotalexpense')
                     ->withExpenses($expenses)
                     ->withTodaystotalexpense($todaystotalexpense)
-                    ->withTransactiondate($transactiondate);
+                    ->withTransactiondate($transactiondate)
+                    ->withUsers($users)
+                    ->withSelecteduser($selecteduser);
     }
 }
