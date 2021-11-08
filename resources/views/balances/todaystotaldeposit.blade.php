@@ -40,7 +40,7 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">আজকের মোট খরচঃ <b>৳ {{ $todaystotaldeposit ? $todaystotaldeposit->totalamount : 0 }}</b></h3>
+          <h3 class="card-title">আজকের মোট জমাঃ <b>৳ {{ $todaystotaldeposit ? $todaystotaldeposit->totalamount : 0 }}</b></h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-primary btn-sm no-print" id="printThisPage" title="প্রিন্ট করুন">

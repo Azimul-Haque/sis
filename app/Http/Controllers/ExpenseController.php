@@ -76,11 +76,11 @@ class ExpenseController extends Controller
         if($selecteduser == 'All') {
             $todaystotaldeposit = DB::table('balances')
                                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
-                                ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", Carbon::now()->format('Y-m-d'))
+                                ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", date('Y-m-d', strtotime($transactiondate)))
                                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
                                 ->first();
 
-            $deposits = Balance::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)->get(); // paginate(10);
+            $deposits = Balance::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", date('Y-m-d', strtotime($transactiondate)))->get(); // paginate(10);
         } else {
             $todaystotaldeposit = DB::table('balances')
                                 ->where('receiver_id', $selecteduser)
@@ -89,7 +89,7 @@ class ExpenseController extends Controller
                                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
                                 ->first();
 
-            $deposits = Balance::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)
+            $deposits = Balance::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", date('Y-m-d', strtotime($transactiondate)))
                                ->where('receiver_id', $selecteduser)
                                ->get(); // paginate(10);
         }
