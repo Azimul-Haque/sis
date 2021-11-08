@@ -28,7 +28,7 @@ class ExpenseController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('clear');
-        $this->middleware('admin')->only('getTodaysExpenseList');
+        $this->middleware('admin')->only('getTodaysExpenseList', 'getTodaysDepositList');
     }
 
     public function getTodaysExpenseList($transactiondate, $selecteduser)
