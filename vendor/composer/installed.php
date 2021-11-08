@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'a48fbf586f777c81ba7dbce20ccfbf3d22afa27f',
+        'reference' => '862ed7ddfbe6b1b16a68e2e155e61350fab1a24c',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -415,7 +415,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'a48fbf586f777c81ba7dbce20ccfbf3d22afa27f',
+            'reference' => '862ed7ddfbe6b1b16a68e2e155e61350fab1a24c',
             'dev_requirement' => false,
         ),
         'laravel/tinker' => array(
@@ -1080,12 +1080,12 @@
             'dev_requirement' => false,
         ),
         'symfony/psr-http-message-bridge' => array(
-            'pretty_version' => 'v2.1.1',
-            'version' => '2.1.1.0',
+            'pretty_version' => 'v2.1.2',
+            'version' => '2.1.2.0',
             'type' => 'symfony-bridge',
             'install_path' => __DIR__ . '/../symfony/psr-http-message-bridge',
             'aliases' => array(),
-            'reference' => 'c9012994c4b4fb23e7c57dd86b763a417a04feba',
+            'reference' => '22b37c8a3f6b5d94e9cdbd88e1270d96e2f97b34',
             'dev_requirement' => false,
         ),
         'symfony/routing' => array(
