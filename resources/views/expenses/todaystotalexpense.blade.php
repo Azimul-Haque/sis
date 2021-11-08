@@ -35,9 +35,9 @@
           <h3 class="card-title">আজকের মোট খরচঃ <b>৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</b></h3>
 
           <div class="card-tools">
-            {{-- <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addBalanceModal">
-              <i class="fas fa-coins"></i> অর্থ যোগ
-            </button> --}}
+            <button type="button" class="btn btn-primary btn-sm no-print" id="printThisPage">
+              <i class="fas fa-print"></i>
+            </button>
             {{-- <ul class="pagination pagination-sm float-right">
               <li class="page-item"><a class="page-link" href="#">«</a></li>
               <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -117,5 +117,13 @@
     function isEmptyOrSpaces(str){
         return str === null || str.match(/^ *$/) !== null;
     }
+
+    // print
+    $('#printThisPage').click(function(){
+      $('.bg-primary').removeClass('bg-primary');
+      $('.bg-success').removeClass('bg-success');
+      $('.bg-info').removeClass('bg-info');
+      window.print();
+    });
   </script>
 @endsection
