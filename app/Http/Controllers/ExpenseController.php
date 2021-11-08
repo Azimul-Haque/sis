@@ -66,4 +66,40 @@ class ExpenseController extends Controller
                     ->withUsers($users)
                     ->withSelecteduser($selecteduser);
     }
+
+    public function getTodaysDepositList($transactiondate, $selecteduser)
+    {
+        // DD(date('Y-m-d', strtotime($transactiondate)));
+
+        $users = User::all();
+        
+        if($selecteduser == 'All') {
+            $todaystotaldeposit = DB::table('balances')
+                                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", Carbon::now()->format('Y-m-d'))
+                                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+                                ->first();
+
+            $deposits = Balance::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)->get(); // paginate(10);
+        } else {
+            $todaystotaldeposit = DB::table('balances')
+                                ->where('receiver_id', $selecteduser)
+                                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", date('Y-m-d', strtotime($transactiondate)))
+                                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+                                ->first();
+
+            $deposits = Balance::where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", $transactiondate)
+                               ->where('receiver_id', $selecteduser)
+                               ->get(); // paginate(10);
+        }
+        
+
+        return view('balances.todaystotaldeposit')
+                    ->withDeposits($deposits)
+                    ->withTodaystotaldeposit($todaystotaldeposit)
+                    ->withTransactiondate($transactiondate)
+                    ->withUsers($users)
+                    ->withSelecteduser($selecteduser);
+    }
 }

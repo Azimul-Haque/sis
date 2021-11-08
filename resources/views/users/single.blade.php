@@ -86,10 +86,11 @@
               @foreach($balances as $balance)
                 <tr>
                   <td style="line-height: 1;">
-                    <span class="badge bg-success"><big>৳ {{ $balance->amount }}</big></span><br/>
+                    <span class="badge bg-success"><big>জমাঃ ৳ {{ $balance->amount }}</big></span><br/>
                     <small>
                         <span class="text-black-50">প্রদান করেছেনঃ </span> {{ $balance->user->name }},
                         <span class="text-black-50">গ্রহণ করেছেনঃ </span> {{ $balance->receiver ? $balance->receiver->name : ''}}<br/>
+                        <span class="text-black-50">মাধ্যমঃ </span> {{ $balance->medium ? $balance->medium : ''}}, <span class="text-black-50">বিবরণঃ </span> {{ $balance->description ? $balance->description : ''}}<br/>
                         </span> {{ date('F d, Y h:i A', strtotime($balance->created_at)) }}
                     </small> 
                   </td>

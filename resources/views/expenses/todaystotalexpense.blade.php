@@ -26,7 +26,7 @@
           </select>
         </div>
         <div class="form-group col-xs-4">
-          <button id="loaddailyOtherAmounts" class="btn btn-success"><i class="fa fa fa-search"></i> দেখুন</button>
+          <button id="loadTodaysExpenses" class="btn btn-success"><i class="fa fa fa-search"></i> দেখুন</button>
         </div>
       </div>
 
@@ -96,7 +96,7 @@
       autoclose: true,
     });
 
-    $('#loaddailyOtherAmounts').click(function() {
+    $('#loadTodaysExpenses').click(function() {
       var transactiondate = $('#transactiondate').val();
 
       // toastr.warning('Select Date!', 'WARNING').css('width', '400px');

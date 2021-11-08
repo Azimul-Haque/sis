@@ -80,12 +80,12 @@
               @foreach($expenses as $expense)
                 <tr>
                   <td style="line-height: 1;">
-                      <span class="badge bg-primary">৳ {{ $expense->amount }}</span>
-                      <span class="badge bg-success">{{ $expense->category->name }}</span>
-                      <span class="badge bg-info">{{ $expense->qty }}</span><br/>
+                      <span class="badge bg-primary">ব্যয়ঃ ৳ {{ $expense->amount }}</span>
+                      <span class="badge bg-success">খাতঃ{{ $expense->category->name }}</span>
+                      <span class="badge bg-info">পরিমাণঃ {{ $expense->qty }}</span><br/>
                       <small>
                         <span class="text-black-50">ব্যয় করেছেনঃ</span> {{ $expense->user->name }},
-                        <span class="badge bg-warning"><big>{{ $expense->site->name }}</big></span><br/>
+                        <span class="badge bg-warning"><big>সাইটঃ {{ $expense->site->name }}</big></span><br/>
                         <span>{{ date('F d, Y h:i A', strtotime($expense->created_at)) }}</span>, 
                         <span class="text-black-50">বিবরণঃ</span>  {{ $expense->description }}
                       </small> 

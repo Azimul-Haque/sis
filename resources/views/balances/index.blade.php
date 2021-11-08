@@ -42,7 +42,7 @@
                 @foreach($balances as $balance)
                 	<tr>
                     <td style="line-height: 1;">
-                      <span class="badge bg-success"><big>৳ {{ $balance->amount }}</big></span><br/>
+                      <span class="badge bg-success"><big>জমাঃ ৳ {{ $balance->amount }}</big></span><br/>
                       <small>
                           <span class="text-black-50">প্রদান করেছেনঃ </span> {{ $balance->user->name }},
                           <span class="text-black-50">গ্রহণ করেছেনঃ </span> {{ $balance->receiver ? $balance->receiver->name : ''}}<br/>
