@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title') ড্যাশবোর্ড | আজকের খরচ @endsection
+@section('title') ড্যাশবোর্ড | দৈনিক খরচ @endsection
 
 @section('third_party_stylesheets')
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-  @section('page-header') আজকের খরচ 
+  @section('page-header') দৈনিক খরচ 
     <span style="font-size: 13px;">
       @if(!empty($transactiondate)) {{ bangla(date('F d, Y', strtotime($transactiondate))) }} @else {{ bangla(date('F d, Y')) }} @endif
     </span> 
@@ -32,7 +32,7 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">আজকের মোট খরচঃ <b>৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</b></h3>
+          <h3 class="card-title">দৈনিক মোট খরচঃ <b>৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</b></h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-primary btn-sm no-print" id="printThisPage" title="প্রিন্ট করুন">
