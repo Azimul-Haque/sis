@@ -71,22 +71,22 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <a href="{{ route('dashboard.expenses.getlist', [date('Y-m-d'), 'All']) }}" class="info-box mb-3">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">আজকের খরচ</span>
-                <span class="info-box-number">৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6">
             <a href="{{ route('dashboard.deposit.getlist', [date('Y-m-d'), 'All']) }}" class="info-box mb-3">
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-coins"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">আজকের জমা</span>
                 <span class="info-box-number">৳ {{ $todaystotaldeposit ? $todaystotaldeposit->totalamount : 0 }}</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="{{ route('dashboard.expenses.getlist', [date('Y-m-d'), 'All']) }}" class="info-box mb-3">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">আজকের খরচ</span>
+                <span class="info-box-number">৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</span>
               </div>
             </a>
           </div>
