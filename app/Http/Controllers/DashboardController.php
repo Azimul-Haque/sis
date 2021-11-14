@@ -33,7 +33,8 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('clear');
-        $this->middleware(['admin', 'accountant'])->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance', 'getCreditors', 'getSingleCreditor', 'getAddDuePage', 'deleteCreditorDue', 'getSiteCategorywise', 'getBalance');
+        $this->middleware(['admin'])->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance', 'getCreditors', 'getSingleCreditor', 'getAddDuePage', 'deleteCreditorDue', 'getSiteCategorywise');
+
     }
 
     /**
@@ -45,8 +46,10 @@ class DashboardController extends Controller
     {
         // if user is a manager, redirect him to his profile
         // if user is a manager, redirect him to his profile
-        if(Auth::user()->role != 'admin') {
+        if(Auth::user()->role != 'admin' && Auth::user()->role != 'accountant') {
             return redirect()->route('dashboard.users.single', Auth::user()->id);
+        } elseif (Auth::user()->role == 'accountant') {
+            return redirect()->route('dashboard.balance');
         }
 
         $totalsites = Site::count();
@@ -174,7 +177,7 @@ class DashboardController extends Controller
             'name'        => 'required|string|max:191',
             'mobile'      => 'required|string|max:191|unique:users,mobile',
             'role'        => 'required',
-            'sitecheck'   => 'required',
+            'sitecheck'   => 'sometimes',
             'password'    => 'required|string|min:8|max:191',
         ));
 
@@ -182,7 +185,9 @@ class DashboardController extends Controller
         $user->name = $request->name;
         $user->mobile = $request->mobile;
         $user->role = $request->role;
-        $user->sites = implode(',', $request->sitecheck);
+        if(!empty($request->sitecheck)) {
+            $user->sites = implode(',', $request->sitecheck);
+        }
         $user->password = Hash::make($request->password);
         $user->save();
 
@@ -196,7 +201,7 @@ class DashboardController extends Controller
             'name'        => 'required|string|max:191',
             'mobile'      => 'required|string|max:191|unique:users,mobile,'.$id,
             'role'        => 'required',
-            'sitecheck'   => 'required',
+            'sitecheck'   => 'sometimes',
             'password'    => 'nullable|string|min:8|max:191',
         ));
 
@@ -204,7 +209,9 @@ class DashboardController extends Controller
         $user->name = $request->name;
         $user->mobile = $request->mobile;
         $user->role = $request->role;
-        $user->sites = implode(',', $request->sitecheck);
+        if(!empty($request->sitecheck)) {
+            $user->sites = implode(',', $request->sitecheck);
+        }
         if(!empty($request->password)) {
             $user->password = Hash::make($request->password);
         }
@@ -225,6 +232,9 @@ class DashboardController extends Controller
 
     public function getBalance()
     {
+        if(!(Auth::user()->role == 'admin' || Auth::user()->role == 'accountant')) {
+            abort(403, 'Access Denied');
+        }
         $users = User::whereNotIn('mobile', ['01751398392', '01837409842'])->get();
         $totalbalance = Balance::sum('amount');
         $totalexpense = Expense::sum('amount');
@@ -255,6 +265,20 @@ class DashboardController extends Controller
         $balance->medium = $request->medium;
         $balance->description = $request->description;
         $balance->save();
+
+        $receiver = User::findOrFail($request->receiver_id);
+
+        if(Auth::user()->role == 'accountant') {
+            OneSignal::sendNotificationToUser(
+                "অর্থ প্রদানকারীঃ একাউন্টেন্ট, গ্রহণকারীঃ " . $receiver->name,
+                ["a1050399-4f1b-4bd5-9304-47049552749c", "82e84884-917e-497d-b0f5-728aff4fe447"],
+                $url = null, 
+                $data = null, // array("answer" => $charioteer->answer), // to send some variable
+                $buttons = null, 
+                $schedule = null,
+                $headings = "অর্থ প্রদান করা হয়েছে। পরিমাণঃ ৳ " . bangla($request->amount)
+            );
+        }
 
         // OneSignal::sendNotificationToAll(
         //     "অর্থ যোগ করেছেনঃ " . Auth::user()->name,

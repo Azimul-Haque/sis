@@ -15,7 +15,7 @@
 </li>
 @endif
 
-@if(Auth::user()->role == 'admin')
+@if(Auth::user()->role == 'admin' || Auth::user()->role == 'accountant')
 <li class="nav-item">
     <a href="{{ route('dashboard.balance') }}" class="nav-link {{ Request::is('dashboard/balance') ? 'active' : '' }}">
         <i class="nav-icon fas fa-funnel-dollar"></i>
@@ -24,6 +24,7 @@
 </li>
 @endif
 
+@if(Auth::user()->role != 'accountant')
 <li class="nav-item">
     <a href="{{ route('dashboard.sites') }}" class="nav-link {{ Request::is('dashboard/sites') ? 'active' : '' }} {{ Request::is('dashboard/sites/*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-briefcase"></i>
@@ -37,6 +38,7 @@
         <p>খাতসমূহ</p>
     </a>
 </li>
+@endif
 
 @if(Auth::user()->role == 'admin')
 <li class="nav-item">
