@@ -67,9 +67,10 @@
                     <span class="badge bg-success">খাতঃ {{ $expense->category->name }}</span>
                     <span class="badge bg-info">পরিমাণঃ {{ $expense->qty }}</span><br/>
                     <small>
-                        <span class="text-black-80">ব্যয় করেছেনঃ</span> {{ $expense->user->name }},
+                        <span class="text-black-50">ব্যয় করেছেনঃ</span> {{ $expense->user->name }},
                         <span class="badge bg-warning"><big>সাইটঃ {{ $expense->site->name }}</big></span><br/>
-                        <small>{{ date('F d, Y h:i A', strtotime($expense->created_at)) }}</small>
+                        <span>{{ date('F d, Y h:i A', strtotime($expense->created_at)) }}</span>, 
+                        <span class="text-black-50">বিবরণঃ </span> {{ $expense->description }}
                     </small> 
                   </td>
                 </tr>

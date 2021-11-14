@@ -33,7 +33,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('clear');
-        $this->middleware('admin')->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance', 'getCreditors', 'getSingleCreditor', 'getAddDuePage', 'deleteCreditorDue', 'getSiteCategorywise');
+        $this->middleware(['admin', 'accountant'])->only('getUsers', 'storeUser', 'updateUser', 'deleteUser', 'deleteBalance', 'getCreditors', 'getSingleCreditor', 'getAddDuePage', 'deleteCreditorDue', 'getSiteCategorywise', 'getBalance');
     }
 
     /**
