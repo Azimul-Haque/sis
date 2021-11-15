@@ -423,11 +423,17 @@ class DashboardController extends Controller
                           ->where('site_id', $id)
                           ->groupBy('category_id')
                           ->get();
+        $intotalexpense = DB::table('expenses')
+                             ->select(DB::raw('SUM(amount) as totalamount'))
+                             ->where('site_id', $id)
+                             ->orderBy('created_at', 'DESC')
+                             ->first();
         // dd($categorywise);
         return view('sites.categorywise')
                     ->withSite($site)
                     ->withCategories($categories)
-                    ->withCategorywises($categorywises);
+                    ->withCategorywises($categorywises)
+                    ->withIntotalexpense($intotalexpense);
     }
 
     public function getExpensePage()

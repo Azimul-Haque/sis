@@ -19,6 +19,12 @@
           <!-- /.card-header -->
           <div class="card-body p-0">
             <table class="table">
+              <thead>
+                <tr>
+                  <td align="right">মোট</td>
+                  <td align="right">৳ <b>{{ $intotalexpense ? $intotalexpense->totalamount : 0 }}</b></td>
+                </tr>
+              </thead>
               <tbody>
                 @foreach($categorywises as $categorywise)
                   @foreach($categories as $category)
