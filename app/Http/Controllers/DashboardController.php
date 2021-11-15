@@ -482,15 +482,15 @@ class DashboardController extends Controller
 
         $expense->save();
 
-        OneSignal::sendNotificationToUser(
-            "ব্যয় করেছেনঃ " . Auth::user()->name . ', খাতঃ ' . $category_data[1],
-            ["a1050399-4f1b-4bd5-9304-47049552749c", "82e84884-917e-497d-b0f5-728aff4fe447"],
-            $url = null, 
-            $data = null, // array("answer" => $charioteer->answer), // to send some variable
-            $buttons = null, 
-            $schedule = null,
-            $headings = $site_data[1] ."-এ ৳ " . bangla($request->amount) . " ব্যয় করা হয়েছে!"
-        );
+        // OneSignal::sendNotificationToUser(
+        //     "ব্যয় করেছেনঃ " . Auth::user()->name . ', খাতঃ ' . $category_data[1],
+        //     ["a1050399-4f1b-4bd5-9304-47049552749c", "82e84884-917e-497d-b0f5-728aff4fe447"],
+        //     $url = null, 
+        //     $data = null, // array("answer" => $charioteer->answer), // to send some variable
+        //     $buttons = null, 
+        //     $schedule = null,
+        //     $headings = $site_data[1] ."-এ ৳ " . bangla($request->amount) . " ব্যয় করা হয়েছে!"
+        // );
 
         // OneSignal::sendNotificationToUser(
         //     "Test",

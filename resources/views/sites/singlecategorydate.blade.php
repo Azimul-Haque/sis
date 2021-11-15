@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-	@section('page-header') {{ $category->name }} - {{ bangla(date('F d, Y', strtotime($selecteddate))) }} @endsection
+	@section('page-header')<a href="{{ route('dashboard.categories.single', $category->id) }}"><big><i class="fas fa-arrow-alt-circle-left"></i></big></a> {{ $category->name }} - {{ bangla(date('F d, Y', strtotime($selecteddate))) }} @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">

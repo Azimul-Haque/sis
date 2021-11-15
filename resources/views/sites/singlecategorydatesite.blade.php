@@ -6,11 +6,11 @@
 @endsection
 
 @section('content')
-	@section('page-header') {{ $category->name }} - {{ bangla(date('F d, Y', strtotime($selecteddate))) }} @endsection
+	@section('page-header')<a href="{{ route('dashboard.categories.singledate', [$category->id, $selecteddate]) }}"><big><i class="fas fa-arrow-alt-circle-left"></i></big> </a> {{ $category->name }} - {{ bangla(date('F d, Y', strtotime($selecteddate))) }} @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">
-            <h3 class="card-title">{{ $category->name }} - {{ bangla(date('F d, Y', strtotime($selecteddate))) }}</h3>
+            <h3 class="card-title">{{ $site->name }}</h3>
 
             <div class="card-tools">
         	    {{-- <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addCategoryModal">
