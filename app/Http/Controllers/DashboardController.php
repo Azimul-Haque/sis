@@ -565,17 +565,18 @@ class DashboardController extends Controller
     public function getSingleCategoryDateSite($id, $selecteddate, $site_id)
     {
         $category = Category::findOrFail($id);
+        $site = Site::findOrFail($site_id);
 
-        $expenses = Expense::select('site_id', DB::raw('SUM(amount) as totalamount'))
-                      ->where('category_id', $id)
-                      ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), $selecteddate)
-                      ->groupBy('site_id')
-                      ->get();
+        $expenses = Expense::where('category_id', $id)
+                           ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), $selecteddate)
+                           ->where('site_id', $site_id)
+                           ->get();
         // dd($expenses);
 
-        return view('sites.singlecategorydate')
+        return view('sites.singlecategorydatesite')
                             ->withExpenses($expenses)
                             ->withCategory($category)
+                            ->withSite($site)
                             ->withSelecteddate($selecteddate);
     }
 

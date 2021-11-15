@@ -6,11 +6,11 @@
 @endsection
 
 @section('content')
-	@section('page-header') {{ $category->name }} - এর তারিখভিত্তিক হিসাব @endsection
+	@section('page-header') {{ $category->name }} - {{ bangla(date('F d, Y', strtotime($selecteddate))) }} @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">
-            <h3 class="card-title">{{ $category->name }}  - এর তারিখভিত্তিক হিসাব</h3>
+            <h3 class="card-title">{{ $category->name }} - {{ bangla(date('F d, Y', strtotime($selecteddate))) }}</h3>
 
             <div class="card-tools">
         	    {{-- <button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#addCategoryModal">
@@ -42,7 +42,7 @@
                 @foreach($expenses as $expense)
                 	<tr>
                 		<td>
-                      <a href="{{ route('dashboard.categories.singledatesite', [$category->id, $selecteddate, $expense->site_id]) }}"><b>{{ $expense->site->name }}</b> <small><i class="fas fa-search-plus"></i></small>
+                      সাইটঃ <a href="{{ route('dashboard.categories.singledatesite', [$category->id, $selecteddate, $expense->site_id]) }}"><b>{{ $expense->site->name }}</b> <small><i class="fas fa-search-plus"></i></small>
                       </a>
                 		</td>
                     <td>
