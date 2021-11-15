@@ -17,11 +17,14 @@
       <div class="row">
         <div class="col-md-6">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-balance-scale-right"></i></span>
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">সর্বমোট ব্যালেন্স</span>
-              <span class="info-box-number">৳ {{ $totaldeposit - $totalexpense }}</span>
+              <small>
+                <span class="info-box-text">আজকের অর্থ গ্রহণঃ <b>৳ {{ $todaystotaldeposit ? $todaystotaldeposit->totalamount : 0 }}</b></span>
+                <span class="info-box-text">{{ bangla(date('F Y')) }} মাসে মোট অর্থ গ্রহণঃ <b>৳ {{ $monthlytotaldeposit ? $monthlytotaldeposit->totalamount : 0 }}</b></span>
+                <span class="info-box-text">সর্বমোট অর্থ গ্রহণঃ <b>৳ {{ $totaldeposit ? $totaldeposit : 0 }}</b></span>
+              </small>
             </div>
           </div>
         </div>
@@ -43,14 +46,11 @@
       <div class="row">
         <div class="col-md-6">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
+            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-balance-scale-right"></i></span>
 
             <div class="info-box-content">
-              <small>
-                <span class="info-box-text">আজকের অর্থ গ্রহণঃ <b>৳ {{ $todaystotaldeposit ? $todaystotaldeposit->totalamount : 0 }}</b></span>
-                <span class="info-box-text">{{ bangla(date('F Y')) }} মাসে মোট অর্থ গ্রহণঃ <b>৳ {{ $monthlytotaldeposit ? $monthlytotaldeposit->totalamount : 0 }}</b></span>
-                <span class="info-box-text">সর্বমোট অর্থ গ্রহণঃ <b>৳ {{ $totaldeposit ? $totaldeposit : 0 }}</b></span>
-              </small>
+              <span class="info-box-text">সর্বমোট ব্যালেন্স</span>
+              <span class="info-box-number">৳ {{ $totaldeposit - $totalexpense }}</span>
             </div>
           </div>
         </div>
