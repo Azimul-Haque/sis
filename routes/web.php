@@ -42,6 +42,9 @@ Route::post('/dashboard/expense/store', 'DashboardController@storeExpense')->nam
 Route::get('/dashboard/expense/{id}/delete', 'DashboardController@deleteExpense')->name('dashboard.expense.delete');
 
 Route::get('/dashboard/categories', 'DashboardController@getCategories')->name('dashboard.categories');
+Route::get('/dashboard/categories/{id}', 'DashboardController@getSingleCategory')->name('dashboard.categories.single');
+Route::get('/dashboard/categories/{id}/{selecteddate}', 'DashboardController@getSingleCategoryDate')->name('dashboard.categories.singledate');
+Route::get('/dashboard/categories/{id}/{selecteddate}/{site_id}', 'DashboardController@getSingleCategoryDateSite')->name('dashboard.categories.singledatesite');
 Route::post('/dashboard/categories/store', 'DashboardController@storeCategory')->name('dashboard.categories.store');
 Route::post('/dashboard/categories/{id}/update', 'DashboardController@updateCategory')->name('dashboard.categories.update');
 

@@ -42,7 +42,7 @@
                 @foreach($categories as $category)
                 	<tr>
                 		<td>
-                      {{ $category->name }}
+                      <a href="{{ route('dashboard.categories.single', $category->id) }}">{{ $category->name }} <small><i class="fas fa-search-plus"></i></small></a>
                 		</td>
                 		<td align="right" width="40%">
                 			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editCategoryModal{{ $category->id }}">
