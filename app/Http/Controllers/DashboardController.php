@@ -305,7 +305,7 @@ class DashboardController extends Controller
     public function getSites()
     {
         $sites = Site::where('name', '!=', null)
-                     ->orderBy('id', 'desc')
+                     ->orderBy('progress', 'asc')
                      ->paginate(5);
 
         return view('sites.index')->withSites($sites);
