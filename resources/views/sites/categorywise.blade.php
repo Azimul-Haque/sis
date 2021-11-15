@@ -22,7 +22,7 @@
               <thead>
                 <tr>
                   <td align="right">মোট</td>
-                  <td align="right">৳ <b>{{ $intotalexpense ? $intotalexpense->totalamount : 0 }}</b></td>
+                  <td align="right"><big>৳ <b>{{ $intotalexpense ? $intotalexpense->totalamount : 0 }}</big></b></td>
                 </tr>
               </thead>
               <tbody>
