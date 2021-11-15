@@ -39,20 +39,31 @@
                   </td>
                   <td><span class="badge bg-danger">55%</span></td>
                 </tr> --}}
+                @php
+                  $totalamounttoday = 0;
+                @endphp
                 @foreach($expenses as $expense)
                 	<tr>
                 		<td>
                       সাইটঃ <a href="{{ route('dashboard.categories.singledatesite', [$category->id, $selecteddate, $expense->site_id]) }}"><b>{{ $expense->site->name }}</b> <small><i class="fas fa-search-plus"></i></small>
                       </a>
                 		</td>
-                    <td>
+                    <td align="right">
                       {{-- <a href="{{ route('dashboard.categories.single', $category->id) }}">{{ $category->name }}</a> --}}
                       <b>৳ {{ $expense->totalamount }}</b>
                     </td>
-                		
                 	</tr>
+                  @php
+                    $totalamounttoday = $totalamounttoday + $expense->totalamount;
+                  @endphp
                 @endforeach
               </tbody>
+              <tfoot>
+                <tr>
+                  <td align="right">মোটঃ</td>
+                  <td align="right"><b>৳ {{ $totalamounttoday }}</b></td>
+                </tr>
+              </tfoot>
             </table>
           </div>
           <!-- /.card-body -->

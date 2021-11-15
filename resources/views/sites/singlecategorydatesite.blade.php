@@ -39,6 +39,9 @@
                   </td>
                   <td><span class="badge bg-danger">55%</span></td>
                 </tr> --}}
+                @php
+                  $totalamounttoday = 0;
+                @endphp
                 @foreach($expenses as $expense)
                 	<tr>
                     <td style="line-height: 1;">
@@ -53,8 +56,16 @@
                       </small> 
                     </td>
                 	</tr>
+                  @php
+                    $totalamounttoday = $totalamounttoday + $expense->amount;
+                  @endphp
                 @endforeach
               </tbody>
+              <tfoot>
+                <tr>
+                  <td align="right">মোটঃ <b>৳ {{ $totalamounttoday }}</b></td>
+                </tr>
+              </tfoot>
             </table>
           </div>
           <!-- /.card-body -->

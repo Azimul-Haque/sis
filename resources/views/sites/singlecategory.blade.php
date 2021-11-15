@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-	@section('page-header') {{ $category->name }} - এর তারিখভিত্তিক হিসাব @endsection
+	@section('page-header') খাতের তারিখভিত্তিক হিসাব @endsection
     <div class="container-fluid">
 		<div class="card">
           <div class="card-header">
