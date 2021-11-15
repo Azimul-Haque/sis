@@ -48,7 +48,7 @@
                           <a href="{{ route('dashboard.sites.single', $site->id) }}">
                             {{ $site->name }}
                             <br/>
-                            <small class="text-black-50">{{ $site->address }}</small>
+                            <small class="text-black-50">{{ $site->address }} (অগ্রগতিঃ {{ $site->progress }}%)</small>
                             <br/>
                             <div class="progress progress-xs progress-striped active">
                               <div class="progress-bar bg-success " style="width: {{ $site->progress }}%"></div>
