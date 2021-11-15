@@ -95,7 +95,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        {{ $categories->links() }}
+        <small>{{ $categories->onEachSide(1)->links() }}</small>
     </div>
 
 

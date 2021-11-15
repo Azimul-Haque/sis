@@ -134,7 +134,7 @@
         </div>
         <!-- /.card -->
       </div>
-      {{ $balances->links() }}
+      <small>{{ $balances->onEachSide(1)->links() }}</small>
     </div>
 @endsection
 

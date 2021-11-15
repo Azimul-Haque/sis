@@ -143,7 +143,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        {{ $dues->links() }}
+        <small>{{ $dues->onEachSide(1)->links() }}</small>
     </div>
 @endsection
 

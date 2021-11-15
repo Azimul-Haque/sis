@@ -104,7 +104,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        {{ $creditors->links() }}
+        <small>{{ $creditors->onEachSide(1)->links() }}</small>
     </div>
 
 

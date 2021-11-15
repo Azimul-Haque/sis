@@ -180,7 +180,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        {{ $sites->links() }}
+        <small>{{ $sites->onEachSide(1)->links() }}</small>
     </div>
 
 

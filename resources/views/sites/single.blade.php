@@ -173,7 +173,7 @@
           </div>
           <!-- /.card-body -->
         </div>
-        {{ $expenses->links() }}
+        <small>{{ $expenses->onEachSide(1)->links() }}</small>
 
         @if(Auth::user()->role == 'admin')
           <div class="card">
