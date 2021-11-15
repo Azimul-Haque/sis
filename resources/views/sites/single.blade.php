@@ -31,12 +31,36 @@
             <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট ব্যয়)</span>
+              <span class="info-box-text">{{ bangla(date('F Y')) }} - এর মোট ব্যয়</span>
               <span class="info-box-number">৳ {{ $monthlyexpensetotalcurrent ? $monthlyexpensetotalcurrent->totalamount : 0 }}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
        </div> 
+      </div> 
+      <div class="row">
+       <div class="col-md-6">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">সর্বমোট ব্যয়</span>
+              <span class="info-box-number">৳ {{ $intotalexpense ? $intotalexpense->totalamount : 0 }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+       </div>
+       {{-- <div class="col-md-6">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">{{ bangla(date('F Y')) }} - এর মোট ব্যয়</span>
+              <span class="info-box-number">৳ {{ $monthlyexpensetotalcurrent ? $monthlyexpensetotalcurrent->totalamount : 0 }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+       </div> --}} 
       </div>      
 		<div class="card">
           <div class="card-header">
