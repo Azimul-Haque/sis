@@ -124,12 +124,11 @@
                         {{-- Edit Site Modal Code --}}
                         {{-- Edit Site Modal Code --}}
 
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal{{ $site->id }}" disabled="">
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal{{ $site->id }}">
                           <i class="fas fa-trash-alt"></i>
                         </button>
                       @endif
                       </td>
-                          @if(Auth::user()->role == 'admin')
                           {{-- Delete Site Modal Code --}}
                           {{-- Delete Site Modal Code --}}
                           <!-- Modal -->
@@ -142,23 +141,37 @@
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
-                                <div class="modal-body">
-                                  আপনি কি নিশ্চিতভাবে এই সাইটটি ডিলেট করতে চান?<br/>
-                                  <center>
-                                      <big><b>{{ $site->name }}</b></big><br/>
-                                      <small><i class="fas fa-map-marker-alt"></i> {{ $site->address }}</small>
-                                  </center>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
-                                  <a href="{{ route('dashboard.sites.delete', $site->id) }}" class="btn btn-danger">ডিলেট করুন</a>
-                                </div>
+                                {!! Form::model($site, ['route' => ['dashboard.sites.delete', $site->id], 'method' => 'DELETE']) !!}
+                                  <div class="modal-body">
+                                    আপনি কি নিশ্চিতভাবে এই সাইটটি ডিলেট করতে চান?<br/>
+                                    <center>
+                                        <big><b>{{ $site->name }}</b></big><br/>
+                                        <small><i class="fas fa-map-marker-alt"></i> {{ $site->address }}</small>
+                                    </center>
+                                    <br/><br/>
+                                    নিশ্চায়ন প্রক্রিয়া সম্পন্ন করতে নিচের যোগফলটি ফাঁকা ঘরে ইংরেজি অংকে বসানঃ<br/>
+                                    @php
+                                      $contact_num1 = rand(1,20);
+                                      $contact_num2 = rand(1,20);
+                                      $contact_sum_result_hidden = $contact_num1 + $contact_num2;
+                                    @endphp
+                                    <input type="hidden" name="contact_sum_result_hidden" value="{{ $contact_sum_result_hidden }}">
+                                    <center>
+                                      <div class="col-xs-2">
+                                        <input type="text" name="contact_sum_result" id="" class="form-control w-50" placeholder="{{ $contact_num1 }} + {{ $contact_num2 }} = ?" required="">
+                                      </div>
+                                    </center>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ফিরে যান</button>
+                                    <button type="submit" class="btn btn-danger">ডিলেট করুন</button>
+                                  </div>
+                                {!! Form::close() !!}
                               </div>
                             </div>
                           </div>
                           {{-- Delete Site Modal Code --}}
                           {{-- Delete Site Modal Code --}}
-                          @endif
                     </tr>
                   @endif
                 @endforeach

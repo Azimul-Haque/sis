@@ -307,7 +307,7 @@ class DashboardController extends Controller
         $sites = Site::where('name', '!=', null)
                      ->orderBy('progress', 'asc')
                      ->paginate(5);
-
+        
         return view('sites.index')->withSites($sites);
     }
 
@@ -347,17 +347,27 @@ class DashboardController extends Controller
         return redirect()->route('dashboard.sites');
     }
 
-    public function deleteSite($id)
+    public function deleteSite(Request $request, $id)
     {
-        $site = Site::find($id);
+        $this->validate($request,array(
+            'contact_sum_result_hidden'   => 'required',
+            'contact_sum_result'   => 'required'
+        ));
 
-        foreach ($site->expenses as $expense) {
-            $expense->delete();
+        if($request->contact_sum_result_hidden == $request->contact_sum_result) {
+            $site = Site::find($id);
+
+            foreach ($site->expenses as $expense) {
+                $expense->delete();
+            }
+            $site->delete();
+
+            Session::flash('success', 'Site deleted successfully!');
+            return redirect()->route('dashboard.sites');
+        } else {
+            Session::flash('warning', 'যোগফল সঠিক নয়, আবার চেষ্টা করুন।');
+            return redirect()->route('dashboard.sites');
         }
-        $site->delete();
-
-        Session::flash('success', 'Site deleted successfully!');
-        return redirect()->route('dashboard.sites');
     }
 
     public function getSingleSite($id)
