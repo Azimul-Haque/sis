@@ -21,7 +21,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">সর্বমোট ব্যালেন্স</span>
-              <span class="info-box-number">৳ {{ $totalbalance - $totalexpense }}</span>
+              <span class="info-box-number">৳ {{ $totaldeposit - $totalexpense }}</span>
             </div>
           </div>
         </div>
@@ -30,8 +30,12 @@
             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-receipt"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">আজকের খরচ</span>
-              <span class="info-box-number">৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</span>
+              <small>
+                <span class="info-box-text">আজকের ব্যয়ঃ <b>৳ {{ $todaystotalexpense ? $todaystotalexpense->totalamount : 0 }}</b></span>
+                <span class="info-box-text">{{ bangla(date('F Y')) }} মাসে মোট অর্থ ব্যয়ঃ <b>৳ {{ $monthlytotalexpense ? $monthlytotalexpense->totalamount : 0 }}</b></span>
+                <span class="info-box-text">সর্বমোট অর্থ ব্যয়ঃ <b>৳ {{ $totalexpense ? $totalexpense : 0 }}</b></span>
+                </small>
+              {{-- <span class="info-box-number"></span> --}}
             </div>
           </div>
         </div>
@@ -42,18 +46,11 @@
             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট অর্থ গ্রহণ)</span>
-              <span class="info-box-number">৳ {{ $monthlytotalbalance ? $monthlytotalbalance->totalamount : 0 }}</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">{{ bangla(date('F Y')) }} (মোট অর্থ ব্যয়)</span>
-              <span class="info-box-number">৳ {{ $monthlytotalexpense ? $monthlytotalexpense->totalamount : 0 }}</span>
+              <small>
+                <span class="info-box-text">আজকের অর্থ গ্রহণঃ <b>৳ {{ $todaystotaldeposit ? $todaystotaldeposit->totalamount : 0 }}</b></span>
+                <span class="info-box-text">{{ bangla(date('F Y')) }} মাসে মোট অর্থ গ্রহণঃ <b>৳ {{ $monthlytotaldeposit ? $monthlytotaldeposit->totalamount : 0 }}</b></span>
+                <span class="info-box-text">সর্বমোট অর্থ গ্রহণঃ <b>৳ {{ $totaldeposit ? $totaldeposit : 0 }}</b></span>
+              </small>
             </div>
           </div>
         </div>
