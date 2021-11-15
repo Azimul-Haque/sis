@@ -149,32 +149,38 @@ class DashboardController extends Controller
                                 ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", Carbon::now()->format('Y-m-d'))
                                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
                                 ->first();
-
-        $monthlytotalbalance = DB::table('balances')
-                                        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
-                                        ->where('receiver_id', $id)
-                                        ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), "=", Carbon::now()->format('Y-m'))
-                                        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
-                                        ->first();
         $monthlytotalexpense = DB::table('expenses')
                                         ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
                                         ->where('user_id', $id)
                                         ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), "=", Carbon::now()->format('Y-m'))
                                         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
                                         ->first();
-                                        // dd($monthlytotalexpense->totalamount);
-        $totalbalance = Balance::where('receiver_id', $id)->sum('amount');
         $totalexpense = Expense::where('user_id', $id)->sum('amount');
+
+        $todaystotaldeposit = DB::table('balances')
+                                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                ->where('receiver_id', $id)
+                                ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), "=", Carbon::now()->format('Y-m-d'))
+                                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+                                ->first();
+        $monthlytotaldeposit = DB::table('balances')
+                                        ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                                        ->where('receiver_id', $id)
+                                        ->where(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), "=", Carbon::now()->format('Y-m'))
+                                        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
+                                        ->first();
+        $totaldeposit = Balance::where('receiver_id', $id)->sum('amount');
         // dd($totalexpense);
 
         return view('users.singleother')
                     ->withUser($user)
                     ->withExpenses($expenses)
                     ->withTodaystotalexpense($todaystotalexpense)
-                    ->withMonthlytotalbalance($monthlytotalbalance)
                     ->withMonthlytotalexpense($monthlytotalexpense)
-                    ->withTotalbalance($totalbalance)
-                    ->withTotalexpense($totalexpense);
+                    ->withTotalexpense($totalexpense)
+                    ->withTodaystotaldeposit($todaystotaldeposit)
+                    ->withMonthlytotaldeposit($monthlytotaldeposit)
+                    ->withTotaldeposit($totaldeposit);
     }
 
     public function storeUser(Request $request)
