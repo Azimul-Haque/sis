@@ -220,25 +220,27 @@
 	                </div>
 
 	                <div class="input-group mb-3">
-	                	<select name="role" class="form-control" required>
+	                	<select name="role" id="adduserrole" class="form-control" required>
 	                		<option selected="" disabled="" value="">ধরন</option>
 	                		<option value="admin">এডমিন</option>
 	                		<option value="manager">ম্যানেজার</option>
-                      <option value="accountant">একাউন্টেন্ট</option>
+                            <option value="accountant">একাউন্টেন্ট</option>
 	                	</select>
 	                    <div class="input-group-append">
 	                        <div class="input-group-text"><span class="fas fa-user-secret"></span></div>
 	                    </div>
 	                </div>
 
-                    <label>এই ব্যবহারকারীর সাইট সিলেক্ট করুন</label><br/>
-                    @foreach($sites as $site)
-                        <div class="icheck-primary icheck-inline">
-                            <input type="checkbox" id="chb{{ $site->id }}" name="sitecheck[]" value="{{ $site->id }}" />
-                            <label for="chb{{ $site->id }}">{{ $site->name }}</label>
-                        </div>
-                    @endforeach
-                    <br/><br/>
+                    <div id="ifaccountant">
+                        <label>এই ব্যবহারকারীর সাইট সিলেক্ট করুন</label><br/>
+                        @foreach($sites as $site)
+                            <div class="icheck-primary icheck-inline">
+                                <input type="checkbox" id="chb{{ $site->id }}" name="sitecheck[]" value="{{ $site->id }}" />
+                                <label for="chb{{ $site->id }}">{{ $site->name }}</label>
+                            </div>
+                        @endforeach
+                        <br/><br/>
+                    </div>
 
 	                <div class="input-group mb-3">
 	                    <input type="password"
@@ -265,5 +267,14 @@
 @endsection
 
 @section('third_party_scripts')
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#adduserrole').change(function () {
+            if($('#adduserrole').val() == 'accountant') {
+                $('#ifaccountant').hide();
+            } else {
+                $('#ifaccountant').show();
+            }
+        });
+    </script>
 @endsection
