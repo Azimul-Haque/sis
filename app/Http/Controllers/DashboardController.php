@@ -409,11 +409,11 @@ class DashboardController extends Controller
                                         ->first();
 
         $monthlyexpenses = DB::table('expenses')
-                                 ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
-                                 ->where('site_id', $id)
-                                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
-                                 ->orderBy('created_at', 'DESC')
-                                 ->get();
+                             ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                             ->where('site_id', $id)
+                             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
+                             ->orderBy('created_at', 'DESC')
+                             ->get();
 
         $intotalexpense = DB::table('expenses')
                              ->select(DB::raw('SUM(amount) as totalamount'))
@@ -635,6 +635,23 @@ class DashboardController extends Controller
 
         Session::flash('success', 'Category updated successfully!');
         return redirect()->route('dashboard.categories');
+    }
+
+    public function getMonthly()
+    {
+        $monthlyexpenses = DB::table('expenses')
+                             ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
+                             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
+                             ->orderBy('created_at', 'DESC')
+                             ->get();
+        $intotalexpense = DB::table('expenses')
+                             ->select(DB::raw('SUM(amount) as totalamount'))
+                             ->orderBy('created_at', 'DESC')
+                             ->first();
+
+        return view('monthly.index')
+                        ->withMonthlyexpenses($monthlyexpenses)
+                        ->withIntotalexpense($intotalexpense);
     }
 
     public function getCreditors()
