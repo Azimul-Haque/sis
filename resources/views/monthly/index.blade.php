@@ -49,6 +49,7 @@
         </div>
         <!-- /.card-body -->
       </div>
+      <small>{{ $monthlyexpenses->onEachSide(1)->links() }}</small>
     </div>
 @endsection
 

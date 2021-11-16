@@ -643,7 +643,7 @@ class DashboardController extends Controller
                              ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as created_at"), DB::raw('SUM(amount) as totalamount'))
                              ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m')"))
                              ->orderBy('created_at', 'DESC')
-                             ->get();
+                             ->paginate(10);
         $intotalexpense = DB::table('expenses')
                              ->select(DB::raw('SUM(amount) as totalamount'))
                              ->orderBy('created_at', 'DESC')
