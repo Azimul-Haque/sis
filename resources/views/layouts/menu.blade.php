@@ -42,6 +42,15 @@
 
 @if(Auth::user()->role == 'admin')
 <li class="nav-item">
+    <a href="{{ route('dashboard.monthly') }}" class="nav-link {{ Request::is('dashboard/monthly') ? 'active' : '' }} {{ Request::is('dashboard/monthly/*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-calendar-alt"></i>
+        <p>মাসভিত্তিক জমা-খরচ</p>
+    </a>
+</li>
+@endif
+
+@if(Auth::user()->role == 'admin')
+<li class="nav-item">
     <a href="{{ route('dashboard.creditors') }}" class="nav-link {{ Request::is('dashboard/creditors') ? 'active' : '' }} {{ Request::is('dashboard/creditors/*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-user-clock"></i>
         <p>পাওনাদারের হিসাব</p>

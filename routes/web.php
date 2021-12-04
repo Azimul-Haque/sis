@@ -48,6 +48,8 @@ Route::get('/dashboard/categories/{id}/{selecteddate}/{site_id}', 'DashboardCont
 Route::post('/dashboard/categories/store', 'DashboardController@storeCategory')->name('dashboard.categories.store');
 Route::post('/dashboard/categories/{id}/update', 'DashboardController@updateCategory')->name('dashboard.categories.update');
 
+Route::get('/dashboard/monthly', 'DashboardController@getMonthly')->name('dashboard.monthly');
+
 Route::get('/dashboard/creditors', 'DashboardController@getCreditors')->name('dashboard.creditors');
 Route::get('/dashboard/creditors/{id}', 'DashboardController@getSingleCreditor')->name('dashboard.creditors.single');
 Route::post('/dashboard/creditors/store', 'DashboardController@storeCreditor')->name('dashboard.creditors.store');
