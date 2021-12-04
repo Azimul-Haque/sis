@@ -499,7 +499,6 @@ class DashboardController extends Controller
         $expense->description = $request->description;
 
         // upload image
-
         if($request->hasFile('image')) {
             $receipt      = $request->file('image');
             $filename   = Auth::user()->id.'_receipt_' . time() .'.' . $receipt->getClientOriginalExtension();
