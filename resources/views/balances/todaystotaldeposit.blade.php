@@ -73,7 +73,7 @@
                   <td style="line-height: 1;">
                     <span class="badge bg-success"><big>জমাঃ ৳ {{ $deposit->amount }}</big></span><br/>
                     <small>
-                        <span class="text-black-80">প্রদান করেছেনঃ </span> {{ $deposit->user->name }},
+                        <span class="text-black-80">প্রদান করেছেনঃ </span> {{ $deposit->user ? $deposit->user->name : '' }},
                         <span class="text-black-80">গ্রহণ করেছেনঃ </span> {{ $deposit->receiver ? $deposit->receiver->name : ''}}<br/>
                         <span class="text-black-80">মাধ্যমঃ </span> {{ $deposit->medium ? $deposit->medium : ''}}, <span class="text-black-80">বিবরণঃ </span> {{ $deposit->description ? $deposit->description : ''}}<br/>
                         <small>{{ date('F d, Y h:i A', strtotime($deposit->created_at)) }}</small>
